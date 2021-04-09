@@ -3,13 +3,16 @@
 }
 :root {
   --primaryColor: #1e282f;
+  --secondaryColor: #487eb0;
 }
+
 ul {
   list-style: none;
 }
 .link {
   color: black;
   text-decoration: none;
+  cursor: pointer;
 }
 p {
   margin: 0;
@@ -55,7 +58,6 @@ a {
 
   background-color: var(--primaryColor);
   display: flex;
-  /* align-items: center; */
   padding-top: 5rem;
 }
 .side-nav {
@@ -63,7 +65,7 @@ a {
   /* top: 17%; */
   height: 70vh;
   width: 0%;
-  margin-top: 6rem;
+  margin-top: 11rem;
   background: rgba(17, 139, 211, 0.35);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
@@ -134,10 +136,7 @@ a {
   justify-content: center;
   align-items: center;
 }
-reactPlayer {
-  height: 100%;
-  width: 100%;
-}
+
 .video-list-videoplayer {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -194,11 +193,16 @@ reactPlayer {
   width: 70%;
   height: 85vh;
 }
-
+.video-page-videoplayer {
+  width: 100%;
+  height: 85%;
+}
 .video-card-video-content-div {
   width: 100%;
-  height: 15%;
+  height: 20%;
   display: flex;
+  border-bottom: 2px solid var(--secondaryColor);
+  padding-bottom: 10px;
 }
 .video-card-name-div {
   height: 100%;
@@ -223,6 +227,9 @@ reactPlayer {
   width: 20%;
   font-size: 1.3rem;
 }
+.clicked {
+  color: var(--secondaryColor);
+}
 .video-player-icon {
   margin-right: 0.5rem;
 }
@@ -230,4 +237,133 @@ reactPlayer {
   background-color: blue;
   width: 25%;
   height: 80vh;
+}
+.history-main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primaryColor);
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+}
+.history-clear-btn {
+  width: 100px;
+
+  height: 5vh;
+  margin-top: 1rem;
+  margin-left: 1rem;
+  border: 1px solid var(--secondaryColor);
+  color: var(--secondaryColor);
+  background-color: transparent;
+}
+.history-video-list {
+  width: 100%;
+  min-height: 95vh;
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: flex-start;
+  padding-top: 2rem;
+}
+.history-card {
+  width: 40%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem;
+  box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
+}
+.history-card-content {
+  width: 50%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.history-card-delete-btn {
+  background-color: transparent;
+  width: 15%;
+  height: 22%;
+  align-self: flex-end;
+  float: right;
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
+}
+.history-card-delete-btn :hover {
+  cursor: pointer;
+}
+.watch-later-main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primaryColor);
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+}
+.watch-later-btn {
+  width: 5%;
+  height: 5vh;
+  border: 1px solid var(--secondaryColor);
+  color: var(--secondaryColor);
+  background-color: transparent;
+}
+.watch-later-list {
+  width: 100%;
+  min-height: 95vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 2rem;
+}
+.watchlater-card {
+  width: 80%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem;
+  box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
+}
+.watchlater-card-name {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: initial;
+}
+.like-videos-main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primaryColor);
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+}
+
+.like-videos-list {
+  width: 100%;
+  min-height: 95vh;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 2rem;
+}
+.like-videos-card {
+  width: 80%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem;
+  box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
+}
+.liked-videos-card-name {
+  font-size: 1.5rem;
+  font-weight: bolder;
+  text-align: initial;
 }

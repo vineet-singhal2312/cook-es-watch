@@ -53,10 +53,14 @@ export const Header = () => {
           </a>
           <a className="header-list-item">
             {" "}
-            <MdWatchLater className="header-icon" />
+            <Link className="link" to="/watchlater">
+              <MdWatchLater className="header-icon" />
+            </Link>
           </a>
           <a className="header-list-item">
-            <FaThumbsUp className="header-icon" />
+            <Link className="link" to="/likedvideos">
+              <FaThumbsUp className="header-icon" />
+            </Link>
           </a>
         </div>
       </nav>

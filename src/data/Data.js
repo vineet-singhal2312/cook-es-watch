@@ -9,6 +9,9 @@ export const Data = [
     views: "25,953,146 views",
     like: "794K",
     dislike: "9.7K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -18,6 +21,9 @@ export const Data = [
     views: "9,467,759 views",
     like: "267K",
     dislike: "4.5K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -28,6 +34,9 @@ export const Data = [
     views: "4,975,610 views",
     like: "105K",
     dislike: "3.8K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -38,6 +47,9 @@ export const Data = [
     views: "10,144,195 views",
     like: "160K",
     dislike: "7.8K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -48,6 +60,9 @@ export const Data = [
     views: "6,512,895 views",
     like: "167K",
     dislike: "1.8K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -57,6 +72,9 @@ export const Data = [
     views: "3,544,752 views",
     like: "41K",
     dislike: "1.7K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -66,6 +84,9 @@ export const Data = [
     views: "17,455,590 views",
     like: "500K",
     dislike: "6.8K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -76,6 +97,9 @@ export const Data = [
     views: "455,072 views",
     like: "15K",
     dislike: "250",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -86,6 +110,9 @@ export const Data = [
     views: "1,646,139 views",
     like: "33K",
     dislike: "1K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -95,6 +122,9 @@ export const Data = [
     views: "2,580,907 views",
     like: "47K",
     dislike: "1.3K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -104,6 +134,9 @@ export const Data = [
     views: "8,496,310 views",
     like: "200K",
     dislike: "2K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -113,6 +146,9 @@ export const Data = [
     views: "13,279,466 views",
     like: "220K",
     dislike: "4.8K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
 
   {
@@ -123,6 +159,9 @@ export const Data = [
     views: "17,455,590 views",
     like: "500K",
     dislike: "6.8K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
 
   {
@@ -133,6 +172,9 @@ export const Data = [
     views: "27,228,171 views",
     like: "319K",
     dislike: "11K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
   {
     id: uuid(),
@@ -142,6 +184,9 @@ export const Data = [
     views: "3,544,943 views",
     like: "41K",
     dislike: "1.7K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
 
   {
@@ -152,5 +197,8 @@ export const Data = [
     views: "4.8M views",
     like: "114K",
     dislike: "4.7K",
+    watchlater: false,
+    isLike: false,
+    isDislike: false,
   },
 ];

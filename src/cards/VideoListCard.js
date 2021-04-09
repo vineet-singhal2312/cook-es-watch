@@ -1,11 +1,18 @@
 import ReactPlayer from "react-player/youtube";
 import { Link } from "react-router-dom";
+import { useReduce } from "../providers/useReducerProvider";
 
 export const VideoListCard = ({ item }) => {
+  const { dispatch, state } = useReduce();
+  // console.log(state);
+
   return (
     <>
       <Link className="link" to={`/videopage/${item.id}`}>
-        <div className="product-list-card">
+        <div
+          className="product-list-card"
+          onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: item })}
+        >
           <ReactPlayer
             className="video-list-videoplayer"
             width="90%"

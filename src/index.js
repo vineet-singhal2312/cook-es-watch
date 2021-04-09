@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
+import { ReducerProvider } from "./providers/useReducerProvider";
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -18,7 +19,9 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <ReducerProvider>
+        <App />
+      </ReducerProvider>
     </Router>
   </React.StrictMode>,
   rootElement
