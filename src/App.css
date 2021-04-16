@@ -8,7 +8,7 @@
   --textColor: #dfe6e9;
 }
 body {
-  color: white;
+  color: var(--textColor);
 }
 input,
 button :focus {
@@ -18,7 +18,7 @@ ul {
   list-style: none;
 }
 .link {
-  color: white;
+  color: var(--textColor);
   text-decoration: none;
   cursor: pointer;
 }
@@ -78,7 +78,7 @@ a {
   height: 70vh;
   width: 0%;
   margin-top: 11rem;
-  background: rgba(17, 139, 211, 0.35);
+  background: rgba(17, 139, 211, 0.6);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
