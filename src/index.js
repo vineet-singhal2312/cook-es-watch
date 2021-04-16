@@ -5,6 +5,7 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ReducerProvider } from "./providers/useReducerProvider";
+import { PlayListProvider } from "./playlist/PlayListContextProvier";
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -20,7 +21,9 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ReducerProvider>
-        <App />
+        <PlayListProvider>
+          <App />
+        </PlayListProvider>
       </ReducerProvider>
     </Router>
   </React.StrictMode>,

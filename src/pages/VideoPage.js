@@ -8,19 +8,25 @@ import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { useReduce } from "../providers/useReducerProvider";
+import { usePlaylist } from "../playlist/PlayListContextProvier";
+import { PlayListModal } from "../playlist/PlayListModal";
 
 export const VideoPage = () => {
   const { dispatch, state } = useReduce();
+  const { playlistState, playlistDispatch } = usePlaylist();
   const { videoId } = useParams();
   function getVideoDetails(DataArr, videoId) {
-    return DataArr.find((item) => item.id === videoId);
+    return DataArr.find((item) => item.id == videoId);
   }
+  // console.log(videoId, state.Data);
 
   const videoDetails = getVideoDetails(state.Data, videoId);
+  // console.log(videoDetails);
   return (
     <>
       <SideNav />
       <Header />
+      {playlistState.isModal && <PlayListModal item={videoDetails} />}
       <div className="video-page-background">
         <div className="Vedio-page-content">
           <div className="video-card">
@@ -124,11 +130,18 @@ export const VideoPage = () => {
                     <p> Later</p>
                   </div>
                 )}
-                <Link to="/" className="link video-player-option">
+                <div
+                  onClick={() =>
+                    playlistDispatch({
+                      type: "SHOE_MODAL",
+                    })
+                  }
+                  className="video-player-option"
+                >
                   {" "}
                   <RiPlayList2Line className="video-player-icon" />
                   <p>Playlist</p>
-                </Link>
+                </div>
               </div>
             </div>
           </div>

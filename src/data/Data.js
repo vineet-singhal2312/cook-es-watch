@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 
 export const Data = [
   {
-    id: uuid(),
+    id: 1,
     url: "https://www.youtube.com/watch?v=rEdl2Uetpvo",
     name: "How To Make Perfect Chocolate Chip Cookies",
     date: "29 Apr 2018",
@@ -14,7 +14,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 2,
     url: "https://www.youtube.com/watch?v=sr5eWBn3a60",
     name: "Oreo Cake Only 3 Ingredients In Lock down",
     date: "15 Apr 2020",
@@ -26,7 +26,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 3,
     url: "https://www.youtube.com/watch?v=Te3XsJgJyvg",
     name:
       "RED VELVET CAKE |Valentine’s Day Special | Best Valentine’s Day Recipes | Kunal Kapur",
@@ -39,7 +39,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 4,
     url: "https://www.youtube.com/watch?v=HtX7f_dKWTw",
     name:
       "2 Min Mug Cake Recipe - Super Soft & Rich Eggless Microwave Cakes - CookingShooking",
@@ -52,7 +52,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 5,
     url: "https://www.youtube.com/watch?v=HIonKbKM-tE",
     name:
       "The Science Behind the Perfect Brownie - Kitchen Conundrums with Thomas Joseph",
@@ -65,7 +65,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 6,
     url: "https://www.youtube.com/watch?v=OK97SH7rDYw",
     name: "CHOCOLATE CUPCAKE RECIPE | Ep. 29 | Mortar and Pastry",
     date: "12 Jul 2018",
@@ -77,7 +77,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 7,
     url: "https://www.youtube.com/watch?v=VvJm4pQZ04s",
     name: "The Best Brownies You'll Ever Eat",
     date: "1 Jul 2018",
@@ -89,7 +89,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 8,
     url: "https://www.youtube.com/watch?v=faca9xFJatA",
     name:
       "EGGLESS CHOCOLATE WALNUT BROWNIE | BEST VALENTINE'S DAY RECIPES |NO OVEN FUDGY BROWNIE | KUNAL KAPUR",
@@ -102,7 +102,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 9,
     url: "https://www.youtube.com/watch?v=hyGrhpftuvQ",
     name:
       "Eggless Butterscotch Cake | Easy cake without Oven | No Butter, Condensed Milk, Eggs | Sponge Cake",
@@ -115,7 +115,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 10,
     url: "https://www.youtube.com/watch?v=X54qUlUXW6w",
     name: "3 EASY COOKIES RECIPE I EGG-LESS & WITHOUT OVEN",
     date: "25 Feb 2018",
@@ -127,7 +127,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 11,
     url: "https://www.youtube.com/watch?v=lIb_741_dIw",
     name: "The Best Fudgy Brownies Ever! • Tasty",
     date: "3 Jun 2017",
@@ -139,7 +139,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 12,
     url: "https://www.youtube.com/watch?v=uJwekkbGPns",
     name: "Professional Baker Teaches You How To Make CHOCOLATE CHIP COOKIES!",
     date: "18 Mar 2016",
@@ -152,7 +152,7 @@ export const Data = [
   },
 
   {
-    id: uuid(),
+    id: 13,
     url: "https://www.youtube.com/watch?v=Ffqe3GnNJhc",
     name: "How to Get PERFECT VANILLA CUPCAKES Every Time",
     date: "1 Jul 2018",
@@ -165,7 +165,7 @@ export const Data = [
   },
 
   {
-    id: uuid(),
+    id: 14,
     url: "https://www.youtube.com/watch?v=dsJtgmAhFF4",
     name: "How to Make the Most Amazing Chocolate Cake",
     date: "8 Jun 2016",
@@ -177,7 +177,7 @@ export const Data = [
     isDislike: false,
   },
   {
-    id: uuid(),
+    id: 15,
     url: "https://www.youtube.com/watch?v=OK97SH7rDYw&t=3s",
     name: "CHOCOLATE CUPCAKE RECIPE | Ep. 29 | Mortar and Pastry",
     date: "12 Jul 2018",
@@ -190,7 +190,7 @@ export const Data = [
   },
 
   {
-    id: uuid(),
+    id: 16,
     url: "https://www.youtube.com/watch?v=qIX_CUsANpw",
     name: "Cooker Me 1 Kg Black Forest Eggless Cake Recipe - cookingshooking",
     date: "29 Nov 2020",

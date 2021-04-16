@@ -2,8 +2,9 @@ import { LikedVideosCard } from "../cards/LikedVideosCard";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { useReduce } from "../providers/useReducerProvider";
-export const LikedVideos = () => {
+export const PlayList = () => {
   const { state, dispatch } = useReduce();
+  // console.log(state);
 
   return (
     <>

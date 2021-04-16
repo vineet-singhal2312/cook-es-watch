@@ -10,7 +10,7 @@ export function ReducerProvider({ children }) {
     likedVideos: [],
     Data,
   });
-  console.log(state);
+  // console.log(state);
   function reducer(state, value) {
     switch (value.type) {
       case "ADD_TO_HISTORY":

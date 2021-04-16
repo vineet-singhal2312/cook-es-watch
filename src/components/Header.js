@@ -49,7 +49,9 @@ export const Header = () => {
           </a>
           <a className="header-list-item">
             {" "}
-            <RiPlayList2Line className="header-icon" />
+            <Link className="link" to="/playlist">
+              <RiPlayList2Line className="header-icon" />
+            </Link>
           </a>
           <a className="header-list-item">
             {" "}
