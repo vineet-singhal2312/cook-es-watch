@@ -1,9 +1,10 @@
-import { LikedVideosCard } from "../cards/LikedVideosCard";
+import { LikedVideosCard } from "../likedvideos/LikedVideosCard";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
-import { useReduce } from "../providers/useReducerProvider";
+import { PlaylistCard } from "./PlaylistCard";
+import { usePlaylist } from "./PlayListContextProvier";
 export const PlayList = () => {
-  const { state, dispatch } = useReduce();
+  const { playlistState } = usePlaylist();
   // console.log(state);
 
   return (
@@ -11,12 +12,10 @@ export const PlayList = () => {
       <Header />
       <SideNav />
 
-      <div className="like-videos-main">
-        <div className="like-videos-list">
-          {state.likedVideos.map((item) => (
-            <LikedVideosCard item={item} />
-          ))}
-        </div>
+      <div className="playlist-videos-main">
+        {playlistState.playlist.map((item) => (
+          <PlaylistCard item={item} />
+        ))}
       </div>
     </>
   );

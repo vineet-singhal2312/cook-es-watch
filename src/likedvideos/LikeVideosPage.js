@@ -1,4 +1,4 @@
-import { LikedVideosCard } from "../cards/LikedVideosCard";
+import { LikedVideosCard } from "./LikedVideosCard";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { useReduce } from "../providers/useReducerProvider";

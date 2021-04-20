@@ -1,4 +1,4 @@
-import { HistoryCard } from "../cards/HistoryCard";
+import { HistoryCard } from "./HistoryCard";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { useReduce } from "../providers/useReducerProvider";

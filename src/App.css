@@ -264,7 +264,7 @@ a {
 
   height: 5vh;
   margin-top: 1rem;
-  margin-left: 1rem;
+  margin-left: 2rem;
   border: 1px solid var(--secondaryColor);
   color: var(--secondaryColor);
   background-color: transparent;
@@ -275,39 +275,39 @@ a {
   background-color: transparent;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: flex-start;
   padding-top: 2rem;
 }
 .history-card {
-  width: 40%;
-  height: 150px;
+  width: 350px;
+  height: 400px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   margin: 2rem;
+  border-radius: 10px;
   box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
 }
 .history-card-content {
-  width: 50%;
-  height: 80%;
+  width: 90%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: center;
 }
 .history-card-delete-btn {
   background-color: transparent;
   width: 15%;
   height: 22%;
-  align-self: flex-end;
+  /* align-self: flex-end; */
   float: right;
   font-size: 1.5rem;
   color: var(--secondaryColor);
 }
-.history-card-delete-btn :hover {
-  cursor: pointer;
-}
+
 .watch-later-main {
   width: 100%;
   min-height: 100vh;
@@ -328,25 +328,40 @@ a {
   min-height: 95vh;
   background-color: transparent;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 2rem;
 }
 .watchlater-card {
-  width: 80%;
-  height: 250px;
+  width: 350px;
+  height: 400px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   margin: 2rem;
+  border-radius: 10px;
   box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
 }
-.watchlater-card-name {
-  font-size: 1.5rem;
-  font-weight: bolder;
-  text-align: initial;
+.watchlater-card-content {
+  width: 90%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
+.watchlater-card-delete-btn {
+  background-color: transparent;
+  width: 15%;
+  height: 22%;
+  /* align-self: flex-end; */
+  float: right;
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
+}
+
 .like-videos-main {
   width: 100%;
   min-height: 100vh;
@@ -361,25 +376,41 @@ a {
   min-height: 95vh;
   background-color: transparent;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
   padding-top: 2rem;
 }
 .like-videos-card {
-  width: 80%;
-  height: 250px;
+  width: 350px;
+  height: 400px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-around;
   margin: 2rem;
+  border-radius: 10px;
   box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
 }
-.liked-videos-card-name {
-  font-size: 1.5rem;
-  font-weight: bolder;
-  text-align: initial;
+
+.like-videos-card-content {
+  width: 90%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
+.like-videos-card-delete-btn {
+  background-color: transparent;
+  width: 15%;
+  height: 22%;
+  /* align-self: flex-end; */
+  float: right;
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
+}
+
 .playlist-modal {
   position: fixed;
   top: 30%;
@@ -442,4 +473,72 @@ a {
   color: var(--textColor);
   background-color: transparent;
   border: 0;
+}
+.playlist-videos-main {
+  width: 100%;
+  min-height: 100vh;
+  background-color: var(--primaryColor);
+  display: flex;
+  flex-direction: column;
+  padding-top: 5rem;
+}
+
+.playlist-card {
+  width: 100%;
+  min-height: 400px;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.playlist-name-div {
+  width: 100%;
+  height: 50px;
+  background-color: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.playlist-videos {
+  width: 100%;
+  min-height: 350px;
+  background-color: transparent;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+.playlist-name {
+  margin: 1rem;
+}
+.playlist-videos-card {
+  width: 250px;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  margin: 2rem;
+  border-radius: 10px;
+  box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
+}
+
+.playlist-videos-card-content {
+  width: 90%;
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.playlist-videos-card-delete-btn {
+  background-color: transparent;
+  width: 15%;
+  height: 22%;
+  /* align-self: flex-end; */
+  float: right;
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
 }

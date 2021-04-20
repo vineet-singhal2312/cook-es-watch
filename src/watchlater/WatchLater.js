@@ -1,5 +1,5 @@
-import { HistoryCard } from "../cards/HistoryCard";
-import { WatchLaterCard } from "../cards/WatchLatercard";
+import { HistoryCard } from "../history/HistoryCard";
+import { WatchLaterCard } from "./WatchLatercard";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { useReduce } from "../providers/useReducerProvider";

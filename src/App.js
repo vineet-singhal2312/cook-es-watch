@@ -2,10 +2,10 @@ import "./App.css";
 import { Home } from "./pages/Home";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { History } from "./pages/History";
+import { History } from "./history/History";
 import { VideoPage } from "./pages/VideoPage";
-import { WatchLater } from "./pages/WatchLater";
-import { LikedVideos } from "./pages/LikeVideosPage";
+import { WatchLater } from "./watchlater/WatchLater";
+import { LikedVideos } from "./likedvideos/LikeVideosPage";
 import { PlayList } from "./playlist/PlayList";
 
 function App() {
