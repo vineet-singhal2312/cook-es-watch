@@ -16,7 +16,7 @@ export const VideoList = () => {
       }
     })();
   }, []);
-
+  console.log(initialData);
   return (
     <>
       <div className="product-list">
