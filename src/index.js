@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ReducerProvider } from "./providers/useReducerProvider";
 import { PlayListProvider } from "./playlist/PlayListContextProvier";
+import { HistoryProvider } from "./history/HistoryContextProvider";
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -21,9 +22,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <ReducerProvider>
-        <PlayListProvider>
-          <App />
-        </PlayListProvider>
+        <HistoryProvider>
+          <PlayListProvider>
+            <App />
+          </PlayListProvider>
+        </HistoryProvider>
       </ReducerProvider>
     </Router>
   </React.StrictMode>,

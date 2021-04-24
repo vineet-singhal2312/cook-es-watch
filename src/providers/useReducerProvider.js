@@ -13,21 +13,21 @@ export function ReducerProvider({ children }) {
   // console.log(state);
   function reducer(state, value) {
     switch (value.type) {
-      case "ADD_TO_HISTORY":
-        return {
-          ...state,
-          history: [...state.history, value.payload],
-        };
-      case "DELETE_FROM_HISTORY":
-        return {
-          ...state,
-          history: state.history.filter((item, index) => index !== value.index),
-        };
-      case "CLEAR_HISTORY":
-        return {
-          ...state,
-          history: [],
-        };
+      // case "ADD_TO_HISTORY":
+      //   return {
+      //     ...state,
+      //     history: [...state.history, value.payload],
+      //   };
+      // case "DELETE_FROM_HISTORY":
+      //   return {
+      //     ...state,
+      //     history: state.history.filter((item, index) => index !== value.index),
+      //   };
+      // case "CLEAR_HISTORY":
+      //   return {
+      //     ...state,
+      //     history: [],
+      //   };
 
       case "ADD_TO_WATCHLATER":
         return {
