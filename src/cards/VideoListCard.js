@@ -13,12 +13,13 @@ export const VideoListCard = ({ item }) => {
           className="product-list-card"
           onClick={() => dispatch({ type: "ADD_TO_HISTORY", payload: item })}
         >
-          <ReactPlayer
+          <img src={item.img} className="video-list-videoplayer" />
+          {/* <ReactPlayer
             className="video-list-videoplayer"
             width="90%"
             height="55%"
             url={item.url}
-          />
+          /> */}
           <div className="product-list-card-content">
             <h4 className="product-list-card-name">{item.name}</h4>
             <div className="product-list-card-views-div">

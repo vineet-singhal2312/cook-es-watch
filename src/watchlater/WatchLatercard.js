@@ -9,7 +9,9 @@ export const WatchLaterCard = ({ item }) => {
     <>
       {" "}
       <Link className="link watchlater-card" to={`/videopage/${item.id}`}>
-        <ReactPlayer url={item.url} width="90%" height="55%" />
+        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
+        <img src={item.img} className="watchlater-card-img" />
+
         <div className="watchlater-card-content">
           {item.name}
 

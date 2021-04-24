@@ -9,7 +9,9 @@ export const LikedVideosCard = ({ item}) => {
     <>
       {" "}
       <Link className="link like-videos-card" to={`/videopage/${item.id}`}>
-        <ReactPlayer url={item.url} width="90%" height="55%" />
+        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
+        <img src={item.img} className="like-videos-card-img" />
+
         <div className="like-videos-card-content">
           {item.name}
           <Link className="link like-videos-card-delete-btn" to="/likedvideos">

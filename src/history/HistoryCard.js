@@ -9,7 +9,9 @@ export const HistoryCard = ({ item, idx }) => {
     <>
       {" "}
       <Link className="link history-card" to={`/videopage/${item.id}`}>
-        <ReactPlayer url={item.url} width="90%" height="55%" />
+        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
+        <img src={item.img} className="history-card-img" />
+
         <div className="history-card-content">
           {item.name}
           <Link className="link history-card-delete-btn" to="/history">

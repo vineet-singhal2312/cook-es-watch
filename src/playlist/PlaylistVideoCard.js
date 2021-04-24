@@ -9,7 +9,9 @@ export const PlaylistVideoCard = ({ item }) => {
     <>
       {" "}
       <Link className="link playlist-videos-card" to={`/videopage/${item.id}`}>
-        <ReactPlayer url={item.url} width="90%" height="55%" />
+        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
+        <img src={item.img} className="playlist-card-img" />
+
         <div className="playlist-videos-card-content">
           <p>{item.name}</p>
           <Link className="link playlist-videos-card-delete-btn" to="/playlist">
