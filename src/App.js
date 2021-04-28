@@ -1,9 +1,9 @@
 import "./App.css";
-import { Home } from "./pages/Home";
+import { Home } from "./home/Home";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { History } from "./history/History";
-import { VideoPage } from "./pages/VideoPage";
+import { VideoPage } from "./videopage/VideoPage";
 import { WatchLater } from "./watchlater/WatchLater";
 import { LikedVideos } from "./likedvideos/LikeVideosPage";
 import { PlayList } from "./playlist/PlayList";

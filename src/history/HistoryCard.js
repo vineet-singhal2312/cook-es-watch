@@ -1,6 +1,4 @@
-import ReactPlayer from "react-player";
 import { MdDelete } from "react-icons/md";
-import { useReduce } from "../providers/useReducerProvider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
@@ -27,15 +25,12 @@ export const HistoryCard = ({ item, idx }) => {
     <>
       {" "}
       <Link className="link history-card" to={`/videopage/${item.id}`}>
-        <img src={item.id.img} className="history-card-img" />
+        <img src={item.id.img} className="history-card-img" alt="img" />
 
         <div className="history-card-content">
           {item.id.name}
           <Link className="link history-card-delete-btn" to="/history">
-            <div
-
-            // onClick={() => deleteHistoryVideo(item._id)}
-            >
+            <div onClick={() => deleteHistoryVideo(item._id)}>
               <MdDelete />
             </div>
           </Link>

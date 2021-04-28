@@ -1,5 +1,5 @@
 import { createContext, useContext, useReducer } from "react";
-import { Data } from "../data/Data";
+// import { Data } from "../data/Data";
 
 const ReducerContext = createContext();
 
@@ -8,16 +8,33 @@ export function ReducerProvider({ children }) {
     history: [],
     watchLater: [],
     likedVideos: [],
-    Data,
+    Data: [],
+    product: {},
   });
-  // console.log(state);
+  console.log(state);
   function reducer(state, value) {
     switch (value.type) {
-      // case "ADD_TO_HISTORY":
-      //   return {
-      //     ...state,
-      //     history: [...state.history, value.payload],
-      //   };
+      case "INITIALIZE_DATA":
+        return {
+          ...state,
+          Data: value.payload,
+        };
+      case "SET_LIKEDVIDEOS":
+        return {
+          ...state,
+          likedVideos: value.payload,
+        };
+
+      case "SET_WATCHLATERVIDEOS":
+        return {
+          ...state,
+          watchLater: value.payload,
+        };
+      case "INITIALIZE_PRODUCT":
+        return {
+          ...state,
+          product: value.payload,
+        };
       // case "DELETE_FROM_HISTORY":
       //   return {
       //     ...state,

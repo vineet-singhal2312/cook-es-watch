@@ -1,7 +1,4 @@
-import ReactPlayer from "react-player";
 import { Link } from "react-router-dom";
-import { LikedVideosCard } from "../likedvideos/LikedVideosCard";
-import { usePlaylist } from "./PlayListContextProvier";
 import { PlaylistVideoCard } from "./PlaylistVideoCard";
 
 export const PlaylistCard = ({ item }) => {

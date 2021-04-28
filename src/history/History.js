@@ -2,13 +2,12 @@ import { HistoryCard } from "./HistoryCard";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
 import { useReduce } from "../providers/useReducerProvider";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
 export const History = () => {
-  const { state, dispatch } = useReduce();
+  const { dispatch } = useReduce();
   const { setHistoryData, historyData } = useHistory();
-  // console.log(state);
   useEffect(() => {
     (async function () {
       try {
@@ -18,7 +17,7 @@ export const History = () => {
         console.log({ error });
       }
     })();
-  }, []);
+  }, [setHistoryData]);
 
   return (
     <>

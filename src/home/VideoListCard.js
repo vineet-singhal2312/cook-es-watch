@@ -1,16 +1,13 @@
 import axios from "axios";
-import ReactPlayer from "react-player/youtube";
 import { Link } from "react-router-dom";
-import { useReduce } from "../providers/useReducerProvider";
 
 export const VideoListCard = ({ item }) => {
-  const { dispatch, state } = useReduce();
+  // const { dispatch, state } = useReduce();
+  // console.log(item);
   const postVideoInHistory = async (id) => {
     // console.log(id);
     try {
-      const res1 = await axios.post("/historyvideos", { Id: id });
-
-      console.log(res1);
+      await axios.post("/historyvideos", { Id: id });
     } catch (error) {
       console.log(error);
     }
@@ -25,7 +22,7 @@ export const VideoListCard = ({ item }) => {
             postVideoInHistory(item._id);
           }}
         >
-          <img src={item.img} className="video-list-videoplayer" />
+          <img src={item.img} className="video-list-videoplayer" alt="img" />
 
           <div className="product-list-card-content">
             <h4 className="product-list-card-name">{item.name}</h4>

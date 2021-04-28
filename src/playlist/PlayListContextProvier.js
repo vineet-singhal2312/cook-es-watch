@@ -1,19 +1,11 @@
-import { createContext, useContext, useReducer, useState } from "react";
-import { Data } from "../data/Data";
-import { PlayList } from "./PlayList";
+import { createContext, useContext, useReducer } from "react";
 
 const PlayListContext = createContext();
 
 export function PlayListProvider({ children }) {
   const [playlistState, playlistDispatch] = useReducer(reducer, {
     isModal: false,
-    playlist: [
-      {
-        id: "default",
-        name: "default",
-        videos: [],
-      },
-    ],
+    playlist: [],
   });
   console.log(playlistState);
   function reducer(playlistState, value) {
@@ -29,37 +21,44 @@ export function PlayListProvider({ children }) {
           isModal: false,
         };
 
+      // case "ADD_PLAYLIST":
+      //   return {
+      //     ...playlistState,
+      //     isModal: true,
+      //     playlist: [
+      //       ...playlistState.playlist,
+      //       { id: value.payload, name: value.payload, videos: [] },
+      //     ],
+      //   };
+
       case "ADD_PLAYLIST":
         return {
           ...playlistState,
-          isModal: true,
-          playlist: [
-            ...playlistState.playlist,
-            { id: value.payload, name: value.payload, videos: [] },
-          ],
+
+          playlist: value.payload,
         };
 
-      case "ADD_TO_PLAY_LIST":
-        // console.log(value.payload, value.playlistName);
+      // case "ADD_TO_PLAY_LIST":
+      //   // console.log(value.payload, value.playlistName);
 
-        // const res1 = ;
-        return {
-          ...playlistState,
-          playlist: playlistState.playlist.map((playlist) => {
-            console.log(playlist);
-            console.log(playlist.id, value.playlistName);
+      //   // const res1 = ;
+      //   return {
+      //     ...playlistState,
+      //     playlist: playlistState.playlist.map((playlist) => {
+      //       console.log(playlist);
+      //       console.log(playlist.id, value.playlistName);
 
-            if (playlist.id === value.playlistName) {
-              console.log("......");
-              return {
-                ...playlist,
-                videos: playlist.videos.concat([value.payload]),
-              };
-            } else {
-              return { ...playlist };
-            }
-          }),
-        };
+      //       if (playlist.id === value.playlistName) {
+      //         console.log("......");
+      //         return {
+      //           ...playlist,
+      //           videos: playlist.videos.concat([value.payload]),
+      //         };
+      //       } else {
+      //         return { ...playlist };
+      //       }
+      //     }),
+      //   };
 
       //   const playlistNotExist = [
       //     ...playlistState.playlist,

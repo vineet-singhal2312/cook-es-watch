@@ -1,6 +1,6 @@
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
-import { VideoList } from "../components/VideoList";
+import { VideoList } from "./VideoList";
 export const Home = () => {
   return (
     <>

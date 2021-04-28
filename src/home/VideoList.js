@@ -1,26 +1,31 @@
 // import { Data } from "../data/Data";
-import { VideoListCard } from "../cards/VideoListCard";
-import { useEffect, useState } from "react";
+import { VideoListCard } from "./VideoListCard";
+import { useEffect } from "react";
 import axios from "axios";
+import { useReduce } from "../providers/useReducerProvider";
 
 export const VideoList = () => {
-  const [initialData, setInitialData] = useState([]);
+  const { dispatch, state } = useReduce();
+
   useEffect(() => {
     (async function () {
       try {
         const { data } = await axios.get("/videos");
 
-        setInitialData(data);
+        dispatch({ type: "INITIALIZE_DATA", payload: data });
+
+        // console.log(data);
       } catch (error) {
         console.log(error);
       }
     })();
   }, []);
-  console.log(initialData);
+
+  console.log(state);
   return (
     <>
       <div className="product-list">
-        {initialData.map((item) => (
+        {state.Data.map((item) => (
           <VideoListCard item={item} />
         ))}
       </div>

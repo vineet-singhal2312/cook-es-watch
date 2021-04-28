@@ -1,6 +1,7 @@
+import axios from "axios";
 import { useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { usePlaylist } from "./PlayListContextProvier";
+import { usePlaylist } from "../playlist/PlayListContextProvier";
 
 export const PlayListModal = ({ item }) => {
   const { playlistDispatch, playlistState } = usePlaylist();
@@ -13,6 +14,32 @@ export const PlayListModal = ({ item }) => {
 
     setUserPlaylistName(playlistNameGivenByUser);
   };
+
+  const addPlayList = async () => {
+    const { data } = await axios.post("/playlists", { name: userPlaylistName });
+    // console.log(data);
+
+    playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+  };
+
+  const addVideoInPlayList = async (playlist) => {
+    // if (playlist.videos.length == 0) {
+    const { data } = await axios.post("/playlists/videos", {
+      playlistId: playlist._id,
+      videoId: item._id,
+    });
+    console.log(data);
+    // playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+    // }
+
+    // if (playlist.videos.length > 0) {
+    //   if (playlist.videos((video) => video.id !== item._id)) {
+    //   }
+    // }
+
+    // playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+  };
+
   // console.log(userPlaylistName);
   return (
     <div className="playlist-modal">
@@ -31,20 +58,22 @@ export const PlayListModal = ({ item }) => {
       </div>
       <div className="playlist-modal-list">
         <ul className="playlist-modal-list-list">
-          {playlistState.playlist.map((video) => (
+          {playlistState.playlist.map((playlist) => (
             <li
               className="playlist-modal-list-item"
               onClick={() => {
-                console.log(video);
-                playlistDispatch({
-                  type: "ADD_TO_PLAY_LIST",
-                  playlistName: video.name,
-                  payload: item,
-                });
+                console.log(playlist);
+                // playlistDispatch({
+                //   type: "ADD_TO_PLAY_LIST",
+                //   playlistName: playlist.name,
+                //   payload: item,
+                // });
+
+                addVideoInPlayList(playlist);
               }}
             >
               {" "}
-              {video.name}
+              {playlist.name}
             </li>
           ))}
         </ul>
@@ -58,12 +87,17 @@ export const PlayListModal = ({ item }) => {
         />
         <button
           className="playlist-modal-input-button"
+          // onClick={(e) => {
+          //   e.preventDefault();
+          //   playlistDispatch({
+          //     type: "ADD_PLAYLIST",
+          //     payload: userPlaylistName,
+          //   });
+          // }}
+
           onClick={(e) => {
             e.preventDefault();
-            playlistDispatch({
-              type: "ADD_PLAYLIST",
-              payload: userPlaylistName,
-            });
+            addPlayList();
           }}
         >
           ADD
