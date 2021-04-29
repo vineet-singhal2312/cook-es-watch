@@ -16,7 +16,7 @@ export const PlayListModal = ({ item }) => {
     (async function () {
       try {
        
-        const { data } = await axios.get("/playlists");
+        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/playlists");
         console.log(data);
 
         playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
@@ -34,7 +34,7 @@ export const PlayListModal = ({ item }) => {
   };
 
   const addPlayList = async () => {
-    const { data } = await axios.post("/playlists", { name: userPlaylistName });
+    const { data } = await axios.post("https://cook-es-watch.herokuapp.com/playlists", { name: userPlaylistName });
     // console.log(data);
 
     playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
@@ -44,7 +44,7 @@ export const PlayListModal = ({ item }) => {
     setIsPlayListVideoAddModel(true);
 
     try {
-      const { data } = await axios.post("/playlists/videos", {
+      const { data } = await axios.post("https://cook-es-watch.herokuapp.com/playlists/videos", {
         playlistId: playlist._id,
         videoId: item._id,
       });

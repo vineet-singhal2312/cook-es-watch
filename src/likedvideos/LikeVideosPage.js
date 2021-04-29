@@ -11,7 +11,7 @@ export const LikedVideos = () => {
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("/likedvideos");
+        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/likedvideos");
 
         dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
       } catch (error) {

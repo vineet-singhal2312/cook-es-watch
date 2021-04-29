@@ -8,7 +8,7 @@ export const LikedVideosCard = ({ item }) => {
 
   const unLikedVideo = async (item) => {
     try {
-      const { data } = await axios.delete("/likedvideos", {
+      const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/likedvideos", {
         data: {
           video_id: item.id._id,
 

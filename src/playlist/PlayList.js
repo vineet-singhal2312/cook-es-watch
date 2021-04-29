@@ -12,7 +12,7 @@ export const PlayList = () => {
     (async function () {
       try {
         // await axios.get("/playlists");
-        const { data } = await axios.get("/playlists");
+        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/playlists");
         console.log(data);
 
         playlistDispatch({ type: "ADD_PLAYLIST", payload: data });

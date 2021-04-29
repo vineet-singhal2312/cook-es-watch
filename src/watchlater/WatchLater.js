@@ -10,7 +10,7 @@ export const WatchLater = () => {
 
   useEffect(() => {
     (async function () {
-      const { data } = await axios.get("/watchlatervideos");
+      const { data } = await axios.get("https://cook-es-watch.herokuapp.com/watchlatervideos");
 
       // res1 = data
       dispatch({ type: "SET_WATCHLATERVIDEOS", payload: data });

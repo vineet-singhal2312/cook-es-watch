@@ -10,12 +10,15 @@ export const WatchLaterCard = ({ item }) => {
 
   const deletefromWatchLater = async (item) => {
     try {
-      const { data } = await axios.delete("/watchlatervideos", {
-        data: {
-          watchlatervideo_id: item._id,
-          video_id: item.id._id,
-        },
-      });
+      const { data } = await axios.delete(
+        "https://cook-es-watch.herokuapp.com/watchlatervideos",
+        {
+          data: {
+            watchlatervideo_id: item._id,
+            video_id: item.id._id,
+          },
+        }
+      );
       dispatch({ type: "SET_WATCHLATERVIDEOS", payload: data });
     } catch (error) {
       console.log(error);

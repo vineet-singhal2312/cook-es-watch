@@ -11,7 +11,7 @@ export const PlaylistCard = ({ playlist }) => {
   const deletePlayList = async (playlistId) => {
     console.log(playlistId);
 
-    const { data } = await axios.delete("/playlists", {
+    const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/playlists", {
       data: { playlistId: playlistId },
     });
     playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
@@ -19,7 +19,7 @@ export const PlaylistCard = ({ playlist }) => {
   const deleteVideoFromPlayList = async (playlistId, videoId) => {
     // console.log(playlistId, videoId);
 
-    const { data } = await axios.delete("/playlists/videos", {
+    const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/playlists/videos", {
       data: { playlistId: playlistId, videoId: videoId },
     });
 

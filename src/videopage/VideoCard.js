@@ -22,11 +22,15 @@ export const VideoCard = ({ item }) => {
   // const item = state.product;
 
   const likeVideo = async (videoId) => {
-    await axios.post("/likedvideos", { Id: videoId });
+    await axios.post("https://cook-es-watch.herokuapp.com/likedvideos", {
+      Id: videoId,
+    });
 
     // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
 
-    const res = await axios.get(`/videos/${videoId}`);
+    const res = await axios.get(
+      `https://cook-es-watch.herokuapp.com/videos/${videoId}`
+    );
     // console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
@@ -36,12 +40,14 @@ export const VideoCard = ({ item }) => {
   };
 
   const postInWatchLater = async (_id) => {
-    await axios.post("/watchlatervideos", {
+    await axios.post("https://cook-es-watch.herokuapp.com/watchlatervideos", {
       Id: _id,
     });
     // dispatch({ type: "SET_WATCHLATERVIDEOS", payload: data });
 
-    const res = await axios.get(`/videos/${videoId}`);
+    const res = await axios.get(
+      `https://cook-es-watch.herokuapp.com/videos/${videoId}`
+    );
     console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
@@ -49,7 +55,10 @@ export const VideoCard = ({ item }) => {
     });
   };
   const postDislike = async (videoId) => {
-    const res = await axios.post("/dislikedvideos", { Id: videoId });
+    const res = await axios.post(
+      "https://cook-es-watch.herokuapp.com/dislikedvideos",
+      { Id: videoId }
+    );
 
     // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
 
@@ -63,9 +72,12 @@ export const VideoCard = ({ item }) => {
   };
 
   const deleteDislike = async (videoId) => {
-    const res = await axios.delete("/dislikedvideos", {
-      data: { Id: videoId },
-    });
+    const res = await axios.delete(
+      "https://cook-es-watch.herokuapp.com/dislikedvideos",
+      {
+        data: { Id: videoId },
+      }
+    );
 
     // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
 

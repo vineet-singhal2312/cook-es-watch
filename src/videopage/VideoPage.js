@@ -18,19 +18,19 @@ export const VideoPage = () => {
     playlistDispatch,
   } = usePlaylist();
   const { videoId } = useParams();
-  // const [item, setItem] = useState({});
+
   console.log(state);
 
   useEffect(() => {
     (async function () {
       try {
-        // const res1 = await axios.get("/videos");
-        // console.log(res1);
-        const res2 = await axios.get(`/videos/${videoId}`);
+        const res2 = await axios.get(
+          `https://cook-es-watch.herokuapp.com/videos/${videoId}`
+        );
         console.log(res2);
         dispatch({
           type: "INITIALIZE_PRODUCT",
-          // payload1: res1.data,
+
           payload: res2.data,
         });
 
@@ -48,53 +48,10 @@ export const VideoPage = () => {
 
   console.log(state);
 
-  // useEffect(() => {
-  //   (async function () {
-  //     try {
-  //       // const { videoId } = useParams();
-  //       // const { data } = await axios.get("/videos");
-  //       // dispatch({ type: "INITIALIZE_DATA", payload: data });
-  //       console.log(state);
-  //       console.log("?/////");
-
-  //       // const video = await state.Data.find((video) => videoId === video._id);
-  //       const { data } = await axios.get(`/videos/${videoId}`);
-
-  //       console.log(video);
-  //       dispatch({
-  //         type: "INITIALIZE_PRODUCT",
-  //         payload: video,
-  //       });
-  //       // console.log(data);
-  //       // setItem(data);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, []);
-  // const { videoId } = useParams();
-  // console.log(".......3");
-
-  // const getVideoDetails = async (videoId) => {
-  //   // try {
-  //   const { data } = await axios.get(`/videos/${videoId}`);
-
-  //   // dispatch({ type: "INITIALIZE_DATA", payload: data });
-  //   console.log(".......1");
-
-  //   return data;
-
-  //   // setItem(data);
-  //   // } catch (error) {
-  //   //   console.log(error);
-  //   // }
-  // };
-  // // const item = getVideoDetails(videoId);
   console.log(state);
-  // const item = getVideoDetails(videoId);
 
   const item = state.product;
-  // console.log(".......2");
+
   console.log(isPlayListVideoAddModel);
   return (
     <>

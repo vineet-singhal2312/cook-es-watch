@@ -11,7 +11,7 @@ export const History = () => {
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("/historyvideos");
+        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/historyvideos");
         setHistoryData(data);
       } catch (error) {
         console.log({ error });

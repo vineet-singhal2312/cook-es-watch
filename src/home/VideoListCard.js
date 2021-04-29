@@ -7,7 +7,7 @@ export const VideoListCard = ({ item }) => {
   const postVideoInHistory = async (id) => {
     // console.log(id);
     try {
-      await axios.post("/historyvideos", { Id: id });
+      await axios.post("https://cook-es-watch.herokuapp.com/historyvideos", { Id: id });
     } catch (error) {
       console.log(error);
     }

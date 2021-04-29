@@ -11,7 +11,7 @@ export const HistoryCard = ({ item, idx }) => {
   const deleteHistoryVideo = async (_id) => {
     console.log(_id);
     try {
-      const { data } = await axios.delete("/historyvideos", {
+      const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/historyvideos", {
         data: { historyVideo_id: _id },
       });
 
