@@ -8,10 +8,15 @@ import { PlayListModal } from "./PlayListModal";
 import { VideoCard } from "./VideoCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { PlayListAddModal } from "./PlayListAddModel";
 
 export const VideoPage = () => {
   const { state, dispatch } = useReduce();
-  const { playlistState } = usePlaylist();
+  const {
+    playlistState,
+    isPlayListVideoAddModel,
+    playlistDispatch,
+  } = usePlaylist();
   const { videoId } = useParams();
   // const [item, setItem] = useState({});
   console.log(state);
@@ -27,6 +32,10 @@ export const VideoPage = () => {
           type: "INITIALIZE_PRODUCT",
           // payload1: res1.data,
           payload: res2.data,
+        });
+
+        playlistDispatch({
+          type: "CLOSE_MODAL",
         });
         // console.log(state);
 
@@ -86,17 +95,18 @@ export const VideoPage = () => {
 
   const item = state.product;
   // console.log(".......2");
-
+  console.log(isPlayListVideoAddModel);
   return (
     <>
       <SideNav />
       <Header />
+      {isPlayListVideoAddModel && <PlayListAddModal item={item} />}
       {playlistState.isModal && <PlayListModal item={item} />}
       <div className="video-page-background">
         <div className="Vedio-page-content">
           <VideoCard item={item} />
 
-          <div className="comment-card"></div>
+          {/* <div className="comment-card"></div> */}
         </div>
       </div>
     </>

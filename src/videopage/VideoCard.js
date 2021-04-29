@@ -27,7 +27,7 @@ export const VideoCard = ({ item }) => {
     // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
 
     const res = await axios.get(`/videos/${videoId}`);
-    console.log(res);
+    // console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
       // payload1: res1.data,
@@ -45,17 +45,38 @@ export const VideoCard = ({ item }) => {
     console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
+      payload: res.data,
+    });
+  };
+  const postDislike = async (videoId) => {
+    const res = await axios.post("/dislikedvideos", { Id: videoId });
+
+    // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
+
+    // const res = await axios.get(`/videos/${videoId}`);
+    // console.log(res);
+    dispatch({
+      type: "INITIALIZE_PRODUCT",
       // payload1: res1.data,
       payload: res.data,
     });
   };
 
-  // const unLikeVideoFromVideo = async (videoId) => {
-  //   const { data } = await axios.delete("/likedvideos", { Id: videoId });
-  //   console.log(data);
-  //   setInitialData(data);
+  const deleteDislike = async (videoId) => {
+    const res = await axios.delete("/dislikedvideos", {
+      data: { Id: videoId },
+    });
 
-  // };
+    // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
+
+    // const res = await axios.get(`/videos/${videoId}`);
+    // console.log(res);
+    dispatch({
+      type: "INITIALIZE_PRODUCT",
+      // payload1: res1.data,
+      payload: res.data,
+    });
+  };
   return (
     <>
       <div className="video-card">
@@ -71,16 +92,7 @@ export const VideoCard = ({ item }) => {
           </div>
           <div className="like-dislike-btn-div">
             {item.isLike ? (
-              <div
-                className="link video-player-option clicked"
-                // onClick={() =>
-                //   dispatch({
-                //     type: "UNLIKE",
-                //     payload: item,
-                //   })
-                // }
-                // onClick={() => unLikeVideoFromVideo(item._id)}
-              >
+              <div className="link video-player-option clicked">
                 {" "}
                 <FaThumbsUp className="video-player-icon" />
                 <p>{item.like}</p>
@@ -88,13 +100,6 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                // onClick={() =>
-                //   dispatch({
-                //     type: "LIKE",
-                //     payload: item,
-                //   })
-                // }
-
                 onClick={() => likeVideo(item._id)}
               >
                 {" "}
@@ -103,15 +108,16 @@ export const VideoCard = ({ item }) => {
               </div>
             )}
 
-            {item.isDisLike ? (
+            {item.isDislike ? (
               <div
                 className="link video-player-option clicked"
-                onClick={() =>
-                  dispatch({
-                    type: "UNDISLIKE",
-                    payload: item,
-                  })
-                }
+                // onClick={() =>
+                //   dispatch({
+                //     type: "UNDISLIKE",
+                //     payload: item,
+                //   })
+                // }
+                onClick={() => deleteDislike(item._id)}
               >
                 {" "}
                 <FaThumbsDown className="video-player-icon" />
@@ -120,12 +126,13 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                onClick={() =>
-                  dispatch({
-                    type: "DISLIKE",
-                    payload: item,
-                  })
-                }
+                // onClick={() =>
+                //   dispatch({
+                //     type: "DISLIKE",
+                //     payload: item,
+                //   })
+                // }
+                onClick={() => postDislike(item._id)}
               >
                 {" "}
                 <FaThumbsDown className="video-player-icon" />
@@ -150,12 +157,6 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                // onClick={() =>
-                //   dispatch({
-                //     type: "ADD_TO_WATCHLATER",
-                //     payload: item,
-                //   })
-                // }
                 onClick={() => postInWatchLater(item._id)}
               >
                 {" "}

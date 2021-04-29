@@ -33,15 +33,7 @@ export const LikedVideosCard = ({ item }) => {
         <div className="like-videos-card-content">
           {item.id.name}
           <Link className="link like-videos-card-delete-btn" to="/likedvideos">
-            <div
-              // onClick={() =>
-              //   dispatch({
-              //     type: "UNLIKED",
-              //     payload: item,
-              //   })
-              // }
-              onClick={() => unLikedVideo(item)}
-            >
+            <div onClick={() => unLikedVideo(item)}>
               <FaThumbsDown />
             </div>
           </Link>

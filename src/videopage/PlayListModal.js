@@ -1,12 +1,30 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
 
 export const PlayListModal = ({ item }) => {
-  const { playlistDispatch, playlistState } = usePlaylist();
+  const {
+    playlistDispatch,
+    playlistState,
+    setIsPlayListVideoAddModel,
+  } = usePlaylist();
   const [userPlaylistName, setUserPlaylistName] = useState("");
   // console.log(item);
+
+  useEffect(() => {
+    (async function () {
+      try {
+       
+        const { data } = await axios.get("/playlists");
+        console.log(data);
+
+        playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
 
   const takePlayListName = (e) => {
     e.preventDefault();
@@ -23,29 +41,30 @@ export const PlayListModal = ({ item }) => {
   };
 
   const addVideoInPlayList = async (playlist) => {
-    // if (playlist.videos.length == 0) {
-    const { data } = await axios.post("/playlists/videos", {
-      playlistId: playlist._id,
-      videoId: item._id,
-    });
-    console.log(data);
-    // playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
-    // }
+    setIsPlayListVideoAddModel(true);
 
-    // if (playlist.videos.length > 0) {
-    //   if (playlist.videos((video) => video.id !== item._id)) {
-    //   }
-    // }
+    try {
+      const { data } = await axios.post("/playlists/videos", {
+        playlistId: playlist._id,
+        videoId: item._id,
+      });
+      console.log(data);
 
-    // playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+      playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+
+      setTimeout(() => {
+        setIsPlayListVideoAddModel(false);
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
-  // console.log(userPlaylistName);
   return (
     <div className="playlist-modal">
       <div className="playlist-modal-title">
         <h3>ADD PLAYLIST</h3>
-        <div>
+        <div  className="close-model">
           <IoClose
             color="white"
             onClick={() =>
@@ -63,11 +82,6 @@ export const PlayListModal = ({ item }) => {
               className="playlist-modal-list-item"
               onClick={() => {
                 console.log(playlist);
-                // playlistDispatch({
-                //   type: "ADD_TO_PLAY_LIST",
-                //   playlistName: playlist.name,
-                //   payload: item,
-                // });
 
                 addVideoInPlayList(playlist);
               }}
@@ -87,14 +101,6 @@ export const PlayListModal = ({ item }) => {
         />
         <button
           className="playlist-modal-input-button"
-          // onClick={(e) => {
-          //   e.preventDefault();
-          //   playlistDispatch({
-          //     type: "ADD_PLAYLIST",
-          //     payload: userPlaylistName,
-          //   });
-          // }}
-
           onClick={(e) => {
             e.preventDefault();
             addPlayList();

@@ -7,7 +7,7 @@ export const PlaylistVideoCard = ({ item }) => {
   return (
     <>
       {" "}
-      <Link className="link playlist-videos-card" to={`/videopage/${item.id}`}>
+      <Link className="link playlist-videos-card" to={`/videopage/${item._id}`}>
         {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
         <img src={item.img} className="playlist-card-img" alt="img" />
 

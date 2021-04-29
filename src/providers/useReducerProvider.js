@@ -1,5 +1,4 @@
 import { createContext, useContext, useReducer } from "react";
-// import { Data } from "../data/Data";
 
 const ReducerContext = createContext();
 
@@ -35,16 +34,6 @@ export function ReducerProvider({ children }) {
           ...state,
           product: value.payload,
         };
-      // case "DELETE_FROM_HISTORY":
-      //   return {
-      //     ...state,
-      //     history: state.history.filter((item, index) => index !== value.index),
-      //   };
-      // case "CLEAR_HISTORY":
-      //   return {
-      //     ...state,
-      //     history: [],
-      //   };
 
       case "ADD_TO_WATCHLATER":
         return {

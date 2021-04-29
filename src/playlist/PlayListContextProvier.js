@@ -1,8 +1,9 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 const PlayListContext = createContext();
 
 export function PlayListProvider({ children }) {
+  const [isPlayListVideoAddModel, setIsPlayListVideoAddModel] = useState(false);
   const [playlistState, playlistDispatch] = useReducer(reducer, {
     isModal: false,
     playlist: [],
@@ -21,16 +22,6 @@ export function PlayListProvider({ children }) {
           isModal: false,
         };
 
-      // case "ADD_PLAYLIST":
-      //   return {
-      //     ...playlistState,
-      //     isModal: true,
-      //     playlist: [
-      //       ...playlistState.playlist,
-      //       { id: value.payload, name: value.payload, videos: [] },
-      //     ],
-      //   };
-
       case "ADD_PLAYLIST":
         return {
           ...playlistState,
@@ -38,78 +29,20 @@ export function PlayListProvider({ children }) {
           playlist: value.payload,
         };
 
-      // case "ADD_TO_PLAY_LIST":
-      //   // console.log(value.payload, value.playlistName);
-
-      //   // const res1 = ;
-      //   return {
-      //     ...playlistState,
-      //     playlist: playlistState.playlist.map((playlist) => {
-      //       console.log(playlist);
-      //       console.log(playlist.id, value.playlistName);
-
-      //       if (playlist.id === value.playlistName) {
-      //         console.log("......");
-      //         return {
-      //           ...playlist,
-      //           videos: playlist.videos.concat([value.payload]),
-      //         };
-      //       } else {
-      //         return { ...playlist };
-      //       }
-      //     }),
-      //   };
-
-      //   const playlistNotExist = [
-      //     ...playlistState.playlist,
-      //     {
-      //       id: value.playlistName,
-      //       name: value.playlistName,
-      //       videos: [value.payload],
-      //     },
-      //   ];
-      //   let flag = false;
-      //   let flag2 = false;
-
-      //   const playlistExist = playlistState.playlist.map((item) => {
-      //     if (item.name === value.playlistName) {
-      //       flag = true;
-      //       let videos = [value.payload];
-
-      //       const rep1 = item.videos.map((video) => {
-      //         // console.log(video.id, value.payload.id);
-      //         if (video.id === value.payload.id) {
-      //           flag2 = true;
-      //           return video;
-      //         }
-      //       });
-
-      //       const rep2 = [...videos, value.payload, console.log("rsp2")];
-      //       if (item.videos.length) {
-      //         return (videos = flag2 ? rep1 : rep2);
-      //       }
-
-      //       // console.log(videos);
-
-      //       return {
-      //         ...item,
-      //         videos,
-      //       };
-      //     }
-      //   });
-      //   // flag ? playlistExist : playlistNotExist,
-      //   return {
-      //     ...playlistState,
-      //     // playlist: playlistState.playlist.map((item) => )
-      //   };
-
       default:
         return console.log("heyyy");
     }
   }
 
   return (
-    <PlayListContext.Provider value={{ playlistState, playlistDispatch }}>
+    <PlayListContext.Provider
+      value={{
+        playlistState,
+        playlistDispatch,
+        isPlayListVideoAddModel,
+        setIsPlayListVideoAddModel,
+      }}
+    >
       {children}
     </PlayListContext.Provider>
   );

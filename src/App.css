@@ -10,6 +10,10 @@
 body {
   color: var(--textColor);
 }
+* {
+  padding: 0;
+  margin: 0;
+}
 input,
 button :focus {
   outline: none;
@@ -172,6 +176,7 @@ a {
   width: 100%;
   height: 80%;
   text-align: initial;
+  margin-top: 1rem;
 }
 .video-views-in-player {
   width: 100%;
@@ -186,7 +191,7 @@ a {
 }
 .video-page-background {
   width: 100%;
-  min-height: 100vh;
+  min-height: 90vh;
   padding-top: 5rem;
   background-color: var(--primaryColor);
   display: flex;
@@ -205,8 +210,8 @@ a {
   /* padding: 0rem 8rem; */
 }
 .video-card {
-  width: 70%;
-  height: 85vh;
+  width: 95%;
+  height: 77vh;
 }
 .video-page-videoplayer {
   width: 100%;
@@ -476,6 +481,10 @@ a {
   background-color: transparent;
   border: 0;
 }
+.close-model {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
 .playlist-videos-main {
   width: 100%;
   min-height: 100vh;
@@ -495,13 +504,14 @@ a {
   justify-content: flex-start;
   align-items: flex-start;
 }
+
 .playlist-name-div {
   width: 100%;
   height: 50px;
   background-color: transparent;
   display: flex;
   justify-content: flex-start;
-  align-items: flex-start;
+  align-items: center;
 }
 .playlist-videos {
   width: 100%;
@@ -511,6 +521,19 @@ a {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
+}
+.empty-playlist-videos {
+  width: 100%;
+  min-height: 350px;
+  background-color: transparent;
+  display: flex;
+  /* padding-left: 1rem; */
+  /* margin-left: 1rem; */
+  justify-content: flex-start;
+  align-items: center;
+}
+.empty-discription {
+  margin: 1rem;
 }
 .playlist-name {
   margin: 1rem;
@@ -539,10 +562,20 @@ a {
   background-color: transparent;
   width: 15%;
   height: 22%;
-  /* align-self: flex-end; */
   float: right;
   font-size: 1.5rem;
   color: var(--secondaryColor);
+}
+.playlis-delete-btn {
+  background-color: transparent;
+  width: 5%;
+  height: 35%;
+
+  font-size: 1.5rem;
+  color: var(--secondaryColor);
+  cursor: pointer;
+
+  font-size: 1.5rem;
 }
 .playlist-card-img {
   width: 90%;
@@ -559,4 +592,19 @@ a {
 .like-videos-card-img {
   width: 90%;
   height: 55%;
+}
+.add-video-in-playlist-modal {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 90%;
+  left: 41%;
+  width: 300px;
+  height: 50px;
+  transition: all 0.1s;
+
+  background-color: var(--primaryColor);
+  border-bottom: 1px solid var(--secondaryColor);
+  box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
 }

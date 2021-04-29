@@ -10,7 +10,9 @@ export const VideoList = () => {
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("/videos");
+        const { data } = await axios.get(
+          "https://cook-es-watch.herokuapp.com/videos"
+        );
 
         dispatch({ type: "INITIALIZE_DATA", payload: data });
 
