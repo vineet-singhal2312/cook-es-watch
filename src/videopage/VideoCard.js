@@ -106,8 +106,8 @@ export const VideoCard = ({ item }) => {
             {item.isLike ? (
               <div className="link video-player-option clicked">
                 {" "}
-                <FaThumbsUp className="video-player-icon" />
-                <p>{item.like}</p>
+                <FaThumbsUp className="video-player-icon " />
+                <p className="video-option-name">{item.like}</p>
               </div>
             ) : (
               <div
@@ -116,7 +116,7 @@ export const VideoCard = ({ item }) => {
               >
                 {" "}
                 <FaThumbsUp className="video-player-icon" />
-                <p>{item.like}</p>
+                <p className="video-option-name">{item.like}</p>
               </div>
             )}
 
@@ -133,7 +133,7 @@ export const VideoCard = ({ item }) => {
               >
                 {" "}
                 <FaThumbsDown className="video-player-icon" />
-                <p>{item.dislike}</p>
+                <p className="video-option-name">{item.dislike}</p>
               </div>
             ) : (
               <div
@@ -148,7 +148,7 @@ export const VideoCard = ({ item }) => {
               >
                 {" "}
                 <FaThumbsDown className="video-player-icon" />
-                <p>{item.dislike}</p>
+                <p className="video-option-name">{item.dislike}</p>
               </div>
             )}
 
@@ -164,7 +164,7 @@ export const VideoCard = ({ item }) => {
               >
                 {" "}
                 <MdWatchLater className="video-player-icon" />
-                <p> Later</p>
+                <p className="video-option-name"> Later</p>
               </div>
             ) : (
               <div
@@ -173,7 +173,7 @@ export const VideoCard = ({ item }) => {
               >
                 {" "}
                 <MdWatchLater className="video-player-icon" />
-                <p> Later</p>
+                <p className="video-option-name"> Later</p>
               </div>
             )}
             <div
@@ -186,7 +186,7 @@ export const VideoCard = ({ item }) => {
             >
               {" "}
               <RiPlayList2Line className="video-player-icon" />
-              <p>Playlist</p>
+              <p className="video-option-name">Playlist</p>
             </div>
           </div>
         </div>

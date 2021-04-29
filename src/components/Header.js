@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 export const Header = () => {
   const [isSideNav, setIsSideNav] = useState(false);
   const openSideNav = () => {
-    document.getElementById("sideNav").style.width = "12%";
+    document.getElementById("sideNav").style.width = "15%";
     setIsSideNav(true);
   };
   const closeSideNav = () => {
