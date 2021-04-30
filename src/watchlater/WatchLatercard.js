@@ -31,7 +31,7 @@ export const WatchLaterCard = ({ item }) => {
         <div className="watchlater-card-content">
           {item.id.name}
 
-          <Link className="link watchlater-card-delete-btn" to="/watchlater">
+          <Link className="link watchlater-card-delete-btn" to="/later">
             <div onClick={() => deletefromWatchLater(item)}>
               <MdDelete />
             </div>
