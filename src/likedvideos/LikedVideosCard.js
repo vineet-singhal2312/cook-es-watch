@@ -8,13 +8,16 @@ export const LikedVideosCard = ({ item }) => {
 
   const unLikedVideo = async (item) => {
     try {
-      const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/likedvideos", {
-        data: {
-          video_id: item.id._id,
+      const { data } = await axios.delete(
+        "https://cook-es-watch.herokuapp.com/likedvideos",
+        {
+          data: {
+            video_id: item.id._id,
 
-          likedvideo_id: item._id,
-        },
-      });
+            likedvideo_id: item._id,
+          },
+        }
+      );
 
       dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
     } catch (error) {
@@ -27,12 +30,11 @@ export const LikedVideosCard = ({ item }) => {
     <>
       {" "}
       <Link className="link like-videos-card" to={`/videos/${item.id._id}`}>
-        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
         <img src={item.id.img} className="like-videos-card-img" alt="img" />
 
         <div className="like-videos-card-content">
           {item.id.name}
-          <Link className="link like-videos-card-delete-btn" to="/likedvideos">
+          <Link className="link like-videos-card-delete-btn" to="/liked">
             <div onClick={() => unLikedVideo(item)}>
               <FaThumbsDown />
             </div>
