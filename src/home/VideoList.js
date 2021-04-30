@@ -3,26 +3,36 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useReduce } from "../providers/useReducerProvider";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
+import { useLoader } from "./LoaderContextProvider";
 
 export const VideoList = () => {
   const { dispatch, state } = useReduce();
-  const { setIsLoader } = usePlaylist();
+  // const { setIsLoader } = usePlaylist();
+  const { setIsLoader } = useLoader();
+
+
+
+
+
   useEffect(() => {
-    (async function () {
-      try {
-        // setIsLoader(true);
+    setIsLoader(true);
+    console.log("here");
+    setTimeout(() => {
+      setIsLoader(false);
+    }, 2000);
+    // (async function () {
+    //   try {
+    //     const { data } = await axios.get(
+    //       "https://cook-es-watch.herokuapp.com/videos"
+    //     );
 
-        const { data } = await axios.get(
-          "https://cook-es-watch.herokuapp.com/videos"
-        );
-
-        dispatch({ type: "INITIALIZE_DATA", payload: data });
-        // setIsLoader(false);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }, [dispatch]);
+    //     dispatch({ type: "INITIALIZE_DATA", payload: data });
+    //     setIsLoader(false);
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // })();
+  }, []);
 
   return (
     <>

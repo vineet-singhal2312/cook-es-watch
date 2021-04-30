@@ -3,7 +3,7 @@ import { createContext, useContext, useReducer, useState } from "react";
 const PlayListContext = createContext();
 
 export function PlayListProvider({ children }) {
-  const [isLoader, setIsLoader] = useState(false);
+  // const [isLoader, setIsLoader] = useState(false);
   const [isPlayListVideoAddModel, setIsPlayListVideoAddModel] = useState(false);
   const [playlistState, playlistDispatch] = useReducer(reducer, {
     isModal: false,
@@ -42,8 +42,8 @@ export function PlayListProvider({ children }) {
         playlistDispatch,
         isPlayListVideoAddModel,
         setIsPlayListVideoAddModel,
-        isLoader,
-        setIsLoader,
+        // isLoader,
+        // setIsLoader,
       }}
     >
       {children}

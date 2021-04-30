@@ -7,6 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ReducerProvider } from "./providers/useReducerProvider";
 import { PlayListProvider } from "./playlist/PlayListContextProvier";
 import { HistoryProvider } from "./history/HistoryContextProvider";
+import { LoaderProvider } from "./home/LoaderContextProvider";
 
 // ReactDOM.render(
 //   <React.StrictMode>
@@ -21,13 +22,15 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ReducerProvider>
-        <HistoryProvider>
-          <PlayListProvider>
-            <App />
-          </PlayListProvider>
-        </HistoryProvider>
-      </ReducerProvider>
+      <LoaderProvider>
+        <ReducerProvider>
+          <HistoryProvider>
+            <PlayListProvider>
+              <App />
+            </PlayListProvider>
+          </HistoryProvider>
+        </ReducerProvider>
+      </LoaderProvider>
     </Router>
   </React.StrictMode>,
   rootElement
