@@ -6,8 +6,6 @@ import axios from "axios";
 export const WatchLaterCard = ({ item }) => {
   const { dispatch } = useReduce();
 
-  console.log(item);
-
   const deletefromWatchLater = async (item) => {
     try {
       const { data } = await axios.delete(
@@ -27,24 +25,14 @@ export const WatchLaterCard = ({ item }) => {
   return (
     <>
       {" "}
-      <Link className="link watchlater-card" to={`/videopage/${item.id._id}`}>
-        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
+      <Link className="link watchlater-card" to={`/videos/${item.id._id}`}>
         <img src={item.id.img} className="watchlater-card-img" alt="img" />
 
         <div className="watchlater-card-content">
           {item.id.name}
 
           <Link className="link watchlater-card-delete-btn" to="/watchlater">
-            <div
-              // onClick={() =>
-              //   dispatch({
-              //     type: "DELETE_FROM_WATCHLATER",
-              //     payload: item,
-              //   })
-              // }
-
-              onClick={() => deletefromWatchLater(item)}
-            >
+            <div onClick={() => deletefromWatchLater(item)}>
               <MdDelete />
             </div>
           </Link>

@@ -4,11 +4,11 @@ import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useReduce } from "../providers/useReducerProvider";
 
 export const Header = () => {
-  const [isSideNav, setIsSideNav] = useState(false);
+  const { isSideNav, setIsSideNav } = useReduce();
   const openSideNav = () => {
     document.getElementById("sideNav").style.width = "15%";
     setIsSideNav(true);
@@ -34,36 +34,35 @@ export const Header = () => {
           )}
         </div>
         <div className="header-list-div">
-          <a className="header-list-item">
+          <div className="header-list-item">
             <Link className="link" to="/">
-              {" "}
               <IoHome className="header-icon" />
             </Link>
-          </a>
-          <a className="header-list-item">
+          </div>
+          <div className="header-list-item">
             {" "}
             <Link className="link" to="/history">
               {" "}
               <FaHistory className="header-icon" />
             </Link>
-          </a>
-          <a className="header-list-item">
+          </div>
+          <div className="header-list-item">
             {" "}
             <Link className="link" to="/playlist">
               <RiPlayList2Line className="header-icon" />
             </Link>
-          </a>
-          <a className="header-list-item">
+          </div>
+          <div className="header-list-item">
             {" "}
-            <Link className="link" to="/watchlater">
+            <Link className="link" to="/later">
               <MdWatchLater className="header-icon" />
             </Link>
-          </a>
-          <a className="header-list-item">
-            <Link className="link" to="/likedvideos">
+          </div>
+          <div className="header-list-item">
+            <Link className="link" to="/liked">
               <FaThumbsUp className="header-icon" />
             </Link>
-          </a>
+          </div>
         </div>
       </nav>
     </>

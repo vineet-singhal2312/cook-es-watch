@@ -1,27 +1,30 @@
+import axios from "axios";
 import { MdDelete } from "react-icons/md";
-// import { useReduce } from "../providers/useReducerProvider";
 import { Link } from "react-router-dom";
+import { usePlaylist } from "./PlayListContextProvier";
 
-export const PlaylistVideoCard = ({ item }) => {
-  // const { dispatch } = useReduce();
+export const PlaylistVideoCard = ({ video, playlistId }) => {
+  const { playlistDispatch } = usePlaylist();
+  const deleteVideoFromPlayList = async (playlistId, videoId) => {
+    const { data } = await axios.delete(
+      "https://cook-es-watch.herokuapp.com/playlists/videos",
+      {
+        data: { playlistId: playlistId, videoId: videoId },
+      }
+    );
+
+    playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+  };
   return (
     <>
       {" "}
-      <Link className="link playlist-videos-card" to={`/videopage/${item._id}`}>
-        {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
-        <img src={item.img} className="playlist-card-img" alt="img" />
+      <Link className="link playlist-videos-card" to={`/videos/${video._id}`}>
+        <img src={video.img} className="playlist-card-img" alt="img" />
 
         <div className="playlist-videos-card-content">
-          <p>{item.name}</p>
+          <p>{video.name}</p>
           <Link className="link playlist-videos-card-delete-btn" to="/playlist">
-            <div
-            //   onClick={() =>
-            //     dispatch({
-            //       type: "UNLIKED",
-            //       payload: item,
-            //     })
-            //   }
-            >
+            <div onClick={() => deleteVideoFromPlayList(playlistId, video._id)}>
               <MdDelete />
             </div>
           </Link>

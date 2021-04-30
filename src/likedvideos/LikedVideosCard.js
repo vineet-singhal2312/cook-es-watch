@@ -26,7 +26,7 @@ export const LikedVideosCard = ({ item }) => {
   return (
     <>
       {" "}
-      <Link className="link like-videos-card" to={`/videopage/${item.id._id}`}>
+      <Link className="link like-videos-card" to={`/videos/${item.id._id}`}>
         {/* <ReactPlayer url={item.url} width="90%" height="55%" /> */}
         <img src={item.id.img} className="like-videos-card-img" alt="img" />
 

@@ -1,7 +1,5 @@
 import ReactPlayer from "react-player";
-// import { FaThumbsDown } from "react-icons/fa";
 import { useReduce } from "../providers/useReducerProvider";
-// import { Link } from "react-router-dom";
 
 import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
@@ -9,7 +7,6 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
 import axios from "axios";
 import { useParams } from "react-router";
-// import { LikedVideos } from "../likedvideos/LikeVideosPage";
 
 export const VideoCard = ({ item }) => {
   console.log(item);
@@ -19,22 +16,16 @@ export const VideoCard = ({ item }) => {
 
   const { dispatch } = useReduce();
 
-  // const item = state.product;
-
   const likeVideo = async (videoId) => {
     await axios.post("https://cook-es-watch.herokuapp.com/likedvideos", {
       Id: videoId,
     });
 
-    // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
-
     const res = await axios.get(
       `https://cook-es-watch.herokuapp.com/videos/${videoId}`
     );
-    // console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
-      // payload1: res1.data,
       payload: res.data,
     });
   };
@@ -43,12 +34,11 @@ export const VideoCard = ({ item }) => {
     await axios.post("https://cook-es-watch.herokuapp.com/watchlatervideos", {
       Id: _id,
     });
-    // dispatch({ type: "SET_WATCHLATERVIDEOS", payload: data });
 
     const res = await axios.get(
       `https://cook-es-watch.herokuapp.com/videos/${videoId}`
     );
-    console.log(res);
+
     dispatch({
       type: "INITIALIZE_PRODUCT",
       payload: res.data,
@@ -60,13 +50,8 @@ export const VideoCard = ({ item }) => {
       { Id: videoId }
     );
 
-    // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
-
-    // const res = await axios.get(`/videos/${videoId}`);
-    // console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
-      // payload1: res1.data,
       payload: res.data,
     });
   };
@@ -79,13 +64,8 @@ export const VideoCard = ({ item }) => {
       }
     );
 
-    // dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
-
-    // const res = await axios.get(`/videos/${videoId}`);
-    // console.log(res);
     dispatch({
       type: "INITIALIZE_PRODUCT",
-      // payload1: res1.data,
       payload: res.data,
     });
   };
@@ -123,12 +103,6 @@ export const VideoCard = ({ item }) => {
             {item.isDislike ? (
               <div
                 className="link video-player-option clicked"
-                // onClick={() =>
-                //   dispatch({
-                //     type: "UNDISLIKE",
-                //     payload: item,
-                //   })
-                // }
                 onClick={() => deleteDislike(item._id)}
               >
                 {" "}
@@ -138,12 +112,6 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                // onClick={() =>
-                //   dispatch({
-                //     type: "DISLIKE",
-                //     payload: item,
-                //   })
-                // }
                 onClick={() => postDislike(item._id)}
               >
                 {" "}

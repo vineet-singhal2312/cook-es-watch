@@ -4,14 +4,15 @@ import { SideNav } from "../components/SideNav";
 import { useReduce } from "../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
-// import axios from "axios";
 export const LikedVideos = () => {
-  const { state, dispatch } = useReduce();
+  const { state, dispatch, setIsSideNav } = useReduce();
 
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/likedvideos");
+        const { data } = await axios.get(
+          "https://cook-es-watch.herokuapp.com/likedvideos"
+        );
 
         dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
       } catch (error) {
@@ -20,15 +21,21 @@ export const LikedVideos = () => {
     })();
   }, []);
 
+  const closeSideNav = () => {
+    document.getElementById("sideNav").style.width = "0%";
+    setIsSideNav(false);
+  };
   return (
     <>
       <Header />
       <SideNav />
 
-      <div className="like-videos-main">
+      <div className="like-videos-main" onClick={() => closeSideNav()}>
+        <h2 className="page-heading-likedvideos">LIKED VIDEOS</h2>
+
         <div className="like-videos-list">
           {state.likedVideos.map((item) => (
-            <LikedVideosCard item={item} />
+            <LikedVideosCard key={item._id} item={item} />
           ))}
         </div>
       </div>

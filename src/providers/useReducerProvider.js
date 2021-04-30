@@ -1,8 +1,9 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 const ReducerContext = createContext();
 
 export function ReducerProvider({ children }) {
+  const [isSideNav, setIsSideNav] = useState(false);
   const [state, dispatch] = useReducer(reducer, {
     history: [],
     watchLater: [],
@@ -10,7 +11,6 @@ export function ReducerProvider({ children }) {
     Data: [],
     product: {},
   });
-  console.log(state);
   function reducer(state, value) {
     switch (value.type) {
       case "INITIALIZE_DATA":
@@ -35,79 +35,15 @@ export function ReducerProvider({ children }) {
           product: value.payload,
         };
 
-      case "ADD_TO_WATCHLATER":
-        return {
-          ...state,
-          watchLater: [...state.watchLater, value.payload],
-          Data: state.Data.map((item) =>
-            item.id === value.payload.id
-              ? { ...item, watchlater: true }
-              : { ...item }
-          ),
-        };
-      case "DELETE_FROM_WATCHLATER":
-        return {
-          ...state,
-          watchLater: state.watchLater.filter(
-            (item) => item.id !== value.payload.id
-          ),
-          Data: state.Data.map((item) =>
-            item.id === value.payload.id
-              ? { ...item, watchlater: false }
-              : { ...item }
-          ),
-        };
-
-      case "LIKE":
-        return {
-          ...state,
-          likedVideos: [...state.likedVideos, value.payload],
-          Data: state.Data.map((item) =>
-            item.id === value.payload.id
-              ? { ...item, isLike: true }
-              : { ...item }
-          ),
-        };
-      case "UNLIKE":
-        return {
-          ...state,
-          likedVideos: state.likedVideos.filter(
-            (item) => item.id !== value.payload.id
-          ),
-          Data: state.Data.map((item) =>
-            item.id === value.payload.id
-              ? { ...item, isLike: false }
-              : { ...item }
-          ),
-        };
-      case "DISLIKE":
-        return {
-          ...state,
-          Data: state.Data.map((item) =>
-            item.id === value.payload.id
-              ? { ...item, isDisLike: true }
-              : { ...item }
-          ),
-        };
-      case "UNDISLIKE":
-        return {
-          ...state,
-          likedVideos: state.likedVideos.filter(
-            (item) => item.id !== value.payload.id
-          ),
-          Data: state.Data.map((item) =>
-            item.id === value.payload.id
-              ? { ...item, isDisLike: false }
-              : { ...item }
-          ),
-        };
       default:
-        return console.log("heyyy");
+        return console.log("error");
     }
   }
 
   return (
-    <ReducerContext.Provider value={{ state, dispatch }}>
+    <ReducerContext.Provider
+      value={{ state, dispatch, isSideNav, setIsSideNav }}
+    >
       {children}
     </ReducerContext.Provider>
   );

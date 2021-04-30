@@ -5,27 +5,18 @@ import axios from "axios";
 import { usePlaylist } from "./PlayListContextProvier";
 
 export const PlaylistCard = ({ playlist }) => {
-  // console.log(playlist);
   const { playlistDispatch } = usePlaylist();
 
   const deletePlayList = async (playlistId) => {
-    console.log(playlistId);
-
-    const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/playlists", {
-      data: { playlistId: playlistId },
-    });
+    const { data } = await axios.delete(
+      "https://cook-es-watch.herokuapp.com/playlists",
+      {
+        data: { playlistId: playlistId },
+      }
+    );
     playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
   };
-  const deleteVideoFromPlayList = async (playlistId, videoId) => {
-    // console.log(playlistId, videoId);
 
-    const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/playlists/videos", {
-      data: { playlistId: playlistId, videoId: videoId },
-    });
-
-    // console.log(data);
-    playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
-  };
   return (
     <>
       {" "}
@@ -42,30 +33,11 @@ export const PlaylistCard = ({ playlist }) => {
           </div>
           <div className="playlist-videos">
             {playlist.videos.map((video) => (
-              // <PlaylistVideoCard video={video} />
-
-              <Link
-                className="link playlist-videos-card"
-                to={`/videopage/${video._id}`}
-              >
-                <img src={video.img} className="playlist-card-img" alt="img" />
-
-                <div className="playlist-videos-card-content">
-                  <p>{video.name}</p>
-                  <Link
-                    className="link playlist-videos-card-delete-btn"
-                    to="/playlist"
-                  >
-                    <div
-                      onClick={() =>
-                        deleteVideoFromPlayList(playlist._id, video._id)
-                      }
-                    >
-                      <MdDelete />
-                    </div>
-                  </Link>
-                </div>
-              </Link>
+              <PlaylistVideoCard
+                key={video._id}
+                video={video}
+                playlistId={playlist._id}
+              />
             ))}
           </div>
         </div>

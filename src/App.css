@@ -74,6 +74,8 @@ a {
 
   background-color: var(--primaryColor);
   display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 5rem;
 }
 .side-nav {
@@ -139,8 +141,8 @@ a {
   padding: 2rem 0rem;
 }
 .product-list-card {
-  height: 400px;
-  width: 350px;
+  height: 375px;
+  width: 325px;
   margin: 1rem;
   background: rgba(17, 139, 211, 0.15);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
@@ -183,7 +185,7 @@ a {
   height: 20%;
   text-align: initial;
 }
-.product-list-card-views-div {
+.product-list-card-details {
   display: flex;
   justify-content: space-between;
   height: 30%;
@@ -258,6 +260,22 @@ a {
   width: 25%;
   height: 80vh;
 }
+.page-heading-history {
+  width: 130px;
+  margin: 1rem;
+}
+.page-heading-playlist {
+  width: 120px;
+  margin: 1rem;
+}
+.page-heading-watchlater {
+  width: 192px;
+  margin: 1rem;
+}
+.page-heading-likedvideos {
+  width: 192px;
+  margin: 1rem;
+}
 .history-main {
   width: 100%;
   min-height: 100vh;
@@ -284,7 +302,6 @@ a {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-content: flex-start;
-  padding-top: 2rem;
 }
 .history-card {
   width: 350px;
@@ -338,7 +355,6 @@ a {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 2rem;
 }
 .watchlater-card {
   width: 350px;
@@ -386,7 +402,6 @@ a {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  padding-top: 2rem;
 }
 .like-videos-card {
   width: 350px;
@@ -598,7 +613,7 @@ a {
   display: flex;
   justify-content: center;
   align-items: center;
-  top: 90%;
+  top: 88%;
   left: 41%;
   width: 300px;
   height: 50px;
@@ -607,6 +622,62 @@ a {
   background-color: var(--primaryColor);
   border-bottom: 1px solid var(--secondaryColor);
   box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
+}
+
+.loader {
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.loader div {
+  position: absolute;
+  top: 33px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--secondaryColor);
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+.loader div:nth-child(1) {
+  left: 8px;
+  animation: loader1 0.6s infinite;
+}
+.loader div:nth-child(2) {
+  left: 8px;
+  animation: loader2 0.6s infinite;
+}
+.loader div:nth-child(3) {
+  left: 32px;
+  animation: loader2 0.6s infinite;
+}
+.loader div:nth-child(4) {
+  left: 56px;
+  animation: loader3 0.6s infinite;
+}
+@keyframes loader1 {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@keyframes loader3 {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+@keyframes loader2 {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(24px, 0);
+  }
 }
 @media only screen and (max-width: 500px) {
   .header-list-div {

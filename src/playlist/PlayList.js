@@ -2,18 +2,19 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Header } from "../components/Header";
 import { SideNav } from "../components/SideNav";
+import { useReduce } from "../providers/useReducerProvider";
 import { PlaylistCard } from "./PlaylistCard";
 import { usePlaylist } from "./PlayListContextProvier";
 export const PlayList = () => {
   const { playlistState, playlistDispatch } = usePlaylist();
-  // console.log(state);
+  const { setIsSideNav } = useReduce();
 
   useEffect(() => {
     (async function () {
       try {
-        // await axios.get("/playlists");
-        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/playlists");
-        console.log(data);
+        const { data } = await axios.get(
+          "https://cook-es-watch.herokuapp.com/playlists"
+        );
 
         playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
       } catch (error) {
@@ -21,14 +22,20 @@ export const PlayList = () => {
       }
     })();
   }, []);
+  const closeSideNav = () => {
+    document.getElementById("sideNav").style.width = "0%";
+    setIsSideNav(false);
+  };
   return (
     <>
       <Header />
       <SideNav />
 
-      <div className="playlist-videos-main">
+      <div className="playlist-videos-main" onClick={() => closeSideNav()}>
+        <h2 className="page-heading-playlist">PLAYLISTS</h2>
+
         {playlistState.playlist.map((item) => (
-          <PlaylistCard playlist={item} />
+          <PlaylistCard key={item._id} playlist={item} />
         ))}
       </div>
     </>

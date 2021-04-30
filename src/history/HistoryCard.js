@@ -3,17 +3,17 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
 
-export const HistoryCard = ({ item, idx }) => {
-  console.log(item);
-  // const { dispatch } = useReduce();
+export const HistoryCard = ({ item }) => {
   const { setHistoryData } = useHistory();
 
   const deleteHistoryVideo = async (_id) => {
-    console.log(_id);
     try {
-      const { data } = await axios.delete("https://cook-es-watch.herokuapp.com/historyvideos", {
-        data: { historyVideo_id: _id },
-      });
+      const { data } = await axios.delete(
+        "https://cook-es-watch.herokuapp.com/historyvideos",
+        {
+          data: { historyVideo_id: _id },
+        }
+      );
 
       setHistoryData(data);
     } catch (error) {
@@ -24,7 +24,7 @@ export const HistoryCard = ({ item, idx }) => {
   return (
     <>
       {" "}
-      <Link className="link history-card" to={`/videopage/${item.id}`}>
+      <Link className="link history-card" to={`/videos/${item.id._id}`}>
         <img src={item.id.img} className="history-card-img" alt="img" />
 
         <div className="history-card-content">

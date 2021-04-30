@@ -14,9 +14,9 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/history" element={<History />} />
-        <Route path="/videopage/:videoId" element={<VideoPage />} />
-        <Route path="/watchlater" element={<WatchLater />} />
-        <Route path="/likedvideos" element={<LikedVideos />} />
+        <Route path="/videos/:videoId" element={<VideoPage />} />
+        <Route path="/later" element={<WatchLater />} />
+        <Route path="/liked" element={<LikedVideos />} />
         <Route path="/playlist" element={<PlayList />} />
       </Routes>
     </div>

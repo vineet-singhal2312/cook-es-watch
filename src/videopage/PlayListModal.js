@@ -10,14 +10,13 @@ export const PlayListModal = ({ item }) => {
     setIsPlayListVideoAddModel,
   } = usePlaylist();
   const [userPlaylistName, setUserPlaylistName] = useState("");
-  // console.log(item);
 
   useEffect(() => {
     (async function () {
       try {
-       
-        const { data } = await axios.get("https://cook-es-watch.herokuapp.com/playlists");
-        console.log(data);
+        const { data } = await axios.get(
+          "https://cook-es-watch.herokuapp.com/playlists"
+        );
 
         playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
       } catch (error) {
@@ -34,8 +33,12 @@ export const PlayListModal = ({ item }) => {
   };
 
   const addPlayList = async () => {
-    const { data } = await axios.post("https://cook-es-watch.herokuapp.com/playlists", { name: userPlaylistName });
-    // console.log(data);
+    const { data } = await axios.post(
+      "https://cook-es-watch.herokuapp.com/playlists",
+      {
+        name: userPlaylistName,
+      }
+    );
 
     playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
   };
@@ -44,11 +47,13 @@ export const PlayListModal = ({ item }) => {
     setIsPlayListVideoAddModel(true);
 
     try {
-      const { data } = await axios.post("https://cook-es-watch.herokuapp.com/playlists/videos", {
-        playlistId: playlist._id,
-        videoId: item._id,
-      });
-      console.log(data);
+      const { data } = await axios.post(
+        "https://cook-es-watch.herokuapp.com/playlists/videos",
+        {
+          playlistId: playlist._id,
+          videoId: item._id,
+        }
+      );
 
       playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
 
@@ -64,7 +69,7 @@ export const PlayListModal = ({ item }) => {
     <div className="playlist-modal">
       <div className="playlist-modal-title">
         <h3>ADD PLAYLIST</h3>
-        <div  className="close-model">
+        <div className="close-model">
           <IoClose
             color="white"
             onClick={() =>
@@ -84,6 +89,9 @@ export const PlayListModal = ({ item }) => {
                 console.log(playlist);
 
                 addVideoInPlayList(playlist);
+                playlistDispatch({
+                  type: "CLOSE_MODAL",
+                });
               }}
             >
               {" "}
