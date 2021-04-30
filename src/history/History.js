@@ -15,7 +15,6 @@ export const History = () => {
   useEffect(() => {
     (async function () {
       setIsLoader(true);
-
       try {
         const { data } = await axios.get(
           "https://cook-es-watch.herokuapp.com/historyvideos"
@@ -26,7 +25,7 @@ export const History = () => {
         console.log({ error });
       }
     })();
-  }, [setHistoryData]);
+  }, []);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
@@ -37,7 +36,7 @@ export const History = () => {
       <Header />
       <SideNav />
 
-      {state.history.length === 0 ? (
+      {historyData.length === 0 ? (
         <div className="history-main">
           {" "}
           <h1>You haven't chechout any videos yet... </h1>
