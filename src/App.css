@@ -681,6 +681,7 @@ a {
     transform: translate(24px, 0);
   }
 }
+
 @media only screen and (max-width: 500px) {
   .header-list-div {
     width: 70%;

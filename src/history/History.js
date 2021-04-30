@@ -8,7 +8,7 @@ import { useHistory } from "./HistoryContextProvider";
 import { useLoader } from "../home/LoaderContextProvider";
 import { Loader } from "../components/Loader";
 export const History = () => {
-  const { dispatch, setIsSideNav } = useReduce();
+  const { dispatch, setIsSideNav, state } = useReduce();
   const { setHistoryData, historyData } = useHistory();
   const { isLoader, setIsLoader } = useLoader();
 
@@ -37,24 +37,31 @@ export const History = () => {
       <Header />
       <SideNav />
 
-      <div className="history-main" onClick={() => closeSideNav()}>
-        <h2 className="page-heading-history">HISTORY</h2>
-        <button
-          className="history-clear-btn"
-          onClick={() => dispatch({ type: "CLEAR_HISTORY" })}
-        >
-          Clear All
-        </button>
-        {isLoader ? (
-          <Loader />
-        ) : (
-          <div className="history-video-list">
-            {historyData.map((item) => (
-              <HistoryCard key={item._id} item={item} />
-            ))}
-          </div>
-        )}
-      </div>
+      {state.history.length === 0 ? (
+        <div className="history-main">
+          {" "}
+          <h1>You haven't chechout any videos yet... </h1>
+        </div>
+      ) : (
+        <div className="history-main" onClick={() => closeSideNav()}>
+          <h2 className="page-heading-history">HISTORY</h2>
+          <button
+            className="history-clear-btn"
+            onClick={() => dispatch({ type: "CLEAR_HISTORY" })}
+          >
+            Clear All
+          </button>
+          {isLoader ? (
+            <Loader />
+          ) : (
+            <div className="history-video-list">
+              {historyData.map((item) => (
+                <HistoryCard key={item._id} item={item} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };
