@@ -31,18 +31,25 @@ export const WatchLater = () => {
       <Header />
       <SideNav />
 
-      <div className="watch-later-main" onClick={() => closeSideNav()}>
-        <h2 className="page-heading-watchlater">WATCHLATER</h2>
-        {isLoader ? (
-          <Loader />
-        ) : (
-          <div className="watch-later-list">
-            {state.watchLater.map((item) => (
-              <WatchLaterCard key={item._id} item={item} />
-            ))}
-          </div>
-        )}
-      </div>
+      {state.watchLater.length === 0 ? (
+        <div className="like-videos-main">
+          {" "}
+          <h1>You haven't add any video in watchlater yet... </h1>
+        </div>
+      ) : (
+        <div className="watch-later-main" onClick={() => closeSideNav()}>
+          <h2 className="page-heading-watchlater">WATCHLATER</h2>
+          {isLoader ? (
+            <Loader />
+          ) : (
+            <div className="watch-later-list">
+              {state.watchLater.map((item) => (
+                <WatchLaterCard key={item._id} item={item} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };

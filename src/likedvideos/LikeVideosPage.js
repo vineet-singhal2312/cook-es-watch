@@ -36,19 +36,26 @@ export const LikedVideos = () => {
       <Header />
       <SideNav />
 
-      <div className="like-videos-main" onClick={() => closeSideNav()}>
-        <h2 className="page-heading-likedvideos">LIKED VIDEOS</h2>
+      {state.likedVideos.length === 0 ? (
+        <div className="like-videos-main">
+          {" "}
+          <h1>You haven't like any video yet... </h1>
+        </div>
+      ) : (
+        <div className="like-videos-main" onClick={() => closeSideNav()}>
+          <h2 className="page-heading-likedvideos">LIKED VIDEOS</h2>
 
-        {isLoader ? (
-          <Loader />
-        ) : (
-          <div className="like-videos-list">
-            {state.likedVideos.map((item) => (
-              <LikedVideosCard key={item._id} item={item} />
-            ))}
-          </div>
-        )}
-      </div>
+          {isLoader ? (
+            <Loader />
+          ) : (
+            <div className="like-videos-list">
+              {state.likedVideos.map((item) => (
+                <LikedVideosCard key={item._id} item={item} />
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </>
   );
 };
