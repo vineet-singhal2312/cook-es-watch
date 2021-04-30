@@ -8,25 +8,23 @@ import { useReduce } from "../providers/useReducerProvider";
 import { useLoader } from "./LoaderContextProvider";
 import { VideoList } from "./VideoList";
 export const Home = () => {
-  // const { isLoader } = usePlaylist();
-  const { isLoader } = useLoader();
-  // const [loading, setLoading] = useState(false);
+  const { isLoader, setIsLoader } = useLoader();
   const { dispatch, setIsSideNav } = useReduce();
-  // useEffect(() => {
-  //   setLoading(true);
-  //   (async function () {
-  //     try {
-  //       const { data } = await axios.get(
-  //         "https://cook-es-watch.herokuapp.com/videos"
-  //       );
+  useEffect(() => {
+    setIsLoader(true);
+    (async function () {
+      try {
+        const { data } = await axios.get(
+          "https://cook-es-watch.herokuapp.com/videos"
+        );
 
-  //       dispatch({ type: "INITIALIZE_DATA", payload: data });
-  //       setLoading(false);
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   })();
-  // }, []);
+        dispatch({ type: "INITIALIZE_DATA", payload: data });
+        setIsLoader(false);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, []);
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
@@ -35,7 +33,6 @@ export const Home = () => {
     <>
       <Header />
       <SideNav />
-
       <div className="main" onClick={() => closeSideNav()}>
         {isLoader ? <Loader /> : <VideoList />}
       </div>

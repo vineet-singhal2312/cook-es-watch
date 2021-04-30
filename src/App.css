@@ -304,8 +304,8 @@ a {
   align-content: flex-start;
 }
 .history-card {
-  width: 350px;
-  height: 400px;
+  width: 300px;
+  height: 325px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -357,8 +357,8 @@ a {
   align-items: flex-start;
 }
 .watchlater-card {
-  width: 350px;
-  height: 400px;
+  width: 300px;
+  height: 325px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -404,8 +404,8 @@ a {
   align-items: flex-start;
 }
 .like-videos-card {
-  width: 350px;
-  height: 400px;
+  width: 300px;
+  height: 325px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -626,7 +626,9 @@ a {
 
 .loader {
   display: inline-block;
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
   width: 80px;
   height: 80px;
 }

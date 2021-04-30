@@ -1,22 +1,28 @@
 import axios from "axios";
 import { useEffect } from "react";
 import { Header } from "../components/Header";
+import { Loader } from "../components/Loader";
 import { SideNav } from "../components/SideNav";
+import { useLoader } from "../home/LoaderContextProvider";
 import { useReduce } from "../providers/useReducerProvider";
 import { PlaylistCard } from "./PlaylistCard";
 import { usePlaylist } from "./PlayListContextProvier";
 export const PlayList = () => {
   const { playlistState, playlistDispatch } = usePlaylist();
   const { setIsSideNav } = useReduce();
+  const { isLoader, setIsLoader } = useLoader();
 
   useEffect(() => {
     (async function () {
+      setIsLoader(true);
+
       try {
         const { data } = await axios.get(
           "https://cook-es-watch.herokuapp.com/playlists"
         );
 
         playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+        setIsLoader(false);
       } catch (error) {
         console.log(error);
       }
@@ -33,10 +39,15 @@ export const PlayList = () => {
 
       <div className="playlist-videos-main" onClick={() => closeSideNav()}>
         <h2 className="page-heading-playlist">PLAYLISTS</h2>
-
-        {playlistState.playlist.map((item) => (
-          <PlaylistCard key={item._id} playlist={item} />
-        ))}
+        {isLoader ? (
+          <Loader />
+        ) : (
+          <div>
+            {playlistState.playlist.map((item) => (
+              <PlaylistCard key={item._id} playlist={item} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );

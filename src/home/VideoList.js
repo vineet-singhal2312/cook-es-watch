@@ -7,32 +7,6 @@ import { useLoader } from "./LoaderContextProvider";
 
 export const VideoList = () => {
   const { dispatch, state } = useReduce();
-  // const { setIsLoader } = usePlaylist();
-  const { setIsLoader } = useLoader();
-
-
-
-
-
-  useEffect(() => {
-    setIsLoader(true);
-    console.log("here");
-    setTimeout(() => {
-      setIsLoader(false);
-    }, 2000);
-    // (async function () {
-    //   try {
-    //     const { data } = await axios.get(
-    //       "https://cook-es-watch.herokuapp.com/videos"
-    //     );
-
-    //     dispatch({ type: "INITIALIZE_DATA", payload: data });
-    //     setIsLoader(false);
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // })();
-  }, []);
 
   return (
     <>
