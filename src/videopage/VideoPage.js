@@ -9,9 +9,13 @@ import { VideoCard } from "./VideoCard";
 import { useEffect } from "react";
 import axios from "axios";
 import { PlayListAddModal } from "./PlayListAddModel";
+import { Loader } from "../components/Loader";
+import { useLoader } from "../home/LoaderContextProvider";
 
 export const VideoPage = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
+  const { isLoader, setIsLoader } = useLoader();
+
   const {
     playlistState,
     isPlayListVideoAddModel,
@@ -21,6 +25,8 @@ export const VideoPage = () => {
 
   useEffect(() => {
     (async function () {
+      setIsLoader(true);
+
       try {
         const res2 = await axios.get(
           `https://cook-es-watch.herokuapp.com/videos/${videoId}`
@@ -34,6 +40,7 @@ export const VideoPage = () => {
         playlistDispatch({
           type: "CLOSE_MODAL",
         });
+        setIsLoader(false);
       } catch (error) {
         console.log(error);
       }
@@ -54,7 +61,7 @@ export const VideoPage = () => {
       {playlistState.isModal && <PlayListModal item={item} />}
       <div className="video-page-background" onClick={() => closeSideNav()}>
         <div className="Vedio-page-content">
-          <VideoCard item={item} />
+          {isLoader ? <Loader /> : <VideoCard item={item} />}
         </div>
       </div>
     </>

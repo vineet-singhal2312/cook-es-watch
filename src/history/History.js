@@ -5,16 +5,23 @@ import { useReduce } from "../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
+import { useLoader } from "../home/LoaderContextProvider";
+import { Loader } from "../components/Loader";
 export const History = () => {
   const { dispatch, setIsSideNav } = useReduce();
   const { setHistoryData, historyData } = useHistory();
+  const { isLoader, setIsLoader } = useLoader();
+
   useEffect(() => {
     (async function () {
+      setIsLoader(true);
+
       try {
         const { data } = await axios.get(
           "https://cook-es-watch.herokuapp.com/historyvideos"
         );
         setHistoryData(data);
+        setIsLoader(false);
       } catch (error) {
         console.log({ error });
       }
@@ -38,11 +45,15 @@ export const History = () => {
         >
           Clear All
         </button>
-        <div className="history-video-list">
-          {historyData.map((item) => (
-            <HistoryCard key={item._id} item={item} />
-          ))}
-        </div>
+        {isLoader ? (
+          <Loader />
+        ) : (
+          <div className="history-video-list">
+            {historyData.map((item) => (
+              <HistoryCard key={item._id} item={item} />
+            ))}
+          </div>
+        )}
       </div>
     </>
   );
