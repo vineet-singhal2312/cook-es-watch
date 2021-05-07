@@ -9,15 +9,6 @@ import { PlayListProvider } from "./playlist/PlayListContextProvier";
 import { HistoryProvider } from "./history/HistoryContextProvider";
 import { LoaderProvider } from "./home/LoaderContextProvider";
 
-// ReactDOM.render(
-//   <React.StrictMode>
-//     <Router>
-//       <App />
-//     </Router>
-//   </React.StrictMode>,
-//   document.getElementById("root")
-// );
-
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
@@ -36,7 +27,4 @@ ReactDOM.render(
   rootElement
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
