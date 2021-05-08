@@ -1,5 +1,5 @@
 import { FaThumbsDown } from "react-icons/fa";
-import { useReduce } from "../providers/useReducerProvider";
+import { useReduce } from "../../providers/useReducerProvider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

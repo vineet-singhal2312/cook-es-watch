@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { useReduce } from "../providers/useReducerProvider";
+import { useReduce } from "../../providers/useReducerProvider";
 
 import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";

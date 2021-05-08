@@ -1,12 +1,12 @@
 import { HistoryCard } from "./HistoryCard";
-import { Header } from "../components/Header";
-import { SideNav } from "../components/SideNav";
-import { useReduce } from "../providers/useReducerProvider";
+import { Header } from "../Header";
+import { SideNav } from "../SideNav";
+import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
 import { useLoader } from "../home/LoaderContextProvider";
-import { Loader } from "../components/Loader";
+import { Loader } from "../Loader";
 export const History = () => {
   const { dispatch, setIsSideNav, state } = useReduce();
   const { setHistoryData, historyData } = useHistory();

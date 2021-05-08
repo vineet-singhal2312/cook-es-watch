@@ -1,10 +1,10 @@
 import { LikedVideosCard } from "./LikedVideosCard";
-import { Header } from "../components/Header";
-import { SideNav } from "../components/SideNav";
-import { useReduce } from "../providers/useReducerProvider";
+import { Header } from "../Header";
+import { SideNav } from "../SideNav";
+import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
-import { Loader } from "../components/Loader";
+import { Loader } from "../Loader";
 import { useLoader } from "../home/LoaderContextProvider";
 export const LikedVideos = () => {
   const { state, dispatch, setIsSideNav } = useReduce();

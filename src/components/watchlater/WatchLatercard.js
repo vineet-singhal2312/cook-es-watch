@@ -1,5 +1,5 @@
 import { MdDelete } from "react-icons/md";
-import { useReduce } from "../providers/useReducerProvider";
+import { useReduce } from "../../providers/useReducerProvider";
 import { Link } from "react-router-dom";
 import axios from "axios";
 

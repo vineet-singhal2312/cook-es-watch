@@ -1,15 +1,15 @@
-import { Header } from "../components/Header";
-import { SideNav } from "../components/SideNav";
+import { Header } from "../Header";
+import { SideNav } from "../SideNav";
 import { useParams } from "react-router-dom";
 
-import { useReduce } from "../providers/useReducerProvider";
+import { useReduce } from "../../providers/useReducerProvider";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
 import { PlayListModal } from "./PlayListModal";
 import { VideoCard } from "./VideoCard";
 import { useEffect } from "react";
 import axios from "axios";
 import { PlayListAddModal } from "./PlayListAddModel";
-import { Loader } from "../components/Loader";
+import { Loader } from "../Loader";
 import { useLoader } from "../home/LoaderContextProvider";
 
 export const VideoPage = () => {

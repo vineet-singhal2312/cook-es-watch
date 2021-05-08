@@ -1,7 +1,7 @@
 import { VideoListCard } from "./VideoListCard";
 import { useEffect } from "react";
 import axios from "axios";
-import { useReduce } from "../providers/useReducerProvider";
+import { useReduce } from "../../providers/useReducerProvider";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
 import { useLoader } from "./LoaderContextProvider";
 
