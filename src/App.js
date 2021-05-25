@@ -7,6 +7,8 @@ import { VideoPage } from "./components/videopage/VideoPage";
 import { WatchLater } from "./components/watchlater/WatchLater";
 import { LikedVideos } from "./components/likedvideos/LikeVideosPage";
 import { PlayList } from "./components/playlist/PlayList";
+import { SignIn } from "./pages/signin/SignIn";
+import { LogIn } from "./pages/login/LogIn";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
         <Route path="/later" element={<WatchLater />} />
         <Route path="/liked" element={<LikedVideos />} />
         <Route path="/playlist" element={<PlayList />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/login" element={<LogIn />} />
       </Routes>
     </div>
   );

@@ -21,7 +21,7 @@ export const WatchLater = () => {
       dispatch({ type: "SET_WATCHLATERVIDEOS", payload: data });
       setIsLoader(false);
     })();
-  }, []);
+  }, [dispatch, setIsLoader]);
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);

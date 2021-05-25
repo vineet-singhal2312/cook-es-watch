@@ -16,11 +16,8 @@ export const VideoPage = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
   const { isLoader, setIsLoader } = useLoader();
 
-  const {
-    playlistState,
-    isPlayListVideoAddModel,
-    playlistDispatch,
-  } = usePlaylist();
+  const { playlistState, isPlayListVideoAddModel, playlistDispatch } =
+    usePlaylist();
   const { videoId } = useParams();
 
   useEffect(() => {
@@ -45,7 +42,7 @@ export const VideoPage = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [playlistDispatch, setIsLoader, dispatch, videoId]);
 
   const item = state.product;
 

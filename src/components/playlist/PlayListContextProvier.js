@@ -9,7 +9,6 @@ export function PlayListProvider({ children }) {
     isModal: false,
     playlist: [],
   });
-  console.log(playlistState);
   function reducer(playlistState, value) {
     switch (value.type) {
       case "SHOE_MODAL":

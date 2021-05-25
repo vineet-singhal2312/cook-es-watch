@@ -25,7 +25,7 @@ export const LikedVideos = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [dispatch, setIsLoader]);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";

@@ -27,7 +27,7 @@ export const PlayList = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [playlistDispatch, setIsLoader]);
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);

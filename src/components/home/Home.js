@@ -1,9 +1,9 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Header } from "../Header";
 import { Loader } from "../Loader";
 import { SideNav } from "../SideNav";
-import { usePlaylist } from "../playlist/PlayListContextProvier";
+// import { usePlaylist } from "../playlist/PlayListContextProvier";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useLoader } from "./LoaderContextProvider";
 import { VideoList } from "./VideoList";
@@ -24,7 +24,7 @@ export const Home = () => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [dispatch, setIsLoader]);
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);

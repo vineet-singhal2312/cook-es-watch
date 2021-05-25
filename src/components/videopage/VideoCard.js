@@ -9,7 +9,6 @@ import axios from "axios";
 import { useParams } from "react-router";
 
 export const VideoCard = ({ item }) => {
-  console.log(item);
   const { videoId } = useParams();
 
   const { playlistDispatch } = usePlaylist();

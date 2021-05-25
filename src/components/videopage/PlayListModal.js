@@ -4,11 +4,8 @@ import { IoClose } from "react-icons/io5";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
 
 export const PlayListModal = ({ item }) => {
-  const {
-    playlistDispatch,
-    playlistState,
-    setIsPlayListVideoAddModel,
-  } = usePlaylist();
+  const { playlistDispatch, playlistState, setIsPlayListVideoAddModel } =
+    usePlaylist();
   const [userPlaylistName, setUserPlaylistName] = useState("");
 
   useEffect(() => {
@@ -23,7 +20,7 @@ export const PlayListModal = ({ item }) => {
         console.log(error);
       }
     })();
-  }, []);
+  }, [playlistDispatch]);
 
   const takePlayListName = (e) => {
     e.preventDefault();

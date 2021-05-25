@@ -8,7 +8,7 @@ import { useHistory } from "./HistoryContextProvider";
 import { useLoader } from "../home/LoaderContextProvider";
 import { Loader } from "../Loader";
 export const History = () => {
-  const { dispatch, setIsSideNav, state } = useReduce();
+  const { dispatch, setIsSideNav } = useReduce();
   const { setHistoryData, historyData } = useHistory();
   const { isLoader, setIsLoader } = useLoader();
 
@@ -25,7 +25,7 @@ export const History = () => {
         console.log({ error });
       }
     })();
-  }, []);
+  }, [setHistoryData, setIsLoader]);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";

@@ -3,7 +3,7 @@ import { createContext, useContext, useState } from "react";
 const LoaderContext = createContext();
 
 export function LoaderProvider({ children }) {
-  const [isLoader, setIsLoader] = useState(false);
+  const [isLoader, setIsLoader] = useState(true);
 
   return (
     <LoaderContext.Provider
