@@ -1,16 +1,33 @@
+import axios from "axios";
 import React, { useState } from "react";
-import "./SignIn.css";
-export const SignIn = () => {
+import { useNavigate } from "react-router";
+import "./SignUp.css";
+export const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
+  const navigate = useNavigate();
 
-  const SubmitHander = () => {
-    setUserName("");
-    setEmail("");
-    setPassword1("");
-    setPassword2("");
+  const SignUpHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post("http://localhost:8000/signup", {
+        userName,
+        email,
+        password: password1,
+        confirmPassword: password2,
+      });
+
+      setUserName("");
+      setEmail("");
+      setPassword1("");
+      setPassword2("");
+      navigate("/login");
+    } catch (error) {
+      console.log(error.message);
+      console.log(error.data);
+    }
   };
 
   console.log(userName);
@@ -57,7 +74,7 @@ export const SignIn = () => {
             onChange={(e) => setPassword2(e.target.value)}
           />
 
-          <button id="customerOrder" onClick={() => SubmitHander()}>
+          <button id="customerOrder" onClick={(e) => SignUpHandler(e)}>
             SUBMIT
           </button>
         </form>
