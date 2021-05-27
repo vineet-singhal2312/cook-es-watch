@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Header } from "../Header";
-import { Loader } from "../Loader";
-import { SideNav } from "../SideNav";
-import { useLoader } from "../home/LoaderContextProvider";
+import { Header } from "../../components/Header";
+import { Loader } from "../../components/Loader";
+import { SideNav } from "../../components/SideNav";
+import { useLoader } from "../../pages/home/LoaderContextProvider";
 import { useReduce } from "../../providers/useReducerProvider";
 import { PlaylistCard } from "./PlaylistCard";
 import { usePlaylist } from "./PlayListContextProvier";

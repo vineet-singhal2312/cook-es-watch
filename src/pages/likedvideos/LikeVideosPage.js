@@ -1,14 +1,16 @@
 import { LikedVideosCard } from "./LikedVideosCard";
-import { Header } from "../Header";
-import { SideNav } from "../SideNav";
+import { Header } from "../../components/Header";
+import { SideNav } from "../../components/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
-import { Loader } from "../Loader";
+import { Loader } from "../../components/Loader";
 import { useLoader } from "../home/LoaderContextProvider";
+import { useAuth } from "../../providers/AuthProvider";
 export const LikedVideos = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
   const { isLoader, setIsLoader } = useLoader();
+  const { token } = useAuth();
 
   useEffect(() => {
     (async function () {
@@ -16,13 +18,16 @@ export const LikedVideos = () => {
 
       try {
         const { data } = await axios.get(
-          "https://cook-es-watch.herokuapp.com/likedvideos"
+          // "https://cook-es-watch.herokuapp.com/likedvideos"
+          "http://localhost:8000/likedvideos",
+          { headers: { authorization: token } }
         );
+        console.log(data);
 
-        dispatch({ type: "SET_LIKEDVIDEOS", payload: data });
+        dispatch({ type: "SET_LIKEDVIDEOS", payload: data.result[0].videos });
         setIsLoader(false);
       } catch (error) {
-        console.log(error);
+        console.log(error, "axios error");
       }
     })();
   }, [dispatch, setIsLoader]);
@@ -31,22 +36,23 @@ export const LikedVideos = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
   };
+  console.log(state);
   return (
     <>
       <Header />
       <SideNav />
 
-      {state.likedVideos.length === 0 ? (
-        <div className="like-videos-main">
-          {" "}
-          <h1>You haven't like any video yet... </h1>
-        </div>
+      {isLoader ? (
+        <Loader />
       ) : (
         <div className="like-videos-main" onClick={() => closeSideNav()}>
           <h2 className="page-heading-likedvideos">LIKED VIDEOS</h2>
 
-          {isLoader ? (
-            <Loader />
+          {state.likedVideos.length === 0 ? (
+            <div className="like-videos-main">
+              {" "}
+              <h1>You haven't like any video yet... </h1>
+            </div>
           ) : (
             <div className="like-videos-list">
               {state.likedVideos.map((item) => (

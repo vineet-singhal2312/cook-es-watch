@@ -2,33 +2,39 @@ import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
+import { useAuth } from "../../providers/AuthProvider";
 
 export const HistoryCard = ({ item }) => {
   const { setHistoryData } = useHistory();
+  const { token } = useAuth();
 
   const deleteHistoryVideo = async (_id) => {
     try {
       const { data } = await axios.delete(
-        "https://cook-es-watch.herokuapp.com/historyvideos",
+        // "https://cook-es-watch.herokuapp.com/historyvideos"
+        "http://localhost:8000/historyvideos",
         {
+          headers: { authorization: token },
+
           data: { historyVideo_id: _id },
         }
       );
-
-      setHistoryData(data);
+      console.log(data[0].videos);
+      setHistoryData(data[0].videos);
     } catch (error) {
       console.log(error);
     }
   };
+  console.log(item);
 
   return (
     <>
       {" "}
-      <Link className="link history-card" to={`/videos/${item.id._id}`}>
-        <img src={item.id.img} className="history-card-img" alt="img" />
+      <Link className="link history-card" to={`/videos/${item._id}`}>
+        <img src={item.img} className="history-card-img" alt="img" />
 
         <div className="history-card-content">
-          {item.id.name}
+          {item.name}
           <Link className="link history-card-delete-btn" to="/history">
             <div onClick={() => deleteHistoryVideo(item._id)}>
               <MdDelete />

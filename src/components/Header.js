@@ -4,11 +4,15 @@ import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { CgProfile } from "react-icons/cg";
+
 import { Link } from "react-router-dom";
 import { useReduce } from "../providers/useReducerProvider";
+import { useAuth } from "../providers/AuthProvider";
 
 export const Header = () => {
   const { isSideNav, setIsSideNav } = useReduce();
+  const { isUserLogin, userName } = useAuth();
   const openSideNav = () => {
     document.getElementById("sideNav").style.width = "15%";
     setIsSideNav(true);
@@ -61,6 +65,14 @@ export const Header = () => {
           <div className="header-list-item">
             <Link className="link" to="/liked">
               <FaThumbsUp className="header-icon" />
+            </Link>
+          </div>
+          <div className="header-list-item">
+            <Link className="link profile-icon" to="/login">
+              <CgProfile className="header-icon" />
+              <p className="user-name-header">
+                {isUserLogin ? userName?.split(" ")[0] : "Log In"}
+              </p>
             </Link>
           </div>
         </div>

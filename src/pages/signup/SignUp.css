@@ -75,8 +75,15 @@ textarea:focus {
 textarea {
   resize: none;
 }
+.login-signup-button-div {
+  display: flex;
+}
 
 button {
+  height: 30px;
+  width: 130px;
+  margin: 0rem 0.3rem;
+
   display: block;
   float: right;
   line-height: 24pt;

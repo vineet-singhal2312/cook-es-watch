@@ -81,13 +81,19 @@ textarea:focus {
 textarea {
   resize: none;
 }
+.login-signup-button-div {
+  display: flex;
+}
 
 button {
   /* display: block; */
   /* float: center; */
+  height: 30px;
+  width: 130px;
   line-height: 24pt;
   padding: 0 20px;
   border: none;
+  margin: 0rem 0.3rem;
   background: var(--secondaryColor);
   color: white;
   letter-spacing: 2px;

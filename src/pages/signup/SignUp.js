@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
+import { Header } from "../../components/Header";
 import "./SignUp.css";
 export const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -37,6 +39,8 @@ export const SignUp = () => {
 
   return (
     <div className="sign-up">
+      <Header />
+
       <div className="contact-us">
         <form>
           <label>
@@ -74,9 +78,14 @@ export const SignUp = () => {
             onChange={(e) => setPassword2(e.target.value)}
           />
 
-          <button id="customerOrder" onClick={(e) => SignUpHandler(e)}>
-            SUBMIT
-          </button>
+          <div className="login-signup-button-div">
+            <button id="customerOrder" onClick={(e) => SignUpHandler(e)}>
+              SIGN UP
+            </button>
+            <Link to="/login">
+              <button id="customerOrder">LOG IN</button>
+            </Link>
+          </div>
         </form>
       </div>
     </div>

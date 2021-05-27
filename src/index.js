@@ -4,9 +4,9 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ReducerProvider } from "./providers/useReducerProvider";
-import { PlayListProvider } from "./components/playlist/PlayListContextProvier";
-import { HistoryProvider } from "./components/history/HistoryContextProvider";
-import { LoaderProvider } from "./components/home/LoaderContextProvider";
+import { PlayListProvider } from "./pages/playlist/PlayListContextProvier";
+import { HistoryProvider } from "./pages/history/HistoryContextProvider";
+import { LoaderProvider } from "./pages/home/LoaderContextProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 
 const rootElement = document.getElementById("root");

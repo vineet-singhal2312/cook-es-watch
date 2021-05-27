@@ -4,45 +4,53 @@ import { useReduce } from "../../providers/useReducerProvider";
 import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { usePlaylist } from "../playlist/PlayListContextProvier";
+import { usePlaylist } from "../../pages/playlist/PlayListContextProvier";
 import axios from "axios";
 import { useParams } from "react-router";
+import { useAuth } from "../../providers/AuthProvider";
+import { useState, useEffect } from "react";
+import {
+  LikeVideo,
+  LikeVideoDelete,
+  PostInWatchLater,
+  WatchLaterVideoDelete,
+} from "./videCardController";
 
 export const VideoCard = ({ item }) => {
+  const [likedVideosList, setLikedVideosList] = useState([]);
+  const [watchLaterList, setWatchLaterList] = useState([]);
+
   const { videoId } = useParams();
+  const { token } = useAuth();
 
   const { playlistDispatch } = usePlaylist();
 
   const { dispatch } = useReduce();
+  console.log(watchLaterList);
+  useEffect(async () => {
+    const { data } = await axios.get(
+      // "https://cook-es-watch.herokuapp.com/historyvideos"
+      "http://localhost:8000/likedvideos",
 
-  const likeVideo = async (videoId) => {
-    await axios.post("https://cook-es-watch.herokuapp.com/likedvideos", {
-      Id: videoId,
-    });
-
-    const res = await axios.get(
-      `https://cook-es-watch.herokuapp.com/videos/${videoId}`
-    );
-    dispatch({
-      type: "INITIALIZE_PRODUCT",
-      payload: res.data,
-    });
-  };
-
-  const postInWatchLater = async (_id) => {
-    await axios.post("https://cook-es-watch.herokuapp.com/watchlatervideos", {
-      Id: _id,
-    });
-
-    const res = await axios.get(
-      `https://cook-es-watch.herokuapp.com/videos/${videoId}`
+      { headers: { authorization: token } }
     );
 
-    dispatch({
-      type: "INITIALIZE_PRODUCT",
-      payload: res.data,
-    });
-  };
+    console.log(data.result[0]?.videos.map((item) => item._id));
+    setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
+  }, []);
+
+  useEffect(async () => {
+    const { data } = await axios.get(
+      // "https://cook-es-watch.herokuapp.com/historyvideos"
+      "http://localhost:8000/watchlatervideos",
+
+      { headers: { authorization: token } }
+    );
+
+    console.log(data.result[0]?.videos.map((item) => item._id));
+    setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
+  }, []);
+
   const postDislike = async (videoId) => {
     const res = await axios.post(
       "https://cook-es-watch.herokuapp.com/dislikedvideos",
@@ -82,8 +90,13 @@ export const VideoCard = ({ item }) => {
             </p>
           </div>
           <div className="like-dislike-btn-div">
-            {item.isLike ? (
-              <div className="link video-player-option clicked">
+            {likedVideosList?.includes(item._id) ? (
+              <div
+                className="link video-player-option clicked"
+                onClick={() =>
+                  LikeVideoDelete(item._id, setLikedVideosList, token)
+                }
+              >
                 {" "}
                 <FaThumbsUp className="video-player-icon " />
                 <p className="video-option-name">{item.like}</p>
@@ -91,7 +104,7 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                onClick={() => likeVideo(item._id)}
+                onClick={() => LikeVideo(item._id, setLikedVideosList, token)}
               >
                 {" "}
                 <FaThumbsUp className="video-player-icon" />
@@ -119,14 +132,11 @@ export const VideoCard = ({ item }) => {
               </div>
             )}
 
-            {item.watchlater ? (
+            {watchLaterList?.includes(item._id) ? (
               <div
                 className="link video-player-option clicked"
                 onClick={() =>
-                  dispatch({
-                    type: "DELETE_FROM_WATCHLATER",
-                    payload: item,
-                  })
+                  WatchLaterVideoDelete(item._id, setWatchLaterList, token)
                 }
               >
                 {" "}
@@ -136,7 +146,9 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                onClick={() => postInWatchLater(item._id)}
+                onClick={() =>
+                  PostInWatchLater(item._id, setWatchLaterList, token)
+                }
               >
                 {" "}
                 <MdWatchLater className="video-player-icon" />

@@ -1,12 +1,12 @@
 import "./App.css";
-import { Home } from "./components/home/Home";
+import { Home } from "./pages/home/Home";
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import { History } from "./components/history/History";
-import { VideoPage } from "./components/videopage/VideoPage";
-import { WatchLater } from "./components/watchlater/WatchLater";
-import { LikedVideos } from "./components/likedvideos/LikeVideosPage";
-import { PlayList } from "./components/playlist/PlayList";
+import { History } from "./pages/history/History";
+import { VideoPage } from "./pages/videopage/VideoPage";
+import { WatchLater } from "./pages/watchlater/WatchLater";
+import { LikedVideos } from "./pages/likedvideos/LikeVideosPage";
+import { PlayList } from "./pages/playlist/PlayList";
 import { SignUp } from "./pages/signup/SignUp";
 import { LogIn } from "./pages/login/LogIn";
 

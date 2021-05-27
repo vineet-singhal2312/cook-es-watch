@@ -1,12 +1,20 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../providers/AuthProvider";
 
 export const VideoListCard = ({ item }) => {
+  const { token } = useAuth();
   const postVideoInHistory = async (id) => {
     try {
-      await axios.post("https://cook-es-watch.herokuapp.com/historyvideos", {
-        Id: id,
-      });
+      await axios.post(
+        // "https://cook-es-watch.herokuapp.com/historyvideos"
+        "http://localhost:8000/historyvideos",
+
+        {
+          Id: id,
+        },
+        { headers: { authorization: token } }
+      );
     } catch (error) {
       console.log(error);
     }

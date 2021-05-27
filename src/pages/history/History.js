@@ -1,25 +1,30 @@
 import { HistoryCard } from "./HistoryCard";
-import { Header } from "../Header";
-import { SideNav } from "../SideNav";
+import { Header } from "../../components/Header";
+import { SideNav } from "../../components/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
 import { useLoader } from "../home/LoaderContextProvider";
-import { Loader } from "../Loader";
+import { Loader } from "../../components/Loader";
+import { useAuth } from "../../providers/AuthProvider";
 export const History = () => {
   const { dispatch, setIsSideNav } = useReduce();
   const { setHistoryData, historyData } = useHistory();
   const { isLoader, setIsLoader } = useLoader();
-
+  const { token } = useAuth();
   useEffect(() => {
     (async function () {
       setIsLoader(true);
       try {
         const { data } = await axios.get(
-          "https://cook-es-watch.herokuapp.com/historyvideos"
+          // "https://cook-es-watch.herokuapp.com/historyvideos"
+          "http://localhost:8000/historyvideos",
+
+          { headers: { authorization: token } }
         );
-        setHistoryData(data);
+        console.log(data);
+        setHistoryData(data[0].videos);
         setIsLoader(false);
       } catch (error) {
         console.log({ error });
@@ -31,6 +36,8 @@ export const History = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
   };
+
+  console.log(historyData);
   return (
     <>
       <Header />

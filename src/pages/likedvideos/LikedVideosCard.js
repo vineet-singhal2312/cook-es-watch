@@ -1,0 +1,41 @@
+import { FaThumbsDown } from "react-icons/fa";
+import { useReduce } from "../../providers/useReducerProvider";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useAuth } from "../../providers/AuthProvider";
+import { unLikedVideo } from "./LikedVideosCardController";
+import { DeleteFromList } from "../../utils/DeleteFromList";
+
+export const LikedVideosCard = ({ item }) => {
+  console.log(item);
+  const { token } = useAuth();
+
+  const { dispatch } = useReduce();
+  return (
+    <>
+      {" "}
+      <Link className="link like-videos-card" to={`/videos/${item._id}`}>
+        <img src={item.img} className="like-videos-card-img" alt="img" />
+
+        <div className="like-videos-card-content">
+          {item.name}
+          <Link className="link like-videos-card-delete-btn" to="/liked">
+            <div
+              onClick={() =>
+                DeleteFromList(
+                  item,
+                  token,
+                  dispatch,
+                  "likedvideos",
+                  "SET_LIKEDVIDEOS"
+                )
+              }
+            >
+              <FaThumbsDown />
+            </div>
+          </Link>
+        </div>
+      </Link>
+    </>
+  );
+};
