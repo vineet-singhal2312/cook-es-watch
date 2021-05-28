@@ -1,22 +1,22 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 
 export const VideoListCard = ({ item }) => {
   const { token } = useAuth();
   const postVideoInHistory = async (id) => {
     try {
-      await axios.post(
-        // "https://cook-es-watch.herokuapp.com/historyvideos"
-        "http://localhost:8000/historyvideos",
-
+      await ApiService(
+        "post",
         {
           Id: id,
         },
+        "historyvideos",
         { headers: { authorization: token } }
       );
     } catch (error) {
-      console.log(error);
+      console.log(error, "axios error");
     }
   };
 

@@ -7,6 +7,7 @@ import axios from "axios";
 import { Loader } from "../../components/Loader";
 import { useLoader } from "../home/LoaderContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 export const LikedVideos = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
   const { isLoader, setIsLoader } = useLoader();
@@ -17,12 +18,11 @@ export const LikedVideos = () => {
       setIsLoader(true);
 
       try {
-        const { data } = await axios.get(
-          // "https://cook-es-watch.herokuapp.com/likedvideos"
-          "http://localhost:8000/likedvideos",
-          { headers: { authorization: token } }
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "likedvideos"
         );
-        console.log(data);
 
         dispatch({ type: "SET_LIKEDVIDEOS", payload: data.result[0].videos });
         setIsLoader(false);

@@ -30,7 +30,7 @@ export function PlayListProvider({ children }) {
         };
 
       default:
-        return console.log("heyyy");
+        return console.log("error in playlist context");
     }
   }
 

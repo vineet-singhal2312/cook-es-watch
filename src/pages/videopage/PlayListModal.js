@@ -1,21 +1,37 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
+import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 import { usePlaylist } from "../playlist/PlayListContextProvier";
 
 export const PlayListModal = ({ item }) => {
   const { playlistDispatch, playlistState, setIsPlayListVideoAddModel } =
     usePlaylist();
   const [userPlaylistName, setUserPlaylistName] = useState("");
-
+  const { token } = useAuth();
   useEffect(() => {
     (async function () {
       try {
-        const { data } = await axios.get(
-          "https://cook-es-watch.herokuapp.com/playlists"
+        // const { data } = await axios.get(
+        //   "https://cook-es-watch.herokuapp.com/playlists"
+        // );
+
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+
+          "playlists"
         );
 
-        playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+        console.log(data);
+        playlistDispatch({
+          type: "ADD_PLAYLIST",
+          payload: data.result[0].playlists,
+        });
+
+        // playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -30,27 +46,55 @@ export const PlayListModal = ({ item }) => {
   };
 
   const addPlayList = async () => {
-    const { data } = await axios.post(
-      "https://cook-es-watch.herokuapp.com/playlists",
-      {
-        name: userPlaylistName,
-      }
-    );
+    try {
+      const data = await ApiService(
+        "post",
+        {
+          playlistName: userPlaylistName,
+        },
+        "playlists",
+        { headers: { authorization: token } }
+      );
 
-    playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+      console.log(data);
+      playlistDispatch({
+        type: "ADD_PLAYLIST",
+        payload: data.result[0].playlists,
+      });
+      setUserPlaylistName("");
+    } catch (error) {
+      console.log(error, "axios error");
+    }
+
+    // const { data } = await axios.post(
+    //   "https://cook-es-watch.herokuapp.com/playlists",
+    //   {
+    //     name: userPlaylistName,
+    //   }
+    // );
   };
 
   const addVideoInPlayList = async (playlist) => {
     setIsPlayListVideoAddModel(true);
 
     try {
-      const { data } = await axios.post(
-        "https://cook-es-watch.herokuapp.com/playlists/videos",
+      const data = ApiService(
+        "post",
         {
           playlistId: playlist._id,
           videoId: item._id,
-        }
+          name: playlist.playlistName,
+        },
+        "playlists/videos",
+        { headers: { authorization: token } }
       );
+      // const { data } = await axios.post(
+      //   "https://cook-es-watch.herokuapp.com/playlists/videos",
+      //   {
+      //     playlistId: playlist._id,
+      //     videoId: item._id,
+      //   }
+      // );
 
       playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
 
@@ -61,6 +105,8 @@ export const PlayListModal = ({ item }) => {
       console.log(error);
     }
   };
+
+  console.log(playlistState);
 
   return (
     <div className="playlist-modal">
@@ -92,7 +138,7 @@ export const PlayListModal = ({ item }) => {
               }}
             >
               {" "}
-              {playlist.name}
+              {playlist.playlistName}
             </li>
           ))}
         </ul>
@@ -100,6 +146,7 @@ export const PlayListModal = ({ item }) => {
       <form className="playlist-modal-input-div">
         <input
           type="text"
+          value={userPlaylistName}
           className="playlist-modal-input"
           placeholder="add playlist.."
           onChange={takePlayListName}

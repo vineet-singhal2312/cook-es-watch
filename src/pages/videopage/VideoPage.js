@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { PlayListAddModal } from "./PlayListAddModel";
 import { Loader } from "../../components/Loader";
-import { useLoader } from "../../pages/home/LoaderContextProvider";
+import { useLoader } from "../home/LoaderContextProvider";
 
 export const VideoPage = () => {
   const { state, dispatch, setIsSideNav } = useReduce();

@@ -6,21 +6,18 @@ import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { usePlaylist } from "../../pages/playlist/PlayListContextProvier";
 import axios from "axios";
-import { useParams } from "react-router";
+// import { useParams } from "react-router";
 import { useAuth } from "../../providers/AuthProvider";
 import { useState, useEffect } from "react";
-import {
-  LikeVideo,
-  LikeVideoDelete,
-  PostInWatchLater,
-  WatchLaterVideoDelete,
-} from "./videCardController";
+import { postVideo, deleteVideo } from "./videCardController";
+import { ApiService } from "../../utils/ApiServices";
 
 export const VideoCard = ({ item }) => {
   const [likedVideosList, setLikedVideosList] = useState([]);
   const [watchLaterList, setWatchLaterList] = useState([]);
+  const [dislikedVideosList, setDislikedVideosList] = useState([]);
 
-  const { videoId } = useParams();
+  // const { videoId } = useParams();
   const { token } = useAuth();
 
   const { playlistDispatch } = usePlaylist();
@@ -28,11 +25,10 @@ export const VideoCard = ({ item }) => {
   const { dispatch } = useReduce();
   console.log(watchLaterList);
   useEffect(async () => {
-    const { data } = await axios.get(
-      // "https://cook-es-watch.herokuapp.com/historyvideos"
-      "http://localhost:8000/likedvideos",
-
-      { headers: { authorization: token } }
+    const data = await ApiService(
+      "get",
+      { headers: { authorization: token } },
+      "likedvideos"
     );
 
     console.log(data.result[0]?.videos.map((item) => item._id));
@@ -40,42 +36,27 @@ export const VideoCard = ({ item }) => {
   }, []);
 
   useEffect(async () => {
-    const { data } = await axios.get(
-      // "https://cook-es-watch.herokuapp.com/historyvideos"
-      "http://localhost:8000/watchlatervideos",
-
-      { headers: { authorization: token } }
+    const data = await ApiService(
+      "get",
+      { headers: { authorization: token } },
+      "watchlatervideos"
     );
 
     console.log(data.result[0]?.videos.map((item) => item._id));
-    setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
+    setWatchLaterList(data.result[0]?.videos.map((item) => item._id));
   }, []);
 
-  const postDislike = async (videoId) => {
-    const res = await axios.post(
-      "https://cook-es-watch.herokuapp.com/dislikedvideos",
-      { Id: videoId }
+  useEffect(async () => {
+    const data = await ApiService(
+      "get",
+      { headers: { authorization: token } },
+      "dislikedvideos"
     );
 
-    dispatch({
-      type: "INITIALIZE_PRODUCT",
-      payload: res.data,
-    });
-  };
+    console.log(data.result[0]?.videos.map((item) => item._id));
+    setDislikedVideosList(data.result[0]?.videos.map((item) => item._id));
+  }, []);
 
-  const deleteDislike = async (videoId) => {
-    const res = await axios.delete(
-      "https://cook-es-watch.herokuapp.com/dislikedvideos",
-      {
-        data: { Id: videoId },
-      }
-    );
-
-    dispatch({
-      type: "INITIALIZE_PRODUCT",
-      payload: res.data,
-    });
-  };
   return (
     <>
       <div className="video-card">
@@ -94,7 +75,12 @@ export const VideoCard = ({ item }) => {
               <div
                 className="link video-player-option clicked"
                 onClick={() =>
-                  LikeVideoDelete(item._id, setLikedVideosList, token)
+                  deleteVideo(
+                    item._id,
+                    setLikedVideosList,
+                    token,
+                    "likedvideos"
+                  )
                 }
               >
                 {" "}
@@ -104,7 +90,9 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                onClick={() => LikeVideo(item._id, setLikedVideosList, token)}
+                onClick={() =>
+                  postVideo(item._id, setLikedVideosList, token, "likedvideos")
+                }
               >
                 {" "}
                 <FaThumbsUp className="video-player-icon" />
@@ -112,10 +100,17 @@ export const VideoCard = ({ item }) => {
               </div>
             )}
 
-            {item.isDislike ? (
+            {dislikedVideosList?.includes(item._id) ? (
               <div
                 className="link video-player-option clicked"
-                onClick={() => deleteDislike(item._id)}
+                onClick={() =>
+                  deleteVideo(
+                    item._id,
+                    setDislikedVideosList,
+                    token,
+                    "dislikedvideos"
+                  )
+                }
               >
                 {" "}
                 <FaThumbsDown className="video-player-icon" />
@@ -124,7 +119,14 @@ export const VideoCard = ({ item }) => {
             ) : (
               <div
                 className="link video-player-option "
-                onClick={() => postDislike(item._id)}
+                onClick={() =>
+                  postVideo(
+                    item._id,
+                    setDislikedVideosList,
+                    token,
+                    "dislikedvideos"
+                  )
+                }
               >
                 {" "}
                 <FaThumbsDown className="video-player-icon" />
@@ -136,7 +138,12 @@ export const VideoCard = ({ item }) => {
               <div
                 className="link video-player-option clicked"
                 onClick={() =>
-                  WatchLaterVideoDelete(item._id, setWatchLaterList, token)
+                  deleteVideo(
+                    item._id,
+                    setWatchLaterList,
+                    token,
+                    "watchlatervideos"
+                  )
                 }
               >
                 {" "}
@@ -147,7 +154,12 @@ export const VideoCard = ({ item }) => {
               <div
                 className="link video-player-option "
                 onClick={() =>
-                  PostInWatchLater(item._id, setWatchLaterList, token)
+                  postVideo(
+                    item._id,
+                    setWatchLaterList,
+                    token,
+                    "watchlatervideos"
+                  )
                 }
               >
                 {" "}

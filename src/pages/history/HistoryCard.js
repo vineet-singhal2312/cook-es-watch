@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useHistory } from "./HistoryContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 
 export const HistoryCard = ({ item }) => {
   const { setHistoryData } = useHistory();
@@ -10,15 +11,16 @@ export const HistoryCard = ({ item }) => {
 
   const deleteHistoryVideo = async (_id) => {
     try {
-      const { data } = await axios.delete(
-        // "https://cook-es-watch.herokuapp.com/historyvideos"
-        "http://localhost:8000/historyvideos",
+      const data = await ApiService(
+        "delete",
         {
           headers: { authorization: token },
 
           data: { historyVideo_id: _id },
-        }
+        },
+        "historyvideos"
       );
+
       console.log(data[0].videos);
       setHistoryData(data[0].videos);
     } catch (error) {

@@ -8,6 +8,7 @@ import { useHistory } from "./HistoryContextProvider";
 import { useLoader } from "../home/LoaderContextProvider";
 import { Loader } from "../../components/Loader";
 import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 export const History = () => {
   const { dispatch, setIsSideNav } = useReduce();
   const { setHistoryData, historyData } = useHistory();
@@ -17,17 +18,16 @@ export const History = () => {
     (async function () {
       setIsLoader(true);
       try {
-        const { data } = await axios.get(
-          // "https://cook-es-watch.herokuapp.com/historyvideos"
-          "http://localhost:8000/historyvideos",
-
-          { headers: { authorization: token } }
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "historyvideos"
         );
-        console.log(data);
+
         setHistoryData(data[0].videos);
         setIsLoader(false);
       } catch (error) {
-        console.log({ error });
+        console.log(error, "axios error");
       }
     })();
   }, [setHistoryData, setIsLoader]);

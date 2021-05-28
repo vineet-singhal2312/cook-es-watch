@@ -1,9 +1,7 @@
 import { FaThumbsDown } from "react-icons/fa";
 import { useReduce } from "../../providers/useReducerProvider";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useAuth } from "../../providers/AuthProvider";
-import { unLikedVideo } from "./LikedVideosCardController";
 import { DeleteFromList } from "../../utils/DeleteFromList";
 
 export const LikedVideosCard = ({ item }) => {

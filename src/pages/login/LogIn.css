@@ -73,10 +73,10 @@ textarea {
   outline: none;
 }
 
-input:focus,
+/* input:focus,
 textarea:focus {
   border: 1px solid #6bd4b1;
-}
+} */
 
 textarea {
   resize: none;
