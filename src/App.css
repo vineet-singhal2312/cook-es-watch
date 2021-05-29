@@ -9,15 +9,16 @@
 }
 body {
   color: var(--textColor);
+  background-color: var(--primaryColor);
 }
 * {
   padding: 0;
   margin: 0;
 }
-input,
-button :focus {
+*:focus {
   outline: none;
 }
+
 ul {
   list-style: none;
 }
@@ -31,7 +32,7 @@ p {
 }
 a {
 }
-.header {
+/* .header {
   position: fixed;
 
   width: 100%;
@@ -48,13 +49,14 @@ a {
   justify-content: center;
   align-items: center;
   margin: 0rem 1rem;
+  cursor: pointer;
 }
 .hamburger-icon {
   font-size: 2.5rem;
   color: var(--textColor);
 }
 .header-list-div {
-  width: 25%;
+  width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,9 +66,18 @@ a {
   font-size: 2rem;
   padding: 0rem 1.5rem;
 }
+.profile-icon {
+  display: flex;
+  flex-direction: column;
+}
+
 .header-icon {
   color: var(--textColor);
 }
+.user-name-header {
+  font-size: 0.8rem;
+  margin-top: 0.2rem;
+} */
 .main {
   /* position: relative; */
   width: 100%;
@@ -285,7 +296,7 @@ a {
   padding-top: 5rem;
 }
 .history-clear-btn {
-  width: 100px;
+  width: 120px;
 
   height: 5vh;
   margin-top: 1rem;
@@ -461,6 +472,13 @@ a {
 .playlist-modal-list-list {
   text-align: initial;
   padding: 0rem;
+  height: 100%;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.playlist-modal-list-list::-webkit-scrollbar {
+  display: none;
 }
 .playlist-modal-list-item {
   padding: 0.5rem 1rem;
@@ -618,17 +636,24 @@ a {
   width: 300px;
   height: 50px;
   transition: all 0.1s;
-
+  font-size: 1.2rem;
   background-color: var(--primaryColor);
   border-bottom: 1px solid var(--secondaryColor);
   box-shadow: 5px 5px 25px 0 rgb(0 0 0 / 30%);
 }
 
 .loader {
+  /* height: 100vh;
+  width: 100vw; */
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* place-items: center; */
+  /* background-color: var(--primaryColor); */
   display: inline-block;
   position: absolute;
   top: 50%;
-  left: 50%;
+  left: 47%;
   width: 80px;
   height: 80px;
 }
@@ -683,12 +708,12 @@ a {
 }
 
 @media only screen and (max-width: 500px) {
-  .header-list-div {
+  /* .header-list-div {
     width: 70%;
   }
   .header-list-item {
     padding: 0rem 0.5rem;
-  }
+  } */
   .product-list-card {
     height: 350px;
     width: 300px;
@@ -738,7 +763,8 @@ a {
   .add-video-in-playlist-modal {
     left: 10%;
   }
-  /* .side-nav {
-    width: 40%;
-  } */
+  .loader {
+    top: 40%;
+    left: 40%;
+  }
 }
