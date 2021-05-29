@@ -4,8 +4,8 @@ import "./index.css";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { ReducerProvider } from "./providers/useReducerProvider";
-import { PlayListProvider } from "./pages/playlist/PlayListContextProvier";
-import { HistoryProvider } from "./pages/history/HistoryContextProvider";
+import { PlayListProvider } from "./providers/PlayListContextProvier";
+import { HistoryProvider } from "./providers/HistoryContextProvider";
 import { LoaderProvider } from "./pages/home/LoaderContextProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 

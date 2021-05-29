@@ -6,22 +6,30 @@ import { SideNav } from "../../components/SideNav";
 import { useLoader } from "../../pages/home/LoaderContextProvider";
 import { useReduce } from "../../providers/useReducerProvider";
 import { PlaylistCard } from "./PlaylistCard";
-import { usePlaylist } from "./PlayListContextProvier";
+import { usePlaylist } from "../../providers/PlayListContextProvier";
+import { ApiService } from "../../utils/ApiServices";
+import { useAuth } from "../../providers/AuthProvider";
 export const PlayList = () => {
   const { playlistState, playlistDispatch } = usePlaylist();
   const { setIsSideNav } = useReduce();
   const { isLoader, setIsLoader } = useLoader();
-
+  const { token } = useAuth();
   useEffect(() => {
     (async function () {
       setIsLoader(true);
 
       try {
-        const { data } = await axios.get(
-          "https://cook-es-watch.herokuapp.com/playlists"
+        // const { data } = await axios.get(
+        //   "https://cook-es-watch.herokuapp.com/playlists"
+        // );
+
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "playlists"
         );
 
-        playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+        playlistDispatch({ type: "ADD_PLAYLIST", payload: data.result });
         setIsLoader(false);
       } catch (error) {
         console.log(error);

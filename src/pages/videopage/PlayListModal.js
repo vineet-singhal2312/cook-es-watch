@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";
-import { usePlaylist } from "../playlist/PlayListContextProvier";
+import { usePlaylist } from "../../providers/PlayListContextProvier";
 
 export const PlayListModal = ({ item }) => {
   const { playlistDispatch, playlistState, setIsPlayListVideoAddModel } =
@@ -27,10 +27,9 @@ export const PlayListModal = ({ item }) => {
         console.log(data);
         playlistDispatch({
           type: "ADD_PLAYLIST",
-          payload: data.result[0].playlists,
+          payload: data.result,
         });
 
-        // playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
         console.log(data);
       } catch (error) {
         console.log(error);
@@ -59,44 +58,27 @@ export const PlayListModal = ({ item }) => {
       console.log(data);
       playlistDispatch({
         type: "ADD_PLAYLIST",
-        payload: data.result[0].playlists,
+        payload: data.result,
       });
       setUserPlaylistName("");
     } catch (error) {
       console.log(error, "axios error");
     }
-
-    // const { data } = await axios.post(
-    //   "https://cook-es-watch.herokuapp.com/playlists",
-    //   {
-    //     name: userPlaylistName,
-    //   }
-    // );
   };
 
   const addVideoInPlayList = async (playlist) => {
     setIsPlayListVideoAddModel(true);
 
     try {
-      const data = ApiService(
+      ApiService(
         "post",
         {
           playlistId: playlist._id,
           videoId: item._id,
-          name: playlist.playlistName,
         },
         "playlists/videos",
         { headers: { authorization: token } }
       );
-      // const { data } = await axios.post(
-      //   "https://cook-es-watch.herokuapp.com/playlists/videos",
-      //   {
-      //     playlistId: playlist._id,
-      //     videoId: item._id,
-      //   }
-      // );
-
-      playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
 
       setTimeout(() => {
         setIsPlayListVideoAddModel(false);
@@ -125,7 +107,7 @@ export const PlayListModal = ({ item }) => {
       </div>
       <div className="playlist-modal-list">
         <ul className="playlist-modal-list-list">
-          {playlistState.playlist.map((playlist) => (
+          {playlistState.playlist?.map((playlist) => (
             <li
               className="playlist-modal-list-item"
               onClick={() => {

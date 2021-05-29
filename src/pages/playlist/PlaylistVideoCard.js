@@ -1,19 +1,33 @@
 import axios from "axios";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-import { usePlaylist } from "./PlayListContextProvier";
+import { useAuth } from "../../providers/AuthProvider";
+import { usePlaylist } from "../../providers/PlayListContextProvier";
+import { ApiService } from "../../utils/ApiServices";
 
 export const PlaylistVideoCard = ({ video, playlistId }) => {
   const { playlistDispatch } = usePlaylist();
+  const { token } = useAuth();
+
   const deleteVideoFromPlayList = async (playlistId, videoId) => {
-    const { data } = await axios.delete(
-      "https://cook-es-watch.herokuapp.com/playlists/videos",
+    // const { data } = await axios.delete(
+    //   "https://cook-es-watch.herokuapp.com/playlists/videos",
+    //   {
+    //     data: { playlistId: playlistId, videoId: videoId },
+    //   }
+    // );
+
+    const data = await ApiService(
+      "delete",
       {
-        data: { playlistId: playlistId, videoId: videoId },
-      }
+        headers: { authorization: token },
+
+        data: { playlistId, videoId },
+      },
+      "playlists/videos"
     );
 
-    playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+    playlistDispatch({ type: "ADD_PLAYLIST", payload: data.result });
   };
   return (
     <>

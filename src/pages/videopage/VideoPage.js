@@ -3,7 +3,7 @@ import { SideNav } from "../../components/SideNav";
 import { useParams } from "react-router-dom";
 
 import { useReduce } from "../../providers/useReducerProvider";
-import { usePlaylist } from "../playlist/PlayListContextProvier";
+import { usePlaylist } from "../../providers/PlayListContextProvier";
 import { PlayListModal } from "./PlayListModal";
 import { VideoCard } from "../../components/videoPageCard/VideoCard";
 import { useEffect } from "react";

@@ -4,7 +4,7 @@ import { SideNav } from "../../components/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "./HistoryContextProvider";
+import { useHistory } from "../../providers/HistoryContextProvider";
 import { useLoader } from "../home/LoaderContextProvider";
 import { Loader } from "../../components/Loader";
 import { useAuth } from "../../providers/AuthProvider";
@@ -23,8 +23,8 @@ export const History = () => {
           { headers: { authorization: token } },
           "historyvideos"
         );
-
-        setHistoryData(data[0].videos);
+        console.log(data.result[0].videos);
+        setHistoryData(data.result[0].videos);
         setIsLoader(false);
       } catch (error) {
         console.log(error, "axios error");

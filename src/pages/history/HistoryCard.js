@@ -1,7 +1,7 @@
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useHistory } from "./HistoryContextProvider";
+import { useHistory } from "../../providers/HistoryContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";
 
@@ -21,8 +21,8 @@ export const HistoryCard = ({ item }) => {
         "historyvideos"
       );
 
-      console.log(data[0].videos);
-      setHistoryData(data[0].videos);
+      console.log(data.result[0].videos);
+      setHistoryData(data.result[0].videos);
     } catch (error) {
       console.log(error);
     }

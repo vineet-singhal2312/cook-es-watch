@@ -2,19 +2,25 @@
 import { PlaylistVideoCard } from "./PlaylistVideoCard";
 import { MdDelete } from "react-icons/md";
 import axios from "axios";
-import { usePlaylist } from "./PlayListContextProvier";
+import { usePlaylist } from "../../providers/PlayListContextProvier";
+import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 
 export const PlaylistCard = ({ playlist }) => {
   const { playlistDispatch } = usePlaylist();
-
+  const { token } = useAuth();
   const deletePlayList = async (playlistId) => {
-    const { data } = await axios.delete(
-      "https://cook-es-watch.herokuapp.com/playlists",
+    const data = await ApiService(
+      "delete",
       {
-        data: { playlistId: playlistId },
-      }
+        headers: { authorization: token },
+
+        data: { playlistId },
+      },
+      "playlists"
     );
-    playlistDispatch({ type: "ADD_PLAYLIST", payload: data });
+
+    playlistDispatch({ type: "ADD_PLAYLIST", payload: data.result });
   };
 
   return (
@@ -23,7 +29,7 @@ export const PlaylistCard = ({ playlist }) => {
       {playlist.videos.length > 0 ? (
         <div className="playlist-card ">
           <div className="playlist-name-div">
-            <h1 className="playlist-name">{playlist.name}</h1>
+            <h1 className="playlist-name">{playlist.playlistName}</h1>
             <div
               className="playlis-delete-btn"
               onClick={() => deletePlayList(playlist._id)}
@@ -44,7 +50,7 @@ export const PlaylistCard = ({ playlist }) => {
       ) : (
         <div className="playlist-card ">
           <div className="playlist-name-div">
-            <h1 className="playlist-name">{playlist.name}</h1>{" "}
+            <h1 className="playlist-name">{playlist.playlistName}</h1>{" "}
             <div
               className="playlis-delete-btn"
               onClick={() => deletePlayList(playlist._id)}
