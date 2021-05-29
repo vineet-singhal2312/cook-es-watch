@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import { useAuth } from "../../providers/AuthProvider";
@@ -9,14 +8,10 @@ export const PlayListModal = ({ item }) => {
   const { playlistDispatch, playlistState, setIsPlayListVideoAddModel } =
     usePlaylist();
   const [userPlaylistName, setUserPlaylistName] = useState("");
-  const { token } = useAuth();
+  const { token, setLoginStatus } = useAuth();
   useEffect(() => {
     (async function () {
       try {
-        // const { data } = await axios.get(
-        //   "https://cook-es-watch.herokuapp.com/playlists"
-        // );
-
         const data = await ApiService(
           "get",
           { headers: { authorization: token } },
@@ -29,8 +24,6 @@ export const PlayListModal = ({ item }) => {
           type: "ADD_PLAYLIST",
           payload: data.result,
         });
-
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -44,7 +37,7 @@ export const PlayListModal = ({ item }) => {
     setUserPlaylistName(playlistNameGivenByUser);
   };
 
-  const addPlayList = async () => {
+  const addPlayList = async (setLoginStatus) => {
     try {
       const data = await ApiService(
         "post",
@@ -63,6 +56,11 @@ export const PlayListModal = ({ item }) => {
       setUserPlaylistName("");
     } catch (error) {
       console.log(error, "axios error");
+      setLoginStatus(true);
+
+      setTimeout(() => {
+        setLoginStatus(false);
+      }, 3000);
     }
   };
 
@@ -88,8 +86,6 @@ export const PlayListModal = ({ item }) => {
     }
   };
 
-  console.log(playlistState);
-
   return (
     <div className="playlist-modal">
       <div className="playlist-modal-title">
@@ -111,8 +107,6 @@ export const PlayListModal = ({ item }) => {
             <li
               className="playlist-modal-list-item"
               onClick={() => {
-                console.log(playlist);
-
                 addVideoInPlayList(playlist);
                 playlistDispatch({
                   type: "CLOSE_MODAL",
@@ -137,7 +131,7 @@ export const PlayListModal = ({ item }) => {
           className="playlist-modal-input-button"
           onClick={(e) => {
             e.preventDefault();
-            addPlayList();
+            addPlayList(setLoginStatus);
           }}
         >
           ADD

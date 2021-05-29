@@ -1,11 +1,11 @@
-import axios from "axios";
 import { ApiService } from "../../utils/ApiServices";
 
 export const postVideo = async (
   videoId,
   setLikedVideosList,
   token,
-  routeEndPoint
+  routeEndPoint,
+  setLoginStatus
 ) => {
   try {
     console.log("awesome");
@@ -23,6 +23,10 @@ export const postVideo = async (
     setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
   } catch (error) {
     console.log(error, "exios error");
+    setLoginStatus(true);
+    setTimeout(() => {
+      setLoginStatus(false);
+    }, 3000);
   }
 };
 
@@ -50,45 +54,4 @@ export const deleteVideo = async (
   }
 };
 
-// export const PostInWatchLater = async (videoId, setWatchLaterList, token) => {
-//   try {
-//     const { data } = await axios.post(
-//       // "https://cook-es-watch.herokuapp.com/historyvideos"
-//       "http://localhost:8000/watchlatervideos",
 
-//       {
-//         Id: videoId,
-//       },
-//       { headers: { authorization: token } }
-//     );
-
-//     console.log(data.result[0].videos.map((item) => item._id));
-//     setWatchLaterList(data.result[0].videos.map((item) => item._id));
-//   } catch (error) {
-//     console.log(error, "exios error");
-//   }
-// };
-// export const WatchLaterVideoDelete = async (
-//   videoId,
-//   setWatchLaterList,
-//   token
-// ) => {
-//   try {
-//     console.log("click");
-//     const { data } = await axios.delete(
-//       // "https://cook-es-watch.herokuapp.com/historyvideos"
-//       "http://localhost:8000/watchlatervideos",
-
-//       {
-//         headers: { authorization: token },
-
-//         data: { Id: videoId },
-//       }
-//     );
-
-//     console.log(data.result[0].videos.map((item) => item._id));
-//     setWatchLaterList(data.result[0].videos.map((item) => item._id));
-//   } catch (error) {
-//     console.log(error, "exios error");
-//   }
-// };

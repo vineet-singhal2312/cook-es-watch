@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
+import { createContext, useContext } from "react";
 import { useState } from "react";
 
 export const AuthContext = createContext();
@@ -17,6 +17,8 @@ export const AuthProvider = ({ children }) => {
   const [isUserLogin, setLogin] = useState(isUserLoggedIn);
   const [token, setToken] = useState(savedToken);
   const [userName, setUserName] = useState(savedUserName);
+  const [loginFailedModel, setLoginFailedModel] = useState(false);
+  const [loginStatus, setLoginStatus] = useState(false);
 
   console.log(isUserLogin, token, userName);
 
@@ -25,12 +27,14 @@ export const AuthProvider = ({ children }) => {
       value={{
         isUserLogin,
         token,
-        // loginUserWithCredentials,
-        // logout,
+        loginFailedModel,
+        setLoginFailedModel,
         setToken,
         setLogin,
         userName,
-        setUserName
+        setUserName,
+        loginStatus,
+        setLoginStatus,
       }}
     >
       {children}

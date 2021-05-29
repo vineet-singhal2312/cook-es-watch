@@ -1,3 +1,4 @@
+import "./Header.css";
 import { IoHome } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 import { RiPlayList2Line } from "react-icons/ri";
@@ -7,8 +8,8 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
 
 import { Link } from "react-router-dom";
-import { useReduce } from "../providers/useReducerProvider";
-import { useAuth } from "../providers/AuthProvider";
+import { useReduce } from "../../providers/useReducerProvider";
+import { useAuth } from "../../providers/AuthProvider";
 
 export const Header = () => {
   const { isSideNav, setIsSideNav } = useReduce();

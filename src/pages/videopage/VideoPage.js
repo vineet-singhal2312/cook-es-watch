@@ -1,4 +1,4 @@
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
 import { SideNav } from "../../components/SideNav";
 import { useParams } from "react-router-dom";
 
@@ -8,14 +8,15 @@ import { PlayListModal } from "./PlayListModal";
 import { VideoCard } from "../../components/videoPageCard/VideoCard";
 import { useEffect } from "react";
 import axios from "axios";
-import { PlayListAddModal } from "./PlayListAddModel";
+import { UserActivityModel } from "../../components/userActivityModel/UserActivityModel";
 import { Loader } from "../../components/Loader";
-import { useLoader } from "../home/LoaderContextProvider";
+import { useLoader } from "../../providers/LoaderContextProvider";
+import { useAuth } from "../../providers/AuthProvider";
 
 export const VideoPage = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
   const { isLoader, setIsLoader } = useLoader();
-
+  const { loginStatus } = useAuth();
   const { playlistState, isPlayListVideoAddModel, playlistDispatch } =
     usePlaylist();
   const { videoId } = useParams();
@@ -54,7 +55,14 @@ export const VideoPage = () => {
     <>
       <SideNav />
       <Header />
-      {isPlayListVideoAddModel && <PlayListAddModal item={item} />}
+      {isPlayListVideoAddModel && (
+        <UserActivityModel description="Video is added..." />
+      )}
+
+      {loginStatus && (
+        <UserActivityModel description="You haven't logged in!!" />
+      )}
+
       {playlistState.isModal && <PlayListModal item={item} />}
       <div className="video-page-background" onClick={() => closeSideNav()}>
         <div className="Vedio-page-content">

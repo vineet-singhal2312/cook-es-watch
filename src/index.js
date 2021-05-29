@@ -6,7 +6,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import { ReducerProvider } from "./providers/useReducerProvider";
 import { PlayListProvider } from "./providers/PlayListContextProvier";
 import { HistoryProvider } from "./providers/HistoryContextProvider";
-import { LoaderProvider } from "./pages/home/LoaderContextProvider";
+import { LoaderProvider } from "./providers/LoaderContextProvider";
 import { AuthProvider } from "./providers/AuthProvider";
 
 const rootElement = document.getElementById("root");

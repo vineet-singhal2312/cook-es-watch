@@ -1,9 +1,8 @@
-import axios from "axios";
 import { useEffect } from "react";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
 import { Loader } from "../../components/Loader";
 import { SideNav } from "../../components/SideNav";
-import { useLoader } from "../../pages/home/LoaderContextProvider";
+import { useLoader } from "../../providers/LoaderContextProvider";
 import { useReduce } from "../../providers/useReducerProvider";
 import { PlaylistCard } from "./PlaylistCard";
 import { usePlaylist } from "../../providers/PlayListContextProvier";
@@ -19,10 +18,6 @@ export const PlayList = () => {
       setIsLoader(true);
 
       try {
-        // const { data } = await axios.get(
-        //   "https://cook-es-watch.herokuapp.com/playlists"
-        // );
-
         const data = await ApiService(
           "get",
           { headers: { authorization: token } },

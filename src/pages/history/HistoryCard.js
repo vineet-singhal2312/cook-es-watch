@@ -1,6 +1,5 @@
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useHistory } from "../../providers/HistoryContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";

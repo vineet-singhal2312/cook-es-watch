@@ -1,12 +1,12 @@
 import { WatchLaterCard } from "./WatchLatercard";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
 import { SideNav } from "../../components/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
-import axios from "axios";
 import { Loader } from "../../components/Loader";
-import { useLoader } from "../home/LoaderContextProvider";
+import { useLoader } from "../../providers/LoaderContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
+import { ApiService } from "../../utils/ApiServices";
 export const WatchLater = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
   const { isLoader, setIsLoader } = useLoader();
@@ -16,20 +16,12 @@ export const WatchLater = () => {
     setIsLoader(true);
 
     (async function () {
-      // const { data } = await axios.get(
-      //   "https://cook-es-watch.herokuapp.com/watchlatervideos"
-      // );
-
-      // dispatch({ type: "SET_WATCHLATERVIDEOS", payload: data });
-      // setIsLoader(false);
-
       try {
-        const { data } = await axios.get(
-          // "https://cook-es-watch.herokuapp.com/watchlatervideos"
-          "http://localhost:8000/watchlatervideos",
-          { headers: { authorization: token } }
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "watchlatervideos"
         );
-        console.log(data);
 
         dispatch({
           type: "SET_WATCHLATERVIDEOS",

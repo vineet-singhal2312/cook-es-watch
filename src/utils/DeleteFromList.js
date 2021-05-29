@@ -10,8 +10,8 @@ export const DeleteFromList = async (
   try {
     console.log("chlta hai");
     const { data } = await axios.delete(
-      // `https://cook-es-watch.herokuapp.com/${routeEndPoint}`
-      `http://localhost:8000/${routeEndPoint}`,
+      `https://cook-es-watch.herokuapp.com/${routeEndPoint}`,
+      // `http://localhost:8000/${routeEndPoint}`,
 
       {
         headers: { authorization: token },

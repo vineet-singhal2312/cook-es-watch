@@ -1,7 +1,6 @@
 // import { Link } from "react-router-dom";
 import { PlaylistVideoCard } from "./PlaylistVideoCard";
 import { MdDelete } from "react-icons/md";
-import axios from "axios";
 import { usePlaylist } from "../../providers/PlayListContextProvier";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";

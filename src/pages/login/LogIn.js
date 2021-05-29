@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
+import { LoginFailedModel } from "../../components/loginfailed/LoginFailedModel";
+import { SideNav } from "../../components/SideNav";
 import { useAuth } from "../../providers/AuthProvider";
 import "./LogIn.css";
 
@@ -9,32 +11,41 @@ export const LogIn = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setToken, setLogin, isUserLogin, setUserName } = useAuth();
-  console.log(email);
-  console.log(password);
+  const {
+    setToken,
+    setLogin,
+    isUserLogin,
+    setUserName,
+    loginFailedModel,
+    setLoginFailedModel,
+  } = useAuth();
 
   const LogInHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/login", {
-        email,
-        password,
-      });
+      const res = await axios.post(
+        // "http://localhost:8000/login",
+        `https://cook-es-watch.herokuapp.com/login`,
+
+        {
+          email,
+          password,
+        }
+      );
 
       setEmail("");
       setPassword("");
-      console.log(res);
       loginUser(res);
     } catch (error) {
-      console.log(error.message);
-      console.log(error.data);
+      setLoginFailedModel(true);
+      setEmail("");
+      setPassword("");
     }
     function loginUser(res) {
       setLogin(true);
 
       setToken(res.data.token);
       navigate("/");
-      console.log(res.data.userName);
       setUserName(res.data.userName);
 
       localStorage?.setItem(
@@ -57,6 +68,8 @@ export const LogIn = () => {
   return (
     <div className="log-in">
       <Header />
+      {loginFailedModel && <LoginFailedModel />}
+      <SideNav />
       <div className="contact-us">
         <form action="#" className="log-in-form">
           <label for="customerEmail">

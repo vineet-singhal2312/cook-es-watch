@@ -1,4 +1,3 @@
-import axios from "axios";
 import { MdDelete } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../providers/AuthProvider";
@@ -10,13 +9,6 @@ export const PlaylistVideoCard = ({ video, playlistId }) => {
   const { token } = useAuth();
 
   const deleteVideoFromPlayList = async (playlistId, videoId) => {
-    // const { data } = await axios.delete(
-    //   "https://cook-es-watch.herokuapp.com/playlists/videos",
-    //   {
-    //     data: { playlistId: playlistId, videoId: videoId },
-    //   }
-    // );
-
     const data = await ApiService(
       "delete",
       {

@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
+import { SideNav } from "../../components/SideNav";
 import "./SignUp.css";
 export const SignUp = () => {
   const [userName, setUserName] = useState("");
@@ -14,12 +15,17 @@ export const SignUp = () => {
   const SignUpHandler = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("http://localhost:8000/signup", {
-        userName,
-        email,
-        password: password1,
-        confirmPassword: password2,
-      });
+      await axios.post(
+        // "http://localhost:8000/signup",
+        `https://cook-es-watch.herokuapp.com/signup`,
+
+        {
+          userName,
+          email,
+          password: password1,
+          confirmPassword: password2,
+        }
+      );
 
       setUserName("");
       setEmail("");
@@ -32,15 +38,10 @@ export const SignUp = () => {
     }
   };
 
-  console.log(userName);
-  console.log(email);
-  console.log(password1);
-  console.log(password2);
-
   return (
     <div className="sign-up">
       <Header />
-
+      <SideNav />
       <div className="contact-us">
         <form>
           <label>

@@ -1,11 +1,10 @@
 import { LikedVideosCard } from "./LikedVideosCard";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
 import { SideNav } from "../../components/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
-import axios from "axios";
 import { Loader } from "../../components/Loader";
-import { useLoader } from "../home/LoaderContextProvider";
+import { useLoader } from "../../providers/LoaderContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";
 export const LikedVideos = () => {

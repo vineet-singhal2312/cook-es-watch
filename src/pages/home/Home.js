@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Header } from "../../components/Header";
+import { Header } from "../../components/header/Header";
 import { Loader } from "../../components/Loader";
 import { SideNav } from "../../components/SideNav";
 // import { usePlaylist } from "../playlist/PlayListContextProvier";
 import { useReduce } from "../../providers/useReducerProvider";
-import { useLoader } from "./LoaderContextProvider";
+import { useLoader } from "../../providers/LoaderContextProvider";
 import { VideoList } from "./VideoList";
 export const Home = () => {
   const { isLoader, setIsLoader } = useLoader();

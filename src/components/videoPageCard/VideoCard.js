@@ -17,7 +17,7 @@ export const VideoCard = ({ item }) => {
   const [dislikedVideosList, setDislikedVideosList] = useState([]);
 
   // const { videoId } = useParams();
-  const { token } = useAuth();
+  const { token, setLoginStatus } = useAuth();
 
   const { playlistDispatch } = usePlaylist();
 
@@ -52,7 +52,6 @@ export const VideoCard = ({ item }) => {
       "dislikedvideos"
     );
 
-    console.log(data.result[0]?.videos.map((item) => item._id));
     setDislikedVideosList(data.result[0]?.videos.map((item) => item._id));
   }, []);
 
@@ -90,7 +89,13 @@ export const VideoCard = ({ item }) => {
               <div
                 className="link video-player-option "
                 onClick={() =>
-                  postVideo(item._id, setLikedVideosList, token, "likedvideos")
+                  postVideo(
+                    item._id,
+                    setLikedVideosList,
+                    token,
+                    "likedvideos",
+                    setLoginStatus
+                  )
                 }
               >
                 {" "}
@@ -123,7 +128,8 @@ export const VideoCard = ({ item }) => {
                     item._id,
                     setDislikedVideosList,
                     token,
-                    "dislikedvideos"
+                    "dislikedvideos",
+                    setLoginStatus
                   )
                 }
               >
@@ -157,7 +163,8 @@ export const VideoCard = ({ item }) => {
                     item._id,
                     setWatchLaterList,
                     token,
-                    "watchlatervideos"
+                    "watchlatervideos",
+                    setLoginStatus
                   )
                 }
               >
