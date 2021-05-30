@@ -1,11 +1,11 @@
 import { HistoryCard } from "./HistoryCard";
 import { Header } from "../../components/header/Header";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import { useHistory } from "../../providers/HistoryContextProvider";
 import { useLoader } from "../../providers/LoaderContextProvider";
-import { Loader } from "../../components/Loader";
+import { Loader } from "../../components/loader/Loader";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";
 export const History = () => {
@@ -36,7 +36,6 @@ export const History = () => {
     setIsSideNav(false);
   };
 
-  console.log(historyData);
   return (
     <>
       <Header />

@@ -1,5 +1,5 @@
 import { Header } from "../../components/header/Header";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useParams } from "react-router-dom";
 
 import { useReduce } from "../../providers/useReducerProvider";
@@ -9,7 +9,7 @@ import { VideoCard } from "../../components/videoPageCard/VideoCard";
 import { useEffect } from "react";
 import axios from "axios";
 import { UserActivityModel } from "../../components/userActivityModel/UserActivityModel";
-import { Loader } from "../../components/Loader";
+import { Loader } from "../../components/loader/Loader";
 import { useLoader } from "../../providers/LoaderContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
 

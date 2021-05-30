@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Header } from "../../components/header/Header";
-import { Loader } from "../../components/Loader";
-import { SideNav } from "../../components/SideNav";
+import { Loader } from "../../components/loader/Loader";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useLoader } from "../../providers/LoaderContextProvider";
 import { useReduce } from "../../providers/useReducerProvider";
 import { PlaylistCard } from "./PlaylistCard";

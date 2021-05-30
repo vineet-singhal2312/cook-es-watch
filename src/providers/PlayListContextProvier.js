@@ -41,8 +41,7 @@ export function PlayListProvider({ children }) {
         playlistDispatch,
         isPlayListVideoAddModel,
         setIsPlayListVideoAddModel,
-        // isLoader,
-        // setIsLoader,
+    
       }}
     >
       {children}

@@ -1,4 +1,3 @@
-import "./Header.css";
 import { IoHome } from "react-icons/io5";
 import { FaHistory } from "react-icons/fa";
 import { RiPlayList2Line } from "react-icons/ri";

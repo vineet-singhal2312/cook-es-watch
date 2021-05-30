@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../components/header/Header";
 import { LoginFailedModel } from "../../components/loginfailed/LoginFailedModel";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useAuth } from "../../providers/AuthProvider";
-import "./LogIn.css";
+import { LogInHandler, Logout } from "./Login.utils";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ export const LogIn = () => {
     setLogin(false);
     setToken(null);
   }
-
+  console.log(loginFailedModel);
   return (
     <div className="log-in">
       <Header />
@@ -94,11 +94,34 @@ export const LogIn = () => {
 
           <div className="login-signup-button-div">
             {isUserLogin ? (
-              <button id="customerOrder" onClick={() => Logout()}>
+              <button
+                id="customerOrder"
+                onClick={() =>
+                  Logout()
+
+                  // setToken, setLogin
+                }
+              >
                 LOG OUT
               </button>
             ) : (
-              <button id="customerOrder" onClick={(e) => LogInHandler(e)}>
+              <button
+                id="customerOrder"
+                onClick={(e) =>
+                  LogInHandler(
+                    e
+                    // email,
+                    // password,
+                    // setEmail,
+                    // setPassword,
+                    // navigate,
+                    // setToken,
+                    // setUserName,
+                    // setLogin,
+                    // setLoginFailedModel
+                  )
+                }
+              >
                 LOG IN
               </button>
             )}{" "}

@@ -21,3 +21,12 @@
   font-size: 2.5rem;
   cursor: pointer;
 }
+@media only screen and (max-width: 500px) {
+  .login-failed {
+    width: 40%;
+
+    top: 45%;
+    left: 9%;
+    padding: 50px 75px;
+  }
+}

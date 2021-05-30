@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/header/Header";
-import { SideNav } from "../../components/SideNav";
-import "./SignUp.css";
+import { SideNav } from "../../components/sideNav/SideNav";
 export const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
