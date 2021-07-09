@@ -5,7 +5,6 @@ import { Header } from "../../components/header/Header";
 import { LoginFailedModel } from "../../components/loginfailed/LoginFailedModel";
 import { SideNav } from "../../components/sideNav/SideNav";
 import { useAuth } from "../../providers/AuthProvider";
-import { LogInHandler, Logout } from "./Login.utils";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -64,7 +63,6 @@ export const LogIn = () => {
     setLogin(false);
     setToken(null);
   }
-  console.log(loginFailedModel);
   return (
     <div className="log-in">
       <Header />
@@ -72,7 +70,7 @@ export const LogIn = () => {
       <SideNav />
       <div className="contact-us">
         <form action="#" className="log-in-form">
-          <label for="customerEmail">
+          <label htmlFor="customerEmail">
             EMAIL <em>&#x2a;</em>
           </label>
           <input
@@ -82,7 +80,7 @@ export const LogIn = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label for="customerPhone">
+          <label htmlFor="customerPhone">
             PASSWORD <em>&#x2a;</em>
           </label>
           <input
@@ -96,8 +94,8 @@ export const LogIn = () => {
             {isUserLogin ? (
               <button
                 id="customerOrder"
-                onClick={() =>
-                  Logout()
+                onClick={
+                  () => Logout()
 
                   // setToken, setLogin
                 }

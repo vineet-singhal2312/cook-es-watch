@@ -5,9 +5,7 @@ import { useAuth } from "../../providers/AuthProvider";
 import { DeleteFromList } from "../../utils/DeleteFromList";
 
 export const LikedVideosCard = ({ item }) => {
-  console.log(item);
   const { token } = useAuth();
-
   const { dispatch } = useReduce();
   return (
     <>

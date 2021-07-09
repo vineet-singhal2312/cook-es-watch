@@ -20,13 +20,11 @@ export const HistoryCard = ({ item }) => {
         "historyvideos"
       );
 
-      console.log(data.result[0].videos);
       setHistoryData(data.result[0].videos);
     } catch (error) {
       console.log(error);
     }
   };
-  console.log(item);
 
   return (
     <>
@@ -36,11 +34,11 @@ export const HistoryCard = ({ item }) => {
 
         <div className="history-card-content">
           {item.name}
-          <Link className="link history-card-delete-btn" to="/history">
+          <div className="link history-card-delete-btn">
             <div onClick={() => deleteHistoryVideo(item._id)}>
               <MdDelete />
             </div>
-          </Link>
+          </div>
         </div>
       </Link>
     </>

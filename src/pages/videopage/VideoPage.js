@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useReduce } from "../../providers/useReducerProvider";
 import { usePlaylist } from "../../providers/PlayListContextProvier";
 import { PlayListModal } from "./PlayListModal";
-import { VideoCard } from "../../components/videoPageCard/VideoCard";
+import { VideoCard } from "./videoPageCard/VideoCard";
 import { useEffect } from "react";
 import axios from "axios";
 import { UserActivityModel } from "../../components/userActivityModel/UserActivityModel";

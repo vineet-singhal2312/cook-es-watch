@@ -32,7 +32,7 @@ export const WatchLater = () => {
         console.log(error);
       }
     })();
-  }, [dispatch, setIsLoader]);
+  }, [dispatch, setIsLoader, token]);
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);

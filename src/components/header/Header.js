@@ -5,7 +5,6 @@ import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { CgProfile } from "react-icons/cg";
-
 import { Link } from "react-router-dom";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useAuth } from "../../providers/AuthProvider";

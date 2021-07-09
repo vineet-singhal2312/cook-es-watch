@@ -1,4 +1,4 @@
-import { ApiService } from "../../utils/ApiServices";
+import { ApiService } from "../../../utils/ApiServices";
 
 export const postVideo = async (
   videoId,
@@ -8,7 +8,6 @@ export const postVideo = async (
   setLoginStatus
 ) => {
   try {
-    console.log("awesome");
     const data = await ApiService(
       "post",
 
@@ -18,8 +17,6 @@ export const postVideo = async (
       routeEndPoint,
       { headers: { authorization: token } }
     );
-
-    console.log(data.result[0]?.videos.map((item) => item._id));
     setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
   } catch (error) {
     console.log(error, "exios error");
@@ -53,5 +50,3 @@ export const deleteVideo = async (
     console.log(error, "exios error");
   }
 };
-
-

@@ -1,5 +1,4 @@
 import React from "react";
-// import "./LoginFailedModel.css";
 import { RiCloseLine } from "react-icons/ri";
 import { useAuth } from "../../providers/AuthProvider";
 

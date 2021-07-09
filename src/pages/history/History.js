@@ -22,14 +22,13 @@ export const History = () => {
           { headers: { authorization: token } },
           "historyvideos"
         );
-        console.log(data.result[0].videos);
         setHistoryData(data.result[0].videos);
         setIsLoader(false);
       } catch (error) {
         console.log(error, "axios error");
       }
     })();
-  }, [setHistoryData, setIsLoader]);
+  }, [setHistoryData, setIsLoader, token]);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
@@ -40,7 +39,6 @@ export const History = () => {
     <>
       <Header />
       <SideNav />
-      
 
       {historyData.length === 0 ? (
         <div className="history-main">

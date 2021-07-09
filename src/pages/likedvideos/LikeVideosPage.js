@@ -29,13 +29,12 @@ export const LikedVideos = () => {
         console.log(error, "axios error");
       }
     })();
-  }, [dispatch, setIsLoader]);
+  }, [dispatch, setIsLoader, token]);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
   };
-  console.log(state);
   return (
     <>
       <Header />

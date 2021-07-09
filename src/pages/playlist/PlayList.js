@@ -30,7 +30,7 @@ export const PlayList = () => {
         console.log(error);
       }
     })();
-  }, [playlistDispatch, setIsLoader]);
+  }, [playlistDispatch, setIsLoader, token]);
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
