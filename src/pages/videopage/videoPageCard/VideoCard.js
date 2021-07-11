@@ -5,7 +5,7 @@ import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
 import { usePlaylist } from "../../../providers/PlayListContextProvier";
 import { useAuth } from "../../../providers/AuthProvider";
 import { useState, useEffect } from "react";
-import { postVideo, deleteVideo } from "../../../utils/videCard";
+import { postVideo, deleteVideo } from "../../../utils/videoCard";
 import { ApiService } from "../../../utils/ApiServices";
 
 export const VideoCard = ({ item }) => {

@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../components/header/Header";
-import { LoginFailedModel } from "../../components/loginfailed/LoginFailedModel";
 import { SideNav } from "../../components/sideNav/SideNav";
 import { useAuth } from "../../providers/AuthProvider";
 
@@ -37,6 +36,9 @@ export const LogIn = () => {
       loginUser(res);
     } catch (error) {
       setLoginFailedModel(true);
+      setTimeout(() => {
+        setLoginFailedModel(false);
+      }, 3000);
       setEmail("");
       setPassword("");
     }
@@ -66,16 +68,24 @@ export const LogIn = () => {
   return (
     <div className="log-in">
       <Header />
-      {loginFailedModel && <LoginFailedModel />}
+      {/* {loginFailedModel && <LoginFailedModel />} */}
       <SideNav />
       <div className="contact-us">
-        <form action="#" className="log-in-form">
+        <form
+          action="#"
+          className="log-in-form"
+          onSubmit={(e) => LogInHandler(e)}
+        >
+          {loginFailedModel && (
+            <p className="login-fail">Invalid Email address and Password!!</p>
+          )}
+
           <label htmlFor="customerEmail">
             EMAIL <em>&#x2a;</em>
           </label>
           <input
             id="customerEmail"
-            required=""
+            required
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -87,39 +97,17 @@ export const LogIn = () => {
             id="customerPhone"
             type="password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
 
           <div className="login-signup-button-div">
             {isUserLogin ? (
-              <button
-                id="customerOrder"
-                onClick={
-                  () => Logout()
-
-                  // setToken, setLogin
-                }
-              >
+              <button id="customerOrder" onClick={() => Logout()}>
                 LOG OUT
               </button>
             ) : (
-              <button
-                id="customerOrder"
-                onClick={(e) =>
-                  LogInHandler(
-                    e
-                    // email,
-                    // password,
-                    // setEmail,
-                    // setPassword,
-                    // navigate,
-                    // setToken,
-                    // setUserName,
-                    // setLogin,
-                    // setLoginFailedModel
-                  )
-                }
-              >
+              <button id="customerOrder" type="submit">
                 LOG IN
               </button>
             )}{" "}

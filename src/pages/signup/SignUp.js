@@ -42,13 +42,13 @@ export const SignUp = () => {
       <Header />
       <SideNav />
       <div className="contact-us">
-        <form>
+        <form onSubmit={(e) => SignUpHandler(e)}>
           <label>
             NAME <em>&#x2a;</em>
           </label>
           <input
             id="customerName"
-            required=""
+            required
             type="text"
             value={userName}
             onChange={(e) => setUserName(e.target.value)}
@@ -58,7 +58,7 @@ export const SignUp = () => {
           </label>
           <input
             id="customerEmail"
-            required=""
+            required
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -68,6 +68,7 @@ export const SignUp = () => {
             id="customerPhone"
             type="password"
             value={password1}
+            required
             onChange={(e) => setPassword1(e.target.value)}
           />
           <label>CONFIRM PASSWORD</label>
@@ -75,11 +76,12 @@ export const SignUp = () => {
             id="customerPhone"
             type="password"
             value={password2}
+            required
             onChange={(e) => setPassword2(e.target.value)}
           />
 
           <div className="login-signup-button-div">
-            <button id="customerOrder" onClick={(e) => SignUpHandler(e)}>
+            <button id="customerOrder" type="submit">
               SIGN UP
             </button>
             <Link to="/login">
