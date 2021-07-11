@@ -4,7 +4,7 @@ import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { useReduce } from "../providers/useReducerProvider";
+import { useReduce } from "../../providers/useReducerProvider";
 
 export const SideNav = () => {
   const { setIsSideNav } = useReduce();

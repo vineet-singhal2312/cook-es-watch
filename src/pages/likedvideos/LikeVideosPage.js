@@ -1,9 +1,9 @@
 import { LikedVideosCard } from "./LikedVideosCard";
 import { Header } from "../../components/header/Header";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
-import { Loader } from "../../components/Loader";
+import { Loader } from "../../components/loader/Loader";
 import { useLoader } from "../../providers/LoaderContextProvider";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";
@@ -29,13 +29,12 @@ export const LikedVideos = () => {
         console.log(error, "axios error");
       }
     })();
-  }, [dispatch, setIsLoader]);
+  }, [dispatch, setIsLoader, token]);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
   };
-  console.log(state);
   return (
     <>
       <Header />

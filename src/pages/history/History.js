@@ -1,11 +1,11 @@
 import { HistoryCard } from "./HistoryCard";
 import { Header } from "../../components/header/Header";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useReduce } from "../../providers/useReducerProvider";
 import { useEffect } from "react";
 import { useHistory } from "../../providers/HistoryContextProvider";
 import { useLoader } from "../../providers/LoaderContextProvider";
-import { Loader } from "../../components/Loader";
+import { Loader } from "../../components/loader/Loader";
 import { useAuth } from "../../providers/AuthProvider";
 import { ApiService } from "../../utils/ApiServices";
 export const History = () => {
@@ -22,26 +22,23 @@ export const History = () => {
           { headers: { authorization: token } },
           "historyvideos"
         );
-        console.log(data.result[0].videos);
         setHistoryData(data.result[0].videos);
         setIsLoader(false);
       } catch (error) {
         console.log(error, "axios error");
       }
     })();
-  }, [setHistoryData, setIsLoader]);
+  }, [setHistoryData, setIsLoader, token]);
 
   const closeSideNav = () => {
     document.getElementById("sideNav").style.width = "0%";
     setIsSideNav(false);
   };
 
-  console.log(historyData);
   return (
     <>
       <Header />
       <SideNav />
-      
 
       {historyData.length === 0 ? (
         <div className="history-main">

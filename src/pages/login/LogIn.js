@@ -2,10 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../components/header/Header";
-import { LoginFailedModel } from "../../components/loginfailed/LoginFailedModel";
-import { SideNav } from "../../components/SideNav";
+import { SideNav } from "../../components/sideNav/SideNav";
 import { useAuth } from "../../providers/AuthProvider";
-import "./LogIn.css";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -38,6 +36,9 @@ export const LogIn = () => {
       loginUser(res);
     } catch (error) {
       setLoginFailedModel(true);
+      setTimeout(() => {
+        setLoginFailedModel(false);
+      }, 3000);
       setEmail("");
       setPassword("");
     }
@@ -64,31 +65,39 @@ export const LogIn = () => {
     setLogin(false);
     setToken(null);
   }
-
   return (
     <div className="log-in">
       <Header />
-      {loginFailedModel && <LoginFailedModel />}
+      {/* {loginFailedModel && <LoginFailedModel />} */}
       <SideNav />
       <div className="contact-us">
-        <form action="#" className="log-in-form">
-          <label for="customerEmail">
+        <form
+          action="#"
+          className="log-in-form"
+          onSubmit={(e) => LogInHandler(e)}
+        >
+          {loginFailedModel && (
+            <p className="login-fail">Invalid Email address and Password!!</p>
+          )}
+
+          <label htmlFor="customerEmail">
             EMAIL <em>&#x2a;</em>
           </label>
           <input
             id="customerEmail"
-            required=""
+            required
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <label for="customerPhone">
+          <label htmlFor="customerPhone">
             PASSWORD <em>&#x2a;</em>
           </label>
           <input
             id="customerPhone"
             type="password"
             value={password}
+            required
             onChange={(e) => setPassword(e.target.value)}
           />
 
@@ -98,7 +107,7 @@ export const LogIn = () => {
                 LOG OUT
               </button>
             ) : (
-              <button id="customerOrder" onClick={(e) => LogInHandler(e)}>
+              <button id="customerOrder" type="submit">
                 LOG IN
               </button>
             )}{" "}

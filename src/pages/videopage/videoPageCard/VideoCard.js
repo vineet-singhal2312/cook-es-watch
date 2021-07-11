@@ -1,59 +1,63 @@
 import ReactPlayer from "react-player";
-import { useReduce } from "../../providers/useReducerProvider";
-
 import { RiPlayList2Line } from "react-icons/ri";
 import { MdWatchLater } from "react-icons/md";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { usePlaylist } from "../../providers/PlayListContextProvier";
-// import { useParams } from "react-router";
-import { useAuth } from "../../providers/AuthProvider";
+import { usePlaylist } from "../../../providers/PlayListContextProvier";
+import { useAuth } from "../../../providers/AuthProvider";
 import { useState, useEffect } from "react";
-import { postVideo, deleteVideo } from "./videCardController";
-import { ApiService } from "../../utils/ApiServices";
+import { postVideo, deleteVideo } from "../../../utils/videoCard";
+import { ApiService } from "../../../utils/ApiServices";
 
 export const VideoCard = ({ item }) => {
   const [likedVideosList, setLikedVideosList] = useState([]);
   const [watchLaterList, setWatchLaterList] = useState([]);
   const [dislikedVideosList, setDislikedVideosList] = useState([]);
 
-  // const { videoId } = useParams();
   const { token, setLoginStatus } = useAuth();
 
   const { playlistDispatch } = usePlaylist();
 
-  const { dispatch } = useReduce();
-  console.log(watchLaterList);
-  useEffect(async () => {
-    const data = await ApiService(
-      "get",
-      { headers: { authorization: token } },
-      "likedvideos"
-    );
+  useEffect(
+    () =>
+      (async function () {
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "likedvideos"
+        );
 
-    console.log(data.result[0]?.videos.map((item) => item._id));
-    setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
-  }, []);
+        setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
+      })(),
+    [token]
+  );
 
-  useEffect(async () => {
-    const data = await ApiService(
-      "get",
-      { headers: { authorization: token } },
-      "watchlatervideos"
-    );
+  useEffect(
+    () =>
+      (async function () {
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "watchlatervideos"
+        );
 
-    console.log(data.result[0]?.videos.map((item) => item._id));
-    setWatchLaterList(data.result[0]?.videos.map((item) => item._id));
-  }, []);
+        setWatchLaterList(data.result[0]?.videos.map((item) => item._id));
+      })(),
+    [token]
+  );
 
-  useEffect(async () => {
-    const data = await ApiService(
-      "get",
-      { headers: { authorization: token } },
-      "dislikedvideos"
-    );
+  useEffect(
+    () =>
+      (async function () {
+        const data = await ApiService(
+          "get",
+          { headers: { authorization: token } },
+          "dislikedvideos"
+        );
 
-    setDislikedVideosList(data.result[0]?.videos.map((item) => item._id));
-  }, []);
+        setDislikedVideosList(data.result[0]?.videos.map((item) => item._id));
+      })(),
+    [token]
+  );
 
   return (
     <>

@@ -18,8 +18,6 @@ export const PlayListModal = ({ item }) => {
 
           "playlists"
         );
-
-        console.log(data);
         playlistDispatch({
           type: "ADD_PLAYLIST",
           payload: data.result,
@@ -28,7 +26,7 @@ export const PlayListModal = ({ item }) => {
         console.log(error);
       }
     })();
-  }, [playlistDispatch]);
+  }, [playlistDispatch, token]);
 
   const takePlayListName = (e) => {
     e.preventDefault();
@@ -47,8 +45,6 @@ export const PlayListModal = ({ item }) => {
         "playlists",
         { headers: { authorization: token } }
       );
-
-      console.log(data);
       playlistDispatch({
         type: "ADD_PLAYLIST",
         payload: data.result,
