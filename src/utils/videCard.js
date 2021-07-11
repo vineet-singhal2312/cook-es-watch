@@ -1,4 +1,4 @@
-import { ApiService } from "../../../utils/ApiServices";
+import { ApiService } from "./ApiServices";
 
 export const postVideo = async (
   videoId,
