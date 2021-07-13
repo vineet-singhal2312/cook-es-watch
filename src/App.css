@@ -12,9 +12,9 @@
 @import "./style/HistoryCard.css";
 @import "./style/History.css";
 @import "./style/WatchLater.css";
-@import "./style/VideoPage.css";
 @import "./style/PlayList.css";
 @import "./style/LikedVideos.css";
+@import "./style/VideoPage.css";
 
 .App {
   text-align: center;

@@ -39,12 +39,8 @@ export const History = () => {
     <>
       <Header />
       <SideNav />
-
-      {historyData.length === 0 ? (
-        <div className="history-main">
-          {" "}
-          <h1>You haven't chechout any videos yet... </h1>
-        </div>
+      {isLoader ? (
+        <Loader />
       ) : (
         <div className="history-main" onClick={() => closeSideNav()}>
           <h2 className="page-heading-history">HISTORY</h2>
@@ -54,8 +50,11 @@ export const History = () => {
           >
             Clear All
           </button>
-          {isLoader ? (
-            <Loader />
+          {historyData.length === 0 ? (
+            <div className="history-main">
+              {" "}
+              <h1>You haven't checked any videos yet... </h1>
+            </div>
           ) : (
             <div className="history-video-list">
               {historyData.map((item) => (

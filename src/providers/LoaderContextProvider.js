@@ -4,12 +4,15 @@ const LoaderContext = createContext();
 
 export function LoaderProvider({ children }) {
   const [isLoader, setIsLoader] = useState(true);
+  const [isAddLoader, setIsAddLoader] = useState(false);
 
   return (
     <LoaderContext.Provider
       value={{
         isLoader,
         setIsLoader,
+        isAddLoader,
+        setIsAddLoader,
       }}
     >
       {children}

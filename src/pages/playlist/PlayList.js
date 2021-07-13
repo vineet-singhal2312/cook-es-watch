@@ -39,16 +39,18 @@ export const PlayList = () => {
     <>
       <Header />
       <SideNav />
-      {playlistState.playlist.length === 0 ? (
-        <div className="playlist-videos-main">
-          {" "}
-          <h1>You haven't add any playlist yet... </h1>
-        </div>
+
+      {isLoader ? (
+        <Loader />
       ) : (
         <div className="playlist-videos-main" onClick={() => closeSideNav()}>
           <h2 className="page-heading-playlist">PLAYLISTS</h2>
-          {isLoader ? (
-            <Loader />
+
+          {playlistState.playlist.length === 0 ? (
+            <div className="playlist-videos-main">
+              {" "}
+              <h1>You haven't added any playlist yet... </h1>
+            </div>
           ) : (
             <div>
               {playlistState.playlist.map((item) => (

@@ -34,11 +34,11 @@ export const HistoryCard = ({ item }) => {
 
         <div className="history-card-content">
           {item.name}
-          <div className="link history-card-delete-btn">
+          <Link to="/history" className="link history-card-delete-btn">
             <div onClick={() => deleteHistoryVideo(item._id)}>
               <MdDelete />
             </div>
-          </div>
+          </Link>
         </div>
       </Link>
     </>

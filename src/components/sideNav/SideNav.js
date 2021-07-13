@@ -22,10 +22,10 @@ export const SideNav = () => {
         <Link className="link side-nav-item2" to="/history">
           <FaHistory className="side-nav-icon" />
         </Link>
-        <div className="side-nav-item3">
+        <Link className="link side-nav-item3" to="/playlist">
           {" "}
           <RiPlayList2Line className="side-nav-icon" />
-        </div>
+        </Link>
         <Link className="link side-nav-item4" to="/later">
           <MdWatchLater className="side-nav-icon" />
         </Link>{" "}

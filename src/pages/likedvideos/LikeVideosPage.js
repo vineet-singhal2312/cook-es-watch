@@ -49,7 +49,7 @@ export const LikedVideos = () => {
           {state.likedVideos.length === 0 ? (
             <div className="like-videos-main">
               {" "}
-              <h1>You haven't like any video yet... </h1>
+              <h1>You haven't liked any video yet... </h1>
             </div>
           ) : (
             <div className="like-videos-list">

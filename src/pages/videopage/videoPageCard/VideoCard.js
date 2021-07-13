@@ -7,11 +7,13 @@ import { useAuth } from "../../../providers/AuthProvider";
 import { useState, useEffect } from "react";
 import { postVideo, deleteVideo } from "../../../utils/videoCard";
 import { ApiService } from "../../../utils/ApiServices";
+import { useLoader } from "../../../providers/LoaderContextProvider";
 
 export const VideoCard = ({ item }) => {
   const [likedVideosList, setLikedVideosList] = useState([]);
   const [watchLaterList, setWatchLaterList] = useState([]);
   const [dislikedVideosList, setDislikedVideosList] = useState([]);
+  const { setIsAddLoader } = useLoader();
 
   const { token, setLoginStatus } = useAuth();
 
@@ -58,7 +60,6 @@ export const VideoCard = ({ item }) => {
       })(),
     [token]
   );
-
   return (
     <>
       <div className="video-card">
@@ -75,13 +76,15 @@ export const VideoCard = ({ item }) => {
           <div className="like-dislike-btn-div">
             {likedVideosList?.includes(item._id) ? (
               <div
-                className="link video-player-option clicked"
+                className="link video-player-option"
+                id="clicked"
                 onClick={() =>
                   deleteVideo(
                     item._id,
                     setLikedVideosList,
                     token,
-                    "likedvideos"
+                    "likedvideos",
+                    setIsAddLoader
                   )
                 }
               >
@@ -98,7 +101,8 @@ export const VideoCard = ({ item }) => {
                     setLikedVideosList,
                     token,
                     "likedvideos",
-                    setLoginStatus
+                    setLoginStatus,
+                    setIsAddLoader
                   )
                 }
               >
@@ -110,13 +114,15 @@ export const VideoCard = ({ item }) => {
 
             {dislikedVideosList?.includes(item._id) ? (
               <div
-                className="link video-player-option clicked"
+                className="link video-player-option"
+                id="clicked"
                 onClick={() =>
                   deleteVideo(
                     item._id,
                     setDislikedVideosList,
                     token,
-                    "dislikedvideos"
+                    "dislikedvideos",
+                    setIsAddLoader
                   )
                 }
               >
@@ -133,7 +139,8 @@ export const VideoCard = ({ item }) => {
                     setDislikedVideosList,
                     token,
                     "dislikedvideos",
-                    setLoginStatus
+                    setLoginStatus,
+                    setIsAddLoader
                   )
                 }
               >
@@ -145,13 +152,15 @@ export const VideoCard = ({ item }) => {
 
             {watchLaterList?.includes(item._id) ? (
               <div
-                className="link video-player-option clicked"
+                className="link video-player-option"
+                id="clicked"
                 onClick={() =>
                   deleteVideo(
                     item._id,
                     setWatchLaterList,
                     token,
-                    "watchlatervideos"
+                    "watchlatervideos",
+                    setIsAddLoader
                   )
                 }
               >
@@ -168,7 +177,8 @@ export const VideoCard = ({ item }) => {
                     setWatchLaterList,
                     token,
                     "watchlatervideos",
-                    setLoginStatus
+                    setLoginStatus,
+                    setIsAddLoader
                   )
                 }
               >

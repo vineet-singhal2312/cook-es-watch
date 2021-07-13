@@ -68,7 +68,6 @@ export const LogIn = () => {
   return (
     <div className="log-in">
       <Header />
-      {/* {loginFailedModel && <LoginFailedModel />} */}
       <SideNav />
       <div className="contact-us">
         <form
