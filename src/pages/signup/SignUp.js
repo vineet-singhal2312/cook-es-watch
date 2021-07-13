@@ -4,13 +4,14 @@ import { useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { Header } from "../../components/header/Header";
 import { SideNav } from "../../components/sideNav/SideNav";
+import { useAuth } from "../../providers/AuthProvider";
 export const SignUp = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
   const navigate = useNavigate();
-
+  const { loginFailedModel, setLoginFailedModel } = useAuth();
   const SignUpHandler = async (e) => {
     e.preventDefault();
     try {
@@ -32,6 +33,10 @@ export const SignUp = () => {
       setPassword2("");
       navigate("/login");
     } catch (error) {
+      setLoginFailedModel(true);
+      setTimeout(() => {
+        setLoginFailedModel(false);
+      }, 5000);
       console.log(error.message);
       console.log(error.data);
     }
@@ -43,6 +48,12 @@ export const SignUp = () => {
       <SideNav />
       <div className="contact-us">
         <form onSubmit={(e) => SignUpHandler(e)}>
+          {loginFailedModel && (
+            <p className="login-fail">
+              Check your details!<br></br>Should have unique user name and
+              Email!
+            </p>
+          )}
           <label>
             NAME <em>&#x2a;</em>
           </label>

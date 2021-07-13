@@ -50,7 +50,7 @@ export const WatchLater = () => {
           {state.watchLater.length === 0 ? (
             <div className="like-videos-main">
               {" "}
-              <h1>You haven't add any video in watchlater yet... </h1>
+              <h1>You haven't added any video in watchlater yet... </h1>
             </div>
           ) : (
             <div className="watch-later-list">

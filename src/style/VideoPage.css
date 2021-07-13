@@ -68,7 +68,7 @@
   width: 20%;
   font-size: 1.3rem;
 }
-.clicked {
+#clicked {
   color: var(--secondaryColor);
 }
 .video-player-icon {

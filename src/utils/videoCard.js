@@ -5,8 +5,10 @@ export const postVideo = async (
   setLikedVideosList,
   token,
   routeEndPoint,
-  setLoginStatus
+  setLoginStatus,
+  setIsAddLoader
 ) => {
+  setIsAddLoader(true);
   try {
     const data = await ApiService(
       "post",
@@ -18,7 +20,9 @@ export const postVideo = async (
       { headers: { authorization: token } }
     );
     setLikedVideosList(data.result[0]?.videos.map((item) => item._id));
+    setIsAddLoader(false);
   } catch (error) {
+    setIsAddLoader(false);
     console.log(error, "exios error");
     setLoginStatus(true);
     setTimeout(() => {
@@ -31,8 +35,10 @@ export const deleteVideo = async (
   videoId,
   setLikedVideosList,
   token,
-  routeEndPoint
+  routeEndPoint,
+  setIsAddLoader
 ) => {
+  setIsAddLoader(true);
   try {
     const data = await ApiService(
       "delete",
@@ -44,9 +50,10 @@ export const deleteVideo = async (
       routeEndPoint
     );
 
-    console.log(data.result[0].videos.map((item) => item._id));
     setLikedVideosList(data.result[0].videos.map((item) => item._id));
+    setIsAddLoader(false);
   } catch (error) {
+    setIsAddLoader(false);
     console.log(error, "exios error");
   }
 };

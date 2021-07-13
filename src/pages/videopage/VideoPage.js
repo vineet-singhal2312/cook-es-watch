@@ -15,7 +15,7 @@ import { useAuth } from "../../providers/AuthProvider";
 
 export const VideoPage = () => {
   const { state, dispatch, setIsSideNav } = useReduce();
-  const { isLoader, setIsLoader } = useLoader();
+  const { isLoader, setIsLoader, isAddLoader } = useLoader();
   const { loginStatus } = useAuth();
   const { playlistState, isPlayListVideoAddModel, playlistDispatch } =
     usePlaylist();
@@ -58,7 +58,7 @@ export const VideoPage = () => {
       {isPlayListVideoAddModel && (
         <UserActivityModel description="Video is added..." />
       )}
-
+      {isAddLoader && <UserActivityModel description="Loading..." />}
       {loginStatus && (
         <UserActivityModel description="You haven't logged in!!" />
       )}
