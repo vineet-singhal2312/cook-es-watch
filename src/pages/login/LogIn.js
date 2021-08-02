@@ -3,7 +3,9 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Header } from "../../components/header/Header";
 import { SideNav } from "../../components/sideNav/SideNav";
+import { SmallLoader } from "../../components/smallLoader/smallLoader";
 import { useAuth } from "../../providers/AuthProvider";
+import { useLoader } from "../../providers/LoaderContextProvider";
 
 export const LogIn = () => {
   const navigate = useNavigate();
@@ -17,9 +19,33 @@ export const LogIn = () => {
     loginFailedModel,
     setLoginFailedModel,
   } = useAuth();
+  const { isSmallLoader, setIsSmallLoader } = useLoader();
 
+  function loginUser(res) {
+    setLogin(true);
+
+    setToken(res.data.token);
+    navigate("/");
+    setUserName(res.data.userName);
+
+    localStorage?.setItem(
+      "login",
+      JSON.stringify({
+        isUserLoggedIn: true,
+        token: res.data.token,
+        name: res.data.userName,
+      })
+    );
+    setIsSmallLoader(false);
+  }
+  function Logout() {
+    localStorage?.removeItem("login");
+    setLogin(false);
+    setToken(null);
+  }
   const LogInHandler = async (e) => {
     e.preventDefault();
+    setIsSmallLoader(true);
     try {
       const res = await axios.post(
         // "http://localhost:8000/login",
@@ -35,6 +61,7 @@ export const LogIn = () => {
       setPassword("");
       loginUser(res);
     } catch (error) {
+      setIsSmallLoader(false);
       setLoginFailedModel(true);
       setTimeout(() => {
         setLoginFailedModel(false);
@@ -42,29 +69,36 @@ export const LogIn = () => {
       setEmail("");
       setPassword("");
     }
-    function loginUser(res) {
-      setLogin(true);
+  };
+  const loginAsGuest = async () => {
+    setIsSmallLoader(true);
 
-      setToken(res.data.token);
-      navigate("/");
-      setUserName(res.data.userName);
+    try {
+      const res = await axios.post(
+        // "http://localhost:8000/login",
+        `https://cook-es-watch.herokuapp.com/login`,
 
-      localStorage?.setItem(
-        "login",
-        JSON.stringify({
-          isUserLoggedIn: true,
-          token: res.data.token,
-          name: res.data.userName,
-        })
+        {
+          email: "demoaccount@gmail.com",
+          password: "123456",
+        }
       );
+
+      setEmail("");
+      setPassword("");
+      loginUser(res);
+    } catch (error) {
+      setIsSmallLoader(false);
+
+      setLoginFailedModel(true);
+      setTimeout(() => {
+        setLoginFailedModel(false);
+      }, 3000);
+      setEmail("");
+      setPassword("");
     }
   };
 
-  function Logout() {
-    localStorage?.removeItem("login");
-    setLogin(false);
-    setToken(null);
-  }
   return (
     <div className="log-in">
       <Header />
@@ -107,13 +141,24 @@ export const LogIn = () => {
               </button>
             ) : (
               <button id="customerOrder" type="submit">
-                LOG IN
+                {isSmallLoader ? <SmallLoader /> : <p>LOG IN</p>}
               </button>
             )}{" "}
-            <Link to="/signup">
-              <button id="customerOrder">SIGN UP</button>
-            </Link>
+            <button
+              id="customerOrder"
+              disabled={isUserLogin}
+              onClick={() => loginAsGuest()}
+            >
+              {isSmallLoader ? <SmallLoader /> : <p>GUEST</p>}
+            </button>
           </div>
+
+          <p className="switch-page-description">
+            create an account{" "}
+            <Link to="/signup" className="switch-page-link">
+              Sign Up
+            </Link>
+          </p>
         </form>
       </div>
     </div>

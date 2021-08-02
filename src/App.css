@@ -15,6 +15,7 @@
 @import "./style/PlayList.css";
 @import "./style/LikedVideos.css";
 @import "./style/VideoPage.css";
+@import "./style/SmallLoder.css";
 
 .App {
   text-align: center;
@@ -40,6 +41,7 @@ body {
 ul {
   list-style: none;
 }
+
 .link {
   color: var(--textColor);
   text-decoration: none;
