@@ -16,6 +16,13 @@
   display: grid;
   place-items: center;
 }
+.switch-page-description {
+  color: white;
+  margin-top: 1rem;
+}
+.switch-page-link {
+  color: var(--secondaryColor);
+}
 .contact-us {
   background: var(--primaryColor);
   padding: 50px 100px;
@@ -101,6 +108,7 @@ button {
   border-bottom: 2px solid transparent;
   outline: none;
   cursor: pointer;
+  position: relative;
 }
 button:hover {
   background: inherit;

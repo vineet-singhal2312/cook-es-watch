@@ -4,6 +4,8 @@ const LoaderContext = createContext();
 
 export function LoaderProvider({ children }) {
   const [isLoader, setIsLoader] = useState(true);
+  const [isSmallLoader, setIsSmallLoader] = useState(false);
+
   const [isAddLoader, setIsAddLoader] = useState(false);
 
   return (
@@ -13,6 +15,8 @@ export function LoaderProvider({ children }) {
         setIsLoader,
         isAddLoader,
         setIsAddLoader,
+        isSmallLoader,
+        setIsSmallLoader,
       }}
     >
       {children}
