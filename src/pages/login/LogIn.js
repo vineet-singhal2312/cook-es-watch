@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Header } from "../../components/header/Header";
+// import { Header } from "../../components/header/Header";
 import { SideNav } from "../../components/sideNav/SideNav";
 import { SmallLoader } from "../../components/smallLoader/smallLoader";
 import { useAuth } from "../../providers/AuthProvider";
@@ -101,7 +101,7 @@ export const LogIn = () => {
 
   return (
     <div className="log-in">
-      <Header />
+      {/* <Header /> */}
       <SideNav />
       <div className="contact-us">
         <form
